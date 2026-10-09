@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@import "./design.css";
 
 @theme {
   --color-brand-indigo: #6366F1;
@@ -324,7 +325,6 @@ body {
 }
 
 .btn--primary {
-  background: linear-gradient(135deg, #6366F1 0%, #06B6D4 50%, #10B981 100%);
   color: #FFFFFF !important;
   box-shadow: 0 4px 20px -2px rgba(99, 102, 241, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.25);
   border: 1px solid rgba(255, 255, 255, 0.2);

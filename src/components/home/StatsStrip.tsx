@@ -1,61 +1,48 @@
-'use client';
+import type { CSSProperties } from 'react';
+import { impactStats } from '@/data/projects';
+
+const accents = ['#22D3EE', '#818CF8', '#34D399', '#F472B6'];
 
 export default function StatsStrip() {
-  const stats = [
-    {
-      value: '$4.8B+',
-      label: 'Enterprise Value Created',
-      sub: 'Verified client ROI',
-      badge: 'FinOps & AI',
-      color: 'text-cyan-400'
-    },
-    {
-      value: '99.999%',
-      label: 'Mission-Critical SLA',
-      sub: 'Zero single point of failure',
-      badge: 'Uptime Guarantee',
-      color: 'text-emerald-400'
-    },
-    {
-      value: '450+',
-      label: 'Global Enterprise Clients',
-      sub: 'Across 38 countries',
-      badge: 'Fortune 1000',
-      color: 'text-indigo-400'
-    },
-    {
-      value: '<12ms',
-      label: 'Global Edge Latency',
-      sub: 'Anycast microservices mesh',
-      badge: 'SRE Fleet',
-      color: 'text-amber-400'
-    }
-  ];
-
   return (
-    <section className="relative z-20 -mt-8 pb-12" aria-label="Enterprise Proof Metrics">
+    <section className="relative py-10" aria-label="Impact by the numbers">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="bg-slate-950/80 backdrop-blur-2xl border border-white/10 rounded-3xl p-6 sm:p-8 shadow-2xl shadow-black/80 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          {stats.map((item) => (
-            <div key={item.label} className="flex flex-col gap-1.5 p-2">
-              <div className="flex items-center justify-between mb-1">
-                <span className="text-[10px] font-semibold px-2.5 py-0.5 rounded-full bg-white/5 border border-white/10 text-slate-300">
-                  {item.badge}
-                </span>
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
+          {impactStats.map((s, i) => (
+            <div
+              key={s.label}
+              suppressHydrationWarning data-reveal
+              style={{ '--d': `${i * 90}ms`, '--accent': accents[i] } as CSSProperties}
+              className="surface spotlight lift rounded-3xl p-6 sm:p-7 overflow-hidden"
+            >
+              <Sparkline color={accents[i]} seed={i} />
+              <div suppressHydrationWarning data-count className="relative font-display text-4xl sm:text-5xl font-extrabold tracking-tight text-white">
+                {s.value}
               </div>
-              <div className={`text-3xl sm:text-4xl font-black ${item.color} tracking-tight leading-none`}>
-                {item.value}
-              </div>
-              <div className="text-sm font-semibold text-white mt-1">
-                {item.label}
-              </div>
-              <div className="text-xs text-slate-400">
-                {item.sub}
-              </div>
+              <div className="relative mt-2 text-sm text-slate-400">{s.label}</div>
             </div>
           ))}
         </div>
       </div>
     </section>
+  );
+}
+
+// Decorative rising line in the card corner
+function Sparkline({ color, seed }: { color: string; seed: number }) {
+  const pts = [38, 30, 33, 22, 26, 15, 18, 8].map((y, i) => `${i * 14},${y + ((seed * 7 + i * 3) % 6)}`).join(' ');
+  return (
+    <svg className="absolute right-4 top-5 w-28 h-12 opacity-80" viewBox="0 0 100 48" aria-hidden="true">
+      <defs>
+        <linearGradient id={`spark-${seed}`} x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stopColor={color} stopOpacity="0.35" />
+          <stop offset="1" stopColor={color} stopOpacity="0" />
+        </linearGradient>
+      </defs>
+      <polygon points={`0,48 ${pts} 98,48`} fill={`url(#spark-${seed})`} />
+      <polyline points={pts} fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" strokeDasharray="200" strokeDashoffset="0">
+        <animate attributeName="stroke-dashoffset" from="200" to="0" dur="2s" fill="freeze" />
+      </polyline>
+    </svg>
   );
 }

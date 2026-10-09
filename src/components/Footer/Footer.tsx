@@ -1,8 +1,11 @@
 'use client';
 
 import Link from 'next/link';
+import Logo from '@/components/ui/Logo';
+import { SITE } from '@/data/site';
 
 const serviceLinks = [
+  { label: 'AI Agents & MCP Servers', href: '/services/ai-agents-mcp-servers' },
   { label: 'Cloud Infrastructure', href: '/services/cloud-infrastructure' },
   { label: 'AI & Data Analytics', href: '/services/ai-data-analytics' },
   { label: 'Digital Transformation', href: '/services/digital-transformation' },
@@ -29,119 +32,173 @@ const resourceLinks = [
   { label: 'Terms of Service', href: '/terms' },
 ];
 
+const socials = [
+  {
+    label: 'LinkedIn',
+    href: SITE.linkedin,
+    icon: <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6zM2 9h4v12H2zM4 2a2 2 0 1 1 0 4 2 2 0 0 1 0-4z" />,
+  },
+  {
+    label: 'X (Twitter)',
+    href: SITE.twitter,
+    icon: <path d="M4 4l16 16M20 4L4 20" />,
+  },
+];
+
+function LinkColumn({ title, links }: { title: string; links: { label: string; href: string }[] }) {
+  return (
+    <div>
+      <h4 className="text-xs font-bold uppercase tracking-[0.16em] text-white mb-5">{title}</h4>
+      <ul className="flex flex-col gap-3 list-none p-0 m-0" role="list">
+        {links.map((link) => (
+          <li key={link.href}>
+            <Link href={link.href} className="group inline-flex items-center gap-1.5 text-sm text-slate-400 hover:text-white transition-colors">
+              <span className="w-0 h-px bg-cyan-400 group-hover:w-3 transition-all duration-300" aria-hidden="true" />
+              {link.label}
+            </Link>
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+}
+
 export default function Footer() {
   const year = 2026;
 
   return (
-    <footer className="bg-[#03060E] border-t border-white/10 text-slate-400 relative overflow-hidden" role="contentinfo">
-      {/* Ambient radial blur */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[250px] bg-indigo-500/10 rounded-full blur-[100px] pointer-events-none" aria-hidden="true" />
+    <footer className="relative overflow-hidden bg-[#03060E] text-slate-400 pt-24" role="contentinfo">
+      <div className="absolute inset-0 bg-grid-fade opacity-60 pointer-events-none" aria-hidden="true" />
+      <div className="absolute -top-40 left-1/2 -translate-x-1/2 w-[900px] h-[400px] rounded-full bg-indigo-600/20 blur-[120px] pointer-events-none" aria-hidden="true" />
 
-      {/* Newsletter */}
-      <div className="py-12 border-b border-white/5 bg-slate-950/40 relative z-10">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-col lg:flex-row items-center justify-between gap-8">
+      {/* CTA band */}
+      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div suppressHydrationWarning data-reveal="scale" className="border-glow relative rounded-[2rem] overflow-hidden bg-gradient-to-br from-[#111a3a] via-[#0b1328] to-[#08101f] border border-white/10 px-6 py-12 sm:px-14 sm:py-16">
+          <Beams />
+          <div className="relative z-[2] grid lg:grid-cols-[1.4fr_1fr] gap-10 items-center">
             <div>
-              <h3 className="text-2xl font-bold text-white mb-1">Stay at the Forefront of Enterprise Tech</h3>
-              <p className="text-sm text-slate-400">Curated monthly intelligence on Generative AI, multi-cloud architectures, and FinOps.</p>
+              <span className="kicker mb-5">Let&apos;s build together</span>
+              <h2 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white leading-[1.02]">
+                Have an idea?<br />
+                <span className="text-gradient">Let&apos;s ship it.</span>
+              </h2>
+              <p className="mt-5 text-base text-slate-400 max-w-lg">
+                Tell us what you want to build. We&apos;ll come back within 24 hours with a plan, a timeline and the team to make it happen.
+              </p>
             </div>
-            <form className="flex gap-3 max-w-md w-full" onSubmit={(e) => e.preventDefault()}>
+            <div className="flex flex-col sm:flex-row lg:flex-col gap-3 lg:items-end">
+              <Link href="/contact" className="btn btn--primary btn--lg">
+                Start a Project
+                <svg className="btn-arrow w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12" /><polyline points="12 5 19 12 12 19" /></svg>
+              </Link>
+              <Link href="/projects" className="btn btn--secondary btn--lg">
+                See Our Work
+              </Link>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Directory */}
+      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-20 pb-12">
+        <div className="grid grid-cols-2 lg:grid-cols-[1.6fr_1fr_1fr_1fr] gap-10">
+          <div className="col-span-2 lg:col-span-1 flex flex-col gap-5">
+            <Link href="/" className="group flex items-center gap-2.5 w-fit" aria-label={`${SITE.name} — Home`}>
+              <Logo size="lg" />
+            </Link>
+            <p className="text-sm text-slate-400 leading-relaxed max-w-xs">
+              We design, build and run software for healthcare, logistics, finance and growing businesses, from first sprint to production.
+            </p>
+
+            <form className="flex items-center gap-2 max-w-sm p-1.5 rounded-full bg-white/5 border border-white/10 focus-within:border-cyan-400/60 transition-colors" onSubmit={(e) => e.preventDefault()}>
               <input
                 type="email"
-                className="flex-1 px-4 py-2.5 rounded-full bg-slate-900/90 border border-white/10 text-white text-sm outline-none focus:border-cyan-400 transition-colors placeholder:text-slate-500"
-                placeholder="Enter your enterprise work email"
+                className="flex-1 min-w-0 bg-transparent px-3 text-sm text-white outline-none placeholder:text-slate-500"
+                placeholder="Your email for updates"
                 required
-                aria-label="Work email"
+                aria-label="Email address"
               />
-              <button
-                type="submit"
-                className="px-6 py-2.5 rounded-full text-xs font-semibold text-white bg-gradient-to-r from-indigo-500 via-cyan-500 to-emerald-400 shadow-md shadow-indigo-500/30 hover:brightness-110 shrink-0 transition-all cursor-pointer"
-              >
+              <button type="submit" className="shrink-0 h-9 px-4 rounded-full text-xs font-semibold text-white bg-gradient-to-r from-indigo-500 to-cyan-500 hover:brightness-110 transition cursor-pointer">
                 Subscribe
               </button>
             </form>
+
+            <div className="flex items-center gap-2">
+              {socials.map((s) => (
+                <a
+                  key={s.label}
+                  href={s.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={s.label}
+                  className="w-10 h-10 rounded-full border border-white/10 bg-white/5 flex items-center justify-center text-slate-300 hover:text-white hover:border-cyan-400/60 hover:-translate-y-0.5 transition-all"
+                >
+                  <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">{s.icon}</svg>
+                </a>
+              ))}
+              <span className="ml-2 inline-flex items-center gap-2 text-xs text-emerald-300">
+                <span className="relative w-2 h-2 rounded-full bg-emerald-400">
+                  <span className="absolute inset-0 rounded-full bg-emerald-400 animate-ping" />
+                </span>
+                Available for new projects
+              </span>
+            </div>
           </div>
+
+          <LinkColumn title="Capabilities" links={serviceLinks} />
+          <LinkColumn title="Company" links={companyLinks} />
+          <LinkColumn title="Resources" links={resourceLinks} />
         </div>
       </div>
 
-      {/* Main Directory */}
-      <div className="py-16 relative z-10">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-[1.5fr_1fr_1fr_1fr] gap-10">
-            {/* Brand */}
-            <div className="flex flex-col gap-4">
-              <Link href="/" className="flex items-center gap-2.5" aria-label="Ahaan Technologies — Home">
-                <span className="w-8 h-8 rounded-lg bg-gradient-to-tr from-indigo-500 to-cyan-400 flex items-center justify-center text-white font-black text-base">A</span>
-                <span className="text-lg font-black text-white tracking-tight">
-                  Ahaan<span className="text-cyan-400">Tech</span>
-                </span>
-              </Link>
-              <p className="text-sm text-slate-400 leading-relaxed max-w-xs">
-                Engineering tomorrow&apos;s autonomous enterprises. High-performance cloud architectures, custom AI agents, and Zero Trust cybersecurity.
-              </p>
-
-              <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/25 text-emerald-300 text-[11px] font-semibold w-fit mt-2">
-                <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 relative">
-                  <span className="absolute -inset-1 rounded-full bg-emerald-400/50 animate-ping" />
-                </span>
-                <span>All Global Systems Operational • 99.999% SLA</span>
-              </div>
-            </div>
-
-            {/* Services */}
-            <div>
-              <h4 className="text-xs font-bold uppercase tracking-wider text-white mb-4">Capabilities</h4>
-              <ul className="flex flex-col gap-2.5 list-none p-0 m-0" role="list">
-                {serviceLinks.map((link) => (
-                  <li key={link.href}>
-                    <Link href={link.href} className="text-sm text-slate-400 hover:text-white transition-colors">{link.label}</Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            {/* Company */}
-            <div>
-              <h4 className="text-xs font-bold uppercase tracking-wider text-white mb-4">Company</h4>
-              <ul className="flex flex-col gap-2.5 list-none p-0 m-0" role="list">
-                {companyLinks.map((link) => (
-                  <li key={link.href}>
-                    <Link href={link.href} className="text-sm text-slate-400 hover:text-white transition-colors">{link.label}</Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            {/* Resources */}
-            <div>
-              <h4 className="text-xs font-bold uppercase tracking-wider text-white mb-4">Resources</h4>
-              <ul className="flex flex-col gap-2.5 list-none p-0 m-0" role="list">
-                {resourceLinks.map((link) => (
-                  <li key={link.href}>
-                    <Link href={link.href} className="text-sm text-slate-400 hover:text-white transition-colors">{link.label}</Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </div>
+      {/* Giant wordmark */}
+      <div className="relative select-none pointer-events-none" aria-hidden="true">
+        <div className="font-display font-extrabold leading-none text-center text-[15vw] tracking-[-0.05em] translate-y-[18%] footer-wordmark">
+          INOVARAA
         </div>
       </div>
 
-      {/* Bottom Bar */}
-      <div className="py-6 border-t border-white/5 relative z-10 text-xs text-slate-500">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
-            <p>© {year} Ahaan Technologies Enterprise Inc. All rights reserved.</p>
-            <div className="flex items-center gap-4">
-              <Link href="/privacy-policy" className="hover:text-white transition-colors">Privacy</Link>
-              <span>·</span>
-              <Link href="/terms" className="hover:text-white transition-colors">Terms</Link>
-              <span>·</span>
-              <Link href="/sitemap.xml" className="hover:text-white transition-colors">Sitemap</Link>
-            </div>
+      {/* Bottom bar */}
+      <div className="relative border-t border-white/5 bg-[#03060E]/80 backdrop-blur-sm text-xs text-slate-500">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 flex flex-col sm:flex-row items-center justify-between gap-4">
+          <p>© {year} Inovaraa Solutions. All rights reserved.</p>
+          <div className="flex items-center gap-5">
+            <Link href="/privacy-policy" className="hover:text-white transition-colors">Privacy</Link>
+            <Link href="/terms" className="hover:text-white transition-colors">Terms</Link>
+            <Link href="/sitemap.xml" className="hover:text-white transition-colors">Sitemap</Link>
           </div>
         </div>
       </div>
     </footer>
+  );
+}
+
+// Animated light beams travelling along a grid inside the CTA card
+function Beams() {
+  return (
+    <svg className="absolute inset-0 w-full h-full" viewBox="0 0 1200 400" preserveAspectRatio="none" aria-hidden="true">
+      <defs>
+        <linearGradient id="beam-g" x1="0" y1="0" x2="1" y2="0">
+          <stop offset="0" stopColor="#22D3EE" stopOpacity="0" />
+          <stop offset="0.5" stopColor="#22D3EE" stopOpacity="0.9" />
+          <stop offset="1" stopColor="#818CF8" stopOpacity="0" />
+        </linearGradient>
+      </defs>
+      {[60, 140, 220, 300, 380].map((y) => (
+        <line key={y} x1="0" y1={y} x2="1200" y2={y} stroke="rgba(255,255,255,0.04)" />
+      ))}
+      {[150, 350, 550, 750, 950, 1150].map((x) => (
+        <line key={x} x1={x} y1="0" x2={x} y2="400" stroke="rgba(255,255,255,0.04)" />
+      ))}
+      {[
+        { y: 140, dur: '6s', delay: '0s' },
+        { y: 300, dur: '8s', delay: '2s' },
+        { y: 60, dur: '7s', delay: '4s' },
+      ].map((b) => (
+        <rect key={b.y} y={b.y - 1} width="220" height="2" fill="url(#beam-g)">
+          <animate attributeName="x" from="-240" to="1200" dur={b.dur} begin={b.delay} repeatCount="indefinite" />
+        </rect>
+      ))}
+    </svg>
   );
 }

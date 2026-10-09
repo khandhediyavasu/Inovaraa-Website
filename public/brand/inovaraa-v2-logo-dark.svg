@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 120" role="img" aria-labelledby="t">
+  <title id="t">Inovaraa Solutions</title>
+  <!-- For dark backgrounds -->
+  <defs>
+    <linearGradient id="p1" x1="0" y1="1" x2="1" y2="0"><stop offset="0" stop-color="#5B5BFF"/><stop offset="1" stop-color="#A855F7"/></linearGradient>
+    <linearGradient id="p2" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FF3D9A"/><stop offset="1" stop-color="#FF7A59"/></linearGradient>
+    <linearGradient id="p3" x1="1" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FFB020"/><stop offset="1" stop-color="#FF7A1A"/></linearGradient>
+    <linearGradient id="p4" x1="1" y1="1" x2="0" y2="0"><stop offset="0" stop-color="#14E0B0"/><stop offset="1" stop-color="#3DD9FF"/></linearGradient>
+    <g id="bloom">
+      <path d="M2 -4 A30 30 0 0 1 46 -40 A48 48 0 0 1 2 -4 Z" fill="url(#p1)"/>
+      <path d="M2 -4 A30 30 0 0 1 46 -40 A48 48 0 0 1 2 -4 Z" fill="url(#p2)" transform="rotate(90)"/>
+      <path d="M2 -4 A30 30 0 0 1 46 -40 A48 48 0 0 1 2 -4 Z" fill="url(#p3)" transform="rotate(180)"/>
+      <path d="M2 -4 A30 30 0 0 1 46 -40 A48 48 0 0 1 2 -4 Z" fill="url(#p4)" transform="rotate(270)"/>
+    </g>
+  </defs>
+
+  <!-- Mark -->
+  <use href="#bloom" transform="translate(60 60)"/>
+
+  <!-- Wordmark: the dot of the "i" is a tiny bloom -->
+  <g transform="translate(148 14)">
+    <use href="#bloom" transform="translate(14 5) scale(0.2)"/>
+    <g fill="none" stroke="#F5F3FF" stroke-width="9" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M14 24V60"/>
+      <path d="M34 22V60M34 41a18 18 0 0 1 36 0V60"/>
+      <circle cx="108" cy="41" r="18"/>
+      <path d="M141 22L160 60L179 22"/>
+      <circle cx="217" cy="41" r="18"/>
+      <path d="M235 22V60"/>
+      <path d="M255 60V22M255 40a18 18 0 0 1 18-18"/>
+      <circle cx="310" cy="41" r="18"/>
+      <path d="M328 22V60"/>
+      <circle cx="366" cy="41" r="18"/>
+      <path d="M384 22V60"/>
+    </g>
+    <text x="10" y="94" font-family="'Plus Jakarta Sans', 'Segoe UI', Arial, sans-serif" font-size="15" font-weight="700" letter-spacing="10.6" fill="#A9A3C7">SOLUTIONS</text>
+  </g>
+</svg>

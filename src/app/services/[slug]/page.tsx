@@ -1,6 +1,11 @@
 import type { Metadata } from 'next';
+import type { CSSProperties, ReactNode } from 'react';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
+import PageHero from '@/components/ui/PageHero';
+import SectionHeading from '@/components/ui/SectionHeading';
+import JsonLd, { ORG_ID, breadcrumbSchema, faqSchema } from '@/components/seo/JsonLd';
+import { SITE } from '@/data/site';
 
 interface ServiceData {
   title: string;
@@ -11,11 +16,59 @@ interface ServiceData {
   capabilities: { name: string; description: string; highlights: string[] }[];
   process: { step: string; title: string; desc: string }[];
   techStack: string[];
-  caseStudy: { client: string; outcome: string; metrics: string };
+  caseStudy?: { client: string; outcome: string; metrics: string };
   faqs: { q: string; a: string }[];
 }
 
 const serviceDatabase: Record<string, ServiceData> = {
+  'ai-agents-mcp-servers': {
+    title: 'AI Agent & MCP Server Development',
+    subtitle: 'Connect Claude, ChatGPT and other AI assistants to your software with custom MCP (Model Context Protocol) servers, AI agents and secure LLM integrations.',
+    icon: '🧩',
+    overview: 'We design and build MCP servers and AI agents that let AI assistants work with your real systems: your APIs, databases, CRMs, ERPs and internal documents. Each server exposes clear, well-described tools with the right permissions, so the assistant can look things up and take action safely. We build on your existing stack (.NET, Node.js, Python, Angular or React), then handle server setup, deployment, monitoring and support.',
+    benefits: [
+      { title: 'Build once, works everywhere', desc: 'One MCP server works with every MCP-compatible client, including Claude, ChatGPT, VS Code with GitHub Copilot and Cursor.' },
+      { title: 'Your data stays under control', desc: 'Least-privilege tools, authentication and audit logs decide exactly what the AI can read and do.' },
+      { title: 'Fits your existing systems', desc: 'We wrap the APIs and databases you already run instead of asking you to rebuild them.' },
+      { title: 'Real actions, not just chat', desc: 'Agents can create records, run reports and trigger workflows, with human approval where it matters.' },
+    ],
+    capabilities: [
+      {
+        name: 'Custom MCP Server Development',
+        description: 'Model Context Protocol servers that expose your product\'s tools, resources and prompts to AI assistants, built with the official TypeScript, Python or C#/.NET SDKs.',
+        highlights: ['Tool & schema design', 'Local (stdio) and remote (HTTP) servers', 'OAuth-secured remote access'],
+      },
+      {
+        name: 'AI Agents & Workflow Automation',
+        description: 'Agents that plan multi-step work across your systems, such as triaging tickets, preparing reports or updating records, with clear guardrails.',
+        highlights: ['Multi-step task automation', 'Human-in-the-loop approvals', 'Tool-use evaluation'],
+      },
+      {
+        name: 'LLM Integration & RAG',
+        description: 'Bring large language models into your web and mobile apps, grounded in your own documents and data with retrieval-augmented generation.',
+        highlights: ['Claude & OpenAI API integration', 'Document search (RAG)', 'Prompt and output testing'],
+      },
+      {
+        name: 'Server Setup, Deployment & Support',
+        description: 'We host and run what we build: Linux server setup, Docker containers, CI/CD pipelines, monitoring and ongoing maintenance on Azure, AWS or your own servers.',
+        highlights: ['Linux & Docker setup', 'CI/CD pipelines', 'Monitoring & logging'],
+      },
+    ],
+    process: [
+      { step: '01', title: 'Use-case workshop', desc: 'Pick the questions and actions your users need, and the systems the AI must reach.' },
+      { step: '02', title: 'Tool & security design', desc: 'Define tools, input schemas, permissions and approval steps before writing code.' },
+      { step: '03', title: 'Build & test', desc: 'Implement the MCP server or agent, then test with the MCP Inspector and real AI clients.' },
+      { step: '04', title: 'Deploy & support', desc: 'Ship to your infrastructure with authentication, monitoring and ongoing improvements.' },
+    ],
+    techStack: ['Model Context Protocol (MCP)', 'TypeScript', 'Node.js', 'Python', '.NET / C#', 'Claude API', 'OpenAI API', 'Docker', 'Azure', 'AWS', 'Linux'],
+    faqs: [
+      { q: 'What is an MCP server?', a: 'An MCP (Model Context Protocol) server is a small service that exposes your software\'s tools and data to AI assistants in a standard way. Once it is connected, an assistant such as Claude or ChatGPT can look up information and take actions in your system, within the permissions you set.' },
+      { q: 'Which AI assistants can use an MCP server?', a: 'MCP is an open standard supported by a growing list of clients, including Claude, ChatGPT, Visual Studio Code with GitHub Copilot and Cursor. One server can serve all of them.' },
+      { q: 'Can you build an MCP server for our existing .NET or Node.js application?', a: 'Yes. We build MCP servers alongside existing .NET, Node.js and Python systems using the official SDKs, wrapping the APIs and databases you already have.' },
+      { q: 'How do you keep an MCP server secure?', a: 'We give every tool the least privilege it needs, validate all inputs on the server, use OAuth for remote servers, require human confirmation for destructive actions, and log every tool call.' },
+      { q: 'Do you also handle hosting and server setup?', a: 'Yes. We set up and maintain Linux servers, Docker containers, CI/CD pipelines and monitoring on Azure, AWS or your own infrastructure.' },
+    ],
+  },
   'cloud-infrastructure': {
     title: 'Cloud Infrastructure & Modernization Services',
     subtitle: 'Accelerate agility, reduce operational costs, and achieve enterprise resilience across AWS, Azure, and Google Cloud.',
@@ -327,14 +380,105 @@ export async function generateStaticParams() {
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const { slug } = await params;
   const service = serviceDatabase[slug];
-  if (!service) return { title: 'Service Not Found | Ahaan Technologies' };
+  if (!service) return { title: 'Service Not Found' };
 
   return {
-    title: `${service.title} | Ahaan Technologies`,
+    title: service.title,
     description: service.subtitle,
-    alternates: { canonical: `https://ahaantechnologies.com/services/${slug}` },
+    keywords: [service.title, ...service.techStack, 'Inovaraa Solutions', 'software development company'],
+    alternates: { canonical: `/services/${slug}` },
+    openGraph: { title: `${service.title} | Inovaraa Solutions`, description: service.subtitle, url: `/services/${slug}`, type: 'website', images: ['/opengraph-image'] },
   };
 }
+
+/* ---------- Per-service visual identity (presentation only) ---------- */
+
+type Visual = { short: string; color: string; icon: ReactNode; art: ReactNode };
+
+const visuals: Record<string, Visual> = {
+  'ai-agents-mcp-servers': {
+    short: 'AI Agents & MCP Servers',
+    color: '#818CF8',
+    icon: <><path d="M12 22v-5" /><path d="M9 8V2" /><path d="M15 8V2" /><path d="M18 8v5a4 4 0 0 1-4 4h-4a4 4 0 0 1-4-4V8Z" /></>,
+    art: <AiHeroArt />,
+  },
+  'cloud-infrastructure': {
+    short: 'Cloud Infrastructure',
+    color: '#38BDF8',
+    icon: <path d="M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9Z" />,
+    art: <CloudHeroArt />,
+  },
+  'ai-data-analytics': {
+    short: 'AI & Data Analytics',
+    color: '#A78BFA',
+    icon: <path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83" />,
+    art: <AiHeroArt />,
+  },
+  'digital-transformation': {
+    short: 'Digital Transformation',
+    color: '#FBBF24',
+    icon: <path d="m3 16 4 4 4-4M7 20V4M21 8l-4-4-4 4M17 4v16" />,
+    art: <TransformHeroArt />,
+  },
+  cybersecurity: {
+    short: 'Cybersecurity',
+    color: '#34D399',
+    icon: <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />,
+    art: <SecurityHeroArt />,
+  },
+  'managed-services': {
+    short: 'Managed Services',
+    color: '#F472B6',
+    icon: <path d="M22 12h-4l-3 9L9 3l-3 9H2" />,
+    art: <OpsHeroArt />,
+  },
+  'software-development': {
+    short: 'Software Development',
+    color: '#22D3EE',
+    icon: <><polyline points="16 18 22 12 16 6" /><polyline points="8 6 2 12 8 18" /></>,
+    art: <CodeHeroArt />,
+  },
+};
+
+const fallbackVisual: Visual = { short: 'Service', color: '#818CF8', icon: <circle cx="12" cy="12" r="9" />, art: null };
+
+const sections = [
+  { id: 'overview', label: 'Overview' },
+  { id: 'benefits', label: 'Benefits' },
+  { id: 'capabilities', label: 'Capabilities' },
+  { id: 'stack', label: 'Tech stack' },
+  { id: 'process', label: 'Process' },
+  { id: 'faq', label: 'FAQ' },
+];
+
+// Highlight the part after the last "&" (or the last two words) in the gradient
+function splitTitle(title: string): [string, string] {
+  const amp = title.lastIndexOf(' & ');
+  if (amp > -1) return [title.slice(0, amp + 3), title.slice(amp + 3)];
+  const words = title.split(' ');
+  return [words.slice(0, -2).join(' ') + ' ', words.slice(-2).join(' ')];
+}
+
+// "52% Cost Reduction" -> ["52%", "Cost Reduction"]
+function splitMetric(metric: string): [string, string] {
+  const [value, ...rest] = metric.trim().split(' ');
+  return [value, rest.join(' ')];
+}
+
+const accentText = (hex: string): CSSProperties => ({ color: `color-mix(in srgb, ${hex} 70%, var(--ink))` });
+
+const Arrow = ({ className = 'btn-arrow w-4 h-4' }: { className?: string }) => (
+  <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" aria-hidden="true">
+    <line x1="5" y1="12" x2="19" y2="12" />
+    <polyline points="12 5 19 12 12 19" />
+  </svg>
+);
+
+const Check = ({ className = 'w-3 h-3' }: { className?: string }) => (
+  <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+    <polyline points="20 6 9 17 4 12" />
+  </svg>
+);
 
 export default async function ServiceDetailPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
@@ -344,182 +488,633 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
     notFound();
   }
 
+  const v = visuals[slug] ?? fallbackVisual;
+  const [titleHead, titleTail] = splitTitle(service.title);
+  const metrics = service.caseStudy ? service.caseStudy.metrics.split('·').map(splitMetric) : [];
+  const others = Object.keys(serviceDatabase).filter((s) => s !== slug);
+
   return (
-    <>
-      {/* Hero */}
-      <section className="page-hero">
-        <div className="container">
-          <nav className="breadcrumbs" aria-label="Breadcrumb">
-            <div><Link href="/" className="hover:text-white transition-colors">Home</Link></div>
-            <span className="text-slate-500">›</span>
-            <div><Link href="/services" className="hover:text-white transition-colors">Services</Link></div>
-            <span className="text-slate-500">›</span>
-            <div className="text-cyan-400 font-medium">{service.title.split(' ')[0]}</div>
-          </nav>
-          <div className="max-w-4xl">
-            <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-white/10 text-cyan-400 text-xs font-semibold mb-4">
-              <span>{service.icon}</span> Enterprise IT Service
+    <div style={{ '--tile': v.color } as CSSProperties}>
+      <JsonLd
+        data={[
+          {
+            '@context': 'https://schema.org',
+            '@type': 'Service',
+            name: service.title,
+            serviceType: v.short,
+            description: service.overview,
+            url: `${SITE.url}/services/${slug}`,
+            provider: { '@id': ORG_ID, name: SITE.name },
+            areaServed: 'Worldwide',
+            hasOfferCatalog: {
+              '@type': 'OfferCatalog',
+              name: `${v.short} capabilities`,
+              itemListElement: service.capabilities.map((c) => ({ '@type': 'Offer', itemOffered: { '@type': 'Service', name: c.name, description: c.description } })),
+            },
+          },
+          faqSchema(service.faqs),
+          breadcrumbSchema([
+            { name: 'Home', path: '/' },
+            { name: 'Services', path: '/services' },
+            { name: v.short, path: `/services/${slug}` },
+          ]),
+        ]}
+      />
+      <PageHero
+        crumb={`Services / ${v.short}`}
+        kicker="Enterprise IT Service"
+        title={<>{titleHead}<span className="text-gradient">{titleTail}</span></>}
+        description={service.subtitle}
+      >
+        <Link href="/contact" className="btn btn--primary btn--lg">
+          Schedule a Consultation
+          <Arrow />
+        </Link>
+        <Link href="#capabilities" className="btn btn--secondary btn--lg">
+          Explore Capabilities
+        </Link>
+      </PageHero>
+
+      {/* Showcase: illustration + overview + featured impact */}
+      <section id="overview" className="relative pb-24 sm:pb-28 scroll-mt-28" aria-labelledby="overview-heading">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-[1.05fr_0.95fr] gap-6 lg:gap-10 items-stretch">
+          <div
+            suppressHydrationWarning data-reveal="scale"
+            className="surface border-glow relative rounded-[2rem] overflow-hidden min-h-[300px] sm:min-h-[400px]"
+          >
+            <div className="absolute inset-0 bg-grid-fade opacity-70" aria-hidden="true" />
+            <span
+              className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[70%] aspect-square rounded-full blur-3xl opacity-20"
+              style={{ background: v.color }}
+              aria-hidden="true"
+            />
+            <div className="absolute inset-0">{v.art}</div>
+            <div className="absolute top-5 left-5 surface-glass rounded-full pl-1.5 pr-4 py-1.5 flex items-center gap-2.5">
+              <span className="icon-tile w-8! h-8! rounded-full!">
+                <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">{v.icon}</svg>
+              </span>
+              <span className="text-xs font-semibold text-white">{v.short}</span>
             </div>
-            <h1 className="text-white my-4 text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight leading-tight">
-              {service.title}
-            </h1>
-            <p className="text-base sm:text-lg text-slate-300 leading-relaxed mb-8 max-w-3xl">
-              {service.subtitle}
+          </div>
+
+          <div className="flex flex-col justify-center">
+            <div suppressHydrationWarning data-reveal className="kicker mb-5 self-start">Strategic Value</div>
+            <h2
+              id="overview-heading"
+              suppressHydrationWarning data-reveal
+              style={{ '--d': '80ms' } as CSSProperties}
+              className="text-4xl sm:text-5xl font-extrabold text-white leading-[1.05] mb-5"
+            >
+              Engineered for <span className="text-gradient">high-stakes</span> enterprise demands
+            </h2>
+            <p suppressHydrationWarning data-reveal style={{ '--d': '160ms' } as CSSProperties} className="text-base sm:text-lg text-slate-400 leading-relaxed mb-8">
+              {service.overview}
             </p>
-            <div className="flex gap-4 flex-wrap">
-              <Link href="/contact" className="btn btn--primary btn--lg">
-                Schedule a Consultation
-              </Link>
-              <Link href="#capabilities" className="btn btn--secondary btn--lg">
-                Explore Capabilities
-              </Link>
+
+            {service.caseStudy && (
+            <div
+              suppressHydrationWarning data-reveal
+              style={{ '--d': '240ms' } as CSSProperties}
+              className="surface spotlight rounded-3xl p-6 sm:p-7"
+            >
+              <div className="flex items-center gap-2 mb-3">
+                <span className="w-2 h-2 rounded-full pulse-soft" style={{ background: v.color }} aria-hidden="true" />
+                <span className="text-[11px] uppercase tracking-[0.14em] font-bold" style={accentText(v.color)}>Featured Impact</span>
+              </div>
+              <div className="font-semibold text-white mb-1.5">{service.caseStudy.client}</div>
+              <p className="text-sm text-slate-400 leading-relaxed mb-6">{service.caseStudy.outcome}</p>
+              <dl className="grid grid-cols-2 gap-3 m-0">
+                {metrics.map(([value, label]) => (
+                  <div key={label} className="rounded-2xl bg-white/[0.03] border border-white/10 px-4 py-3.5 flex flex-col-reverse">
+                    <dt className="text-xs text-slate-400 mt-1">{label}</dt>
+                    <dd suppressHydrationWarning data-count className="m-0 font-display text-2xl sm:text-3xl font-extrabold text-gradient leading-none">{value}</dd>
+                  </div>
+                ))}
+              </dl>
             </div>
+            )}
           </div>
         </div>
       </section>
 
-      {/* Overview & Key Benefits */}
-      <section className="py-20 relative">
-        <div className="container">
-          <div className="grid grid-cols-1 lg:grid-cols-[1.1fr_0.9fr] gap-12 items-center">
+      {/* Long-form body with sticky side navigation */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-[200px_minmax(0,1fr)] gap-10 xl:gap-16">
+        <aside className="hidden lg:block">
+          <nav className="sticky top-32 flex flex-col gap-6" aria-label="On this page">
             <div>
-              <span className="eyebrow">Strategic Value</span>
-              <h2 className="text-3xl md:text-4xl font-extrabold text-white my-4 tracking-tight">
-                Engineered for High-Stakes Enterprise Demands
-              </h2>
-              <p className="text-base text-slate-400 leading-relaxed mb-6">
-                {service.overview}
-              </p>
-              <div className="bg-slate-900/90 border border-white/10 rounded-2xl p-6 border-l-4 border-l-cyan-400">
-                <div className="text-[11px] uppercase tracking-wider font-bold text-cyan-400 mb-1">Featured Impact</div>
-                <div className="font-semibold text-white text-sm mb-2">{service.caseStudy.client}</div>
-                <p className="text-xs text-slate-400 m-0">{service.caseStudy.outcome}</p>
-                <div className="mt-3 font-bold text-emerald-400 text-sm">
-                  {service.caseStudy.metrics}
-                </div>
-              </div>
+              <div className="text-[11px] font-bold uppercase tracking-[0.14em] text-slate-500 mb-4">On this page</div>
+              <ol className="list-none p-0 m-0 flex flex-col border-l border-white/10">
+                {sections.map((s, i) => (
+                  <li key={s.id}>
+                    <a
+                      href={`#${s.id}`}
+                      className="group -ml-px flex items-center gap-3 border-l-2 border-transparent hover:border-cyan-400 pl-4 py-2 text-sm text-slate-400 hover:text-white transition-colors"
+                    >
+                      <span className="font-mono text-[10px] text-slate-500 group-hover:text-cyan-400 transition-colors">{String(i + 1).padStart(2, '0')}</span>
+                      {s.label}
+                    </a>
+                  </li>
+                ))}
+              </ol>
             </div>
+            <div className="surface rounded-2xl p-4 flex flex-col gap-3">
+              <div className="text-sm font-semibold text-white leading-snug">Discuss your {v.short.toLowerCase()} roadmap</div>
+              <Link href="/contact" className="inline-flex items-center gap-1.5 text-sm font-semibold text-cyan-400 hover:text-cyan-300">
+                Book a call <Arrow className="w-3.5 h-3.5" />
+              </Link>
+              <Link href="/services" className="inline-flex items-center gap-1.5 text-xs text-slate-400 hover:text-white">
+                <svg className="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" aria-hidden="true"><line x1="19" y1="12" x2="5" y2="12" /><polyline points="12 19 5 12 12 5" /></svg>
+                All services
+              </Link>
+            </div>
+          </nav>
+        </aside>
 
+        <div className="min-w-0">
+          {/* Mobile / tablet jump links */}
+          <nav className="lg:hidden flex flex-wrap gap-2 mb-4" aria-label="On this page">
+            {sections.slice(1).map((s) => (
+              <a key={s.id} href={`#${s.id}`} className="surface-glass rounded-full px-3.5 py-1.5 text-xs font-semibold text-slate-300 hover:text-white">
+                {s.label}
+              </a>
+            ))}
+          </nav>
+
+          {/* Benefits */}
+          <section id="benefits" className="py-16 sm:py-20 scroll-mt-28" aria-labelledby="benefits-heading">
+            <SectionHeading
+              align="left"
+              kicker="Key Benefits"
+              id="benefits-heading"
+              title={<>Outcomes you can <span className="text-gradient">measure</span></>}
+              className="mb-12"
+            />
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              {service.benefits.map((b) => (
-                <div key={b.title} className="glass-card glass-card-hover p-6 flex flex-col gap-2">
-                  <div className="w-9 h-9 rounded-xl bg-indigo-500/10 border border-indigo-500/30 flex items-center justify-center text-cyan-400 font-bold text-sm">✓</div>
-                  <h3 className="text-base font-bold text-white">{b.title}</h3>
-                  <p className="text-xs text-slate-400 leading-relaxed">{b.desc}</p>
+              {service.benefits.map((b, i) => (
+                <div
+                  key={b.title}
+                  suppressHydrationWarning data-reveal
+                  style={{ '--d': `${(i % 2) * 100}ms` } as CSSProperties}
+                  className="surface spotlight lift group relative rounded-[1.75rem] p-7 flex flex-col gap-3 overflow-hidden"
+                >
+                  <span
+                    className="absolute -top-14 -right-14 w-40 h-40 rounded-full blur-3xl opacity-15 group-hover:opacity-35 transition-opacity duration-700"
+                    style={{ background: v.color }}
+                    aria-hidden="true"
+                  />
+                  <div className="relative flex items-center justify-between mb-3">
+                    <span className="icon-tile w-11! h-11!"><Check className="w-4 h-4" /></span>
+                    <span className="font-mono text-xs text-slate-500">{String(i + 1).padStart(2, '0')}</span>
+                  </div>
+                  <h3 className="relative text-xl sm:text-2xl font-extrabold text-white leading-tight">{b.title}</h3>
+                  <p className="relative text-sm text-slate-400 leading-relaxed">{b.desc}</p>
                 </div>
               ))}
             </div>
+          </section>
+
+          {/* Capabilities */}
+          <section id="capabilities" className="py-16 sm:py-20 scroll-mt-28 border-t border-white/10" aria-labelledby="capabilities-heading">
+            <SectionHeading
+              align="left"
+              kicker="Comprehensive Capabilities"
+              id="capabilities-heading"
+              title={<>What we <span className="text-gradient">deliver</span></>}
+              description="Deep domain expertise across the modern digital engineering lifecycle."
+              className="mb-12"
+            />
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              {service.capabilities.map((cap, i) => (
+                <article
+                  key={cap.name}
+                  suppressHydrationWarning data-reveal
+                  style={{ '--d': `${(i % 2) * 100}ms` } as CSSProperties}
+                  className="surface spotlight lift rounded-[1.75rem] p-7 sm:p-8 flex flex-col"
+                >
+                  <div className="flex items-start justify-between gap-4 mb-5">
+                    <h3 className="text-xl sm:text-2xl font-bold text-white leading-tight">{cap.name}</h3>
+                    <span className="font-display text-4xl font-extrabold text-outline leading-none shrink-0">{String(i + 1).padStart(2, '0')}</span>
+                  </div>
+                  <p className="text-sm text-slate-400 leading-relaxed mb-6">{cap.description}</p>
+                  <div className="mt-auto pt-5 border-t border-white/10">
+                    <h4 className="text-[11px] uppercase tracking-[0.14em] text-slate-500 font-bold mb-3">Key Deliverables</h4>
+                    <ul className="flex flex-col gap-2.5 list-none p-0 m-0">
+                      {cap.highlights.map((h) => (
+                        <li key={h} className="flex items-center gap-2.5 text-sm text-slate-300">
+                          <span
+                            className="w-5 h-5 rounded-full flex items-center justify-center shrink-0"
+                            style={{ background: `${v.color}22`, border: `1px solid ${v.color}55`, ...accentText(v.color) }}
+                          >
+                            <Check />
+                          </span>
+                          {h}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </article>
+              ))}
+            </div>
+          </section>
+
+          {/* Tech stack */}
+          <section id="stack" className="py-16 sm:py-20 scroll-mt-28 border-t border-white/10" aria-labelledby="stack-heading">
+            <SectionHeading
+              align="left"
+              kicker="Enterprise Ecosystem"
+              id="stack-heading"
+              title={<>Technologies we <span className="text-gradient">partner with</span></>}
+              className="mb-10"
+            />
+            <ul className="grid grid-cols-2 sm:grid-cols-3 gap-3 list-none p-0 m-0">
+              {service.techStack.map((tech, i) => (
+                <li
+                  key={tech}
+                  suppressHydrationWarning data-reveal="scale"
+                  style={{ '--d': `${(i % 3) * 70}ms` } as CSSProperties}
+                  className="surface-glass spotlight lift rounded-2xl px-4 py-3.5 flex items-center gap-3 min-w-0"
+                >
+                  <span className="w-9 h-9 rounded-xl bg-gradient-to-br from-indigo-500 to-cyan-400 text-white text-xs font-bold flex items-center justify-center shrink-0" aria-hidden="true">
+                    {tech.replace(/[^A-Za-z0-9]/g, '').slice(0, 2)}
+                  </span>
+                  <span className="text-sm font-semibold text-white truncate">{tech}</span>
+                </li>
+              ))}
+            </ul>
+          </section>
+
+          {/* Process */}
+          <section id="process" className="py-16 sm:py-20 scroll-mt-28 border-t border-white/10" aria-labelledby="process-heading">
+            <SectionHeading
+              align="left"
+              kicker="Proven Delivery Framework"
+              id="process-heading"
+              title={<>How we <span className="text-gradient">execute</span></>}
+              description="Transparent, milestone-driven engagement designed for predictability."
+              className="mb-12"
+            />
+            <ol className="relative list-none p-0 m-0 flex flex-col gap-5">
+              <span className="absolute left-6 top-6 bottom-6 w-px bg-gradient-to-b from-cyan-400 via-indigo-400 to-pink-400 opacity-60" aria-hidden="true" />
+              {service.process.map((step, i) => (
+                <li
+                  key={step.step}
+                  suppressHydrationWarning data-reveal="left"
+                  style={{ '--d': `${i * 120}ms` } as CSSProperties}
+                  className="relative grid grid-cols-[3rem_minmax(0,1fr)] gap-4 sm:gap-6 items-start"
+                >
+                  <span className="relative z-[1] w-12 h-12 rounded-full bg-gradient-to-br from-indigo-500 to-cyan-400 text-white font-mono text-sm font-bold flex items-center justify-center shadow-lg shadow-indigo-500/30">
+                    {step.step}
+                  </span>
+                  <div className="surface spotlight lift rounded-3xl p-6">
+                    <h3 className="text-lg sm:text-xl font-bold text-white mb-2">{step.title}</h3>
+                    <p className="text-sm text-slate-400 leading-relaxed">{step.desc}</p>
+                  </div>
+                </li>
+              ))}
+            </ol>
+          </section>
+
+          {/* FAQs */}
+          <section id="faq" className="py-16 sm:py-20 scroll-mt-28 border-t border-white/10" aria-labelledby="faq-heading">
+            <SectionHeading
+              align="left"
+              kicker="Frequently Asked Questions"
+              id="faq-heading"
+              title={<>Got questions? <span className="text-gradient">We have answers.</span></>}
+              className="mb-10"
+            />
+            <div className="flex flex-col gap-3">
+              {service.faqs.map((faq, i) => (
+                <details
+                  key={faq.q}
+                  open={i === 0}
+                  suppressHydrationWarning data-reveal
+                  style={{ '--d': `${i * 70}ms` } as CSSProperties}
+                  className="faq-item group rounded-3xl border border-white/10 bg-white/[0.02] open:border-indigo-400/40 open:bg-[var(--surface)] transition-colors duration-500"
+                >
+                  <summary className="list-none [&::-webkit-details-marker]:hidden cursor-pointer px-6 sm:px-7 py-6 flex items-center justify-between gap-6">
+                    <h3 className="flex items-baseline gap-4 m-0 text-base sm:text-lg font-semibold text-white">
+                      <span className="font-mono text-xs font-normal text-slate-500">{String(i + 1).padStart(2, '0')}</span>
+                      <span>{faq.q}</span>
+                    </h3>
+                    <span
+                      className="w-9 h-9 rounded-full flex items-center justify-center shrink-0 bg-white/5 text-slate-300 transition-transform duration-500 group-open:rotate-45"
+                      aria-hidden="true"
+                    >
+                      <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><line x1="12" y1="5" x2="12" y2="19" /><line x1="5" y1="12" x2="19" y2="12" /></svg>
+                    </span>
+                  </summary>
+                  <p className="px-6 sm:px-7 pb-7 sm:pl-[4.25rem] text-slate-400 leading-relaxed m-0">{faq.a}</p>
+                </details>
+              ))}
+            </div>
+          </section>
+        </div>
+      </div>
+
+      {/* Other services */}
+      <section className="relative py-24 sm:py-28" aria-labelledby="more-heading">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-12">
+            <SectionHeading align="left" kicker="Keep exploring" id="more-heading" title={<>More <span className="text-gradient">services</span></>} />
+            <div suppressHydrationWarning data-reveal style={{ '--d': '160ms' } as CSSProperties} className="md:pb-6">
+              <Link href="/services" className="btn btn--secondary">
+                View All Services
+                <Arrow />
+              </Link>
+            </div>
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3">
+            {others.map((s, i) => {
+              const ov = visuals[s] ?? fallbackVisual;
+              return (
+                <Link
+                  key={s}
+                  href={`/services/${s}`}
+                  suppressHydrationWarning data-reveal
+                  style={{ '--d': `${i * 70}ms`, '--tile': ov.color } as CSSProperties}
+                  className="surface spotlight lift group rounded-3xl p-5 flex flex-col gap-5 min-h-[170px]"
+                >
+                  <div className="flex items-center justify-between">
+                    <span className="icon-tile w-11! h-11!">
+                      <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">{ov.icon}</svg>
+                    </span>
+                    <span className="w-8 h-8 rounded-full border border-white/10 flex items-center justify-center text-slate-400 group-hover:text-white group-hover:-rotate-45 transition-all duration-300" aria-hidden="true">
+                      <Arrow className="w-3.5 h-3.5" />
+                    </span>
+                  </div>
+                  <div className="mt-auto">
+                    <div className="text-base font-bold text-white leading-snug">{ov.short}</div>
+                    <div className="text-xs text-slate-500 mt-1 line-clamp-2">{serviceDatabase[s].subtitle}</div>
+                  </div>
+                </Link>
+              );
+            })}
           </div>
         </div>
       </section>
+    </div>
+  );
+}
 
-      {/* Capabilities */}
-      <section id="capabilities" className="py-20 bg-slate-950/40 relative border-y border-white/5">
-        <div className="container">
-          <div className="text-center max-w-2xl mx-auto mb-16">
-            <span className="eyebrow">Comprehensive Capabilities</span>
-            <h2 className="text-3xl md:text-4xl font-extrabold text-white mt-3 tracking-tight">What We Deliver</h2>
-            <p className="text-sm text-slate-400 mt-2">Deep domain expertise across the modern digital engineering lifecycle.</p>
-          </div>
+/* ---------- Hero illustrations, one per service (pure SVG/CSS) ---------- */
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-            {service.capabilities.map((cap) => (
-              <div key={cap.name} className="glass-card glass-card-hover p-8 flex flex-col gap-4">
-                <h3 className="text-xl font-bold text-white">{cap.name}</h3>
-                <p className="text-sm text-slate-400 leading-relaxed">{cap.description}</p>
-                <div>
-                  <h4 className="text-xs uppercase tracking-wider text-slate-400 font-bold mb-2">Key Deliverables:</h4>
-                  <ul className="flex flex-col gap-2">
-                    {cap.highlights.map((h) => (
-                      <li key={h} className="flex items-center gap-2 text-xs text-slate-300">
-                        <span className="text-cyan-400 font-bold">•</span>
-                        {h}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              </div>
-            ))}
-          </div>
+const spin = (dur: number, reverse = false): CSSProperties => ({
+  transformOrigin: '200px 160px',
+  animation: `spin ${dur}s linear infinite${reverse ? ' reverse' : ''}`,
+});
+
+function CloudHeroArt() {
+  const providers: [string, number][] = [['AWS', -90], ['Azure', 25], ['GCP', 155]];
+  return (
+    <svg className="absolute inset-0 w-full h-full" viewBox="0 0 400 320" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
+      <ellipse cx="200" cy="160" rx="160" ry="110" fill="none" stroke="#38BDF8" strokeOpacity="0.18" />
+      <ellipse cx="200" cy="160" rx="110" ry="76" fill="none" stroke="#38BDF8" strokeOpacity="0.3" strokeDasharray="3 6" />
+      <circle cx="200" cy="160" r="128" fill="none" stroke="#38BDF8" strokeOpacity="0.3" strokeDasharray="2 10" style={spin(40)} />
+      {providers.map(([label, deg], i) => {
+        const r = (deg * Math.PI) / 180;
+        const x = Math.round(200 + 128 * Math.cos(r));
+        const y = Math.round(160 + 128 * Math.sin(r));
+        return (
+          <g key={label}>
+            <line x1="200" y1="140" x2={x} y2={y} stroke="#38BDF8" strokeOpacity="0.45" strokeDasharray="4 4" style={{ animation: 'dash-flow 1.4s linear infinite' }} />
+            <circle r="3.5" fill="#7DD3FC">
+              <animateMotion dur="2.2s" begin={`${i * 0.7}s`} repeatCount="indefinite" path={`M200,140 L${x},${y}`} />
+            </circle>
+            <g className="float-slow" style={{ animationDelay: `${i * -2}s` }}>
+              <circle cx={x} cy={y} r="22" fill="#0C4A6E" stroke="#38BDF8" strokeWidth="1.5" />
+              <text x={x} y={y + 4} textAnchor="middle" fontSize="10" fontWeight="700" fill="#E0F2FE" fontFamily="ui-sans-serif, system-ui">{label}</text>
+            </g>
+          </g>
+        );
+      })}
+      {/* Kubernetes pods */}
+      {[[150, 230], [176, 244], [202, 230], [228, 244], [254, 230]].map(([x, y], i) => (
+        <polygon
+          key={i}
+          points={`${x},${y - 11} ${x + 10},${y - 5} ${x + 10},${y + 6} ${x},${y + 12} ${x - 10},${y + 6} ${x - 10},${y - 5}`}
+          fill="#38BDF8"
+          fillOpacity="0.25"
+          stroke="#7DD3FC"
+        >
+          <animate attributeName="fill-opacity" values="0.15;0.6;0.15" dur="2.4s" begin={`${i * 0.35}s`} repeatCount="indefinite" />
+        </polygon>
+      ))}
+      <circle cx="200" cy="140" r="40" fill="#0EA5E9" />
+      <circle cx="200" cy="140" r="40" fill="none" stroke="#7DD3FC">
+        <animate attributeName="r" values="40;62" dur="2.8s" repeatCount="indefinite" />
+        <animate attributeName="opacity" values="0.7;0" dur="2.8s" repeatCount="indefinite" />
+      </circle>
+      <path d="M186 150 h30 a9 9 0 0 0 0-18 a14 14 0 0 0-26-3 a9 9 0 0 0-4 21z" fill="#FFFFFF" />
+    </svg>
+  );
+}
+
+function AiHeroArt() {
+  const layers = [
+    [80, 130, 180, 230],
+    [70, 115, 160, 205, 250],
+    [110, 160, 210],
+  ];
+  const xs = [90, 200, 310];
+  const edges: { a: [number, number]; b: [number, number] }[] = [];
+  layers.forEach((col, li) => {
+    if (li === layers.length - 1) return;
+    col.forEach((y) => layers[li + 1].forEach((y2) => edges.push({ a: [xs[li], y], b: [xs[li + 1], y2] })));
+  });
+  return (
+    <svg className="absolute inset-0 w-full h-full" viewBox="0 0 400 320" aria-hidden="true">
+      {edges.map(({ a, b }, i) => (
+        <line key={i} x1={a[0]} y1={a[1]} x2={b[0]} y2={b[1]} stroke="#A78BFA" strokeOpacity="0.18" />
+      ))}
+      {edges.filter((_, i) => i % 4 === 0).map(({ a, b }, i) => (
+        <circle key={`p${i}`} r="3" fill="#C4B5FD">
+          <animateMotion dur={`${1.8 + (i % 4) * 0.4}s`} begin={`${(i % 5) * 0.3}s`} repeatCount="indefinite" path={`M${a[0]},${a[1]} L${b[0]},${b[1]}`} />
+        </circle>
+      ))}
+      {layers.map((col, li) =>
+        col.map((y, k) => (
+          <g key={`${li}-${k}`}>
+            <circle cx={xs[li]} cy={y} r="11" fill="#2E1065" stroke="#A78BFA" strokeWidth="1.5" />
+            <circle cx={xs[li]} cy={y} r="4" fill="#C4B5FD">
+              <animate attributeName="opacity" values="0.3;1;0.3" dur="2.2s" begin={`${(li * 4 + k) * 0.18}s`} repeatCount="indefinite" />
+            </circle>
+          </g>
+        ))
+      )}
+      <g className="float-slow">
+        <rect x="258" y="30" width="112" height="34" rx="17" fill="#A78BFA" fillOpacity="0.2" stroke="#A78BFA" strokeOpacity="0.6" />
+        <path d="M278 40 l2 5 5 2 -5 2 -2 5 -2 -5 -5 -2 5 -2z" fill="#C4B5FD" />
+        <rect x="292" y="43" width="62" height="4" rx="2" fill="#C4B5FD" fillOpacity="0.7" />
+        <rect x="292" y="51" width="40" height="4" rx="2" fill="#C4B5FD" fillOpacity="0.4" />
+      </g>
+    </svg>
+  );
+}
+
+function TransformHeroArt() {
+  return (
+    <svg className="absolute inset-0 w-full h-full" viewBox="0 0 400 320" aria-hidden="true">
+      {/* Legacy monolith */}
+      <rect x="40" y="90" width="110" height="150" rx="14" fill="#78350F" fillOpacity="0.35" stroke="#FBBF24" strokeOpacity="0.5" strokeDasharray="5 4" />
+      {[110, 130, 150, 170, 190, 210].map((y, i) => (
+        <rect key={y} x="58" y={y} width={74 - (i % 3) * 12} height="7" rx="3.5" fill="#FBBF24" fillOpacity="0.3" />
+      ))}
+      <text x="95" y="262" textAnchor="middle" fontSize="10" fontWeight="700" fill="#FBBF24" fillOpacity="0.8" fontFamily="ui-monospace, monospace">LEGACY</text>
+      {/* Flow */}
+      {[130, 165, 200].map((y, i) => (
+        <g key={y}>
+          <path d={`M158 ${y} C 200 ${y}, 200 ${80 + i * 70}, 236 ${80 + i * 70}`} fill="none" stroke="#FBBF24" strokeWidth="1.5" strokeOpacity="0.7" strokeDasharray="5 5" style={{ animation: `dash-flow ${0.9 + i * 0.2}s linear infinite` }} />
+          <circle r="3.5" fill="#FCD34D">
+            <animateMotion dur={`${1.6 + i * 0.3}s`} repeatCount="indefinite" path={`M158 ${y} C 200 ${y}, 200 ${80 + i * 70}, 236 ${80 + i * 70}`} />
+          </circle>
+        </g>
+      ))}
+      {/* Modern services */}
+      {[[244, 52], [306, 52], [244, 122], [306, 122], [244, 192], [306, 192]].map(([x, y], i) => (
+        <g key={i}>
+          <rect x={x} y={y} width="52" height="56" rx="12" fill="#FBBF24" fillOpacity={0.18 + (i % 3) * 0.12} stroke="#FCD34D" strokeOpacity="0.8">
+            <animate attributeName="y" values={`${y};${y - 5};${y}`} dur="3.2s" begin={`${i * 0.25}s`} repeatCount="indefinite" />
+          </rect>
+        </g>
+      ))}
+      <rect x="244" y="270" width="114" height="6" rx="3" fill="#FBBF24" fillOpacity="0.15" />
+      <rect x="244" y="270" width="114" height="6" rx="3" fill="#FBBF24">
+        <animate attributeName="width" values="0;114;114" keyTimes="0;0.7;1" dur="4s" repeatCount="indefinite" />
+      </rect>
+    </svg>
+  );
+}
+
+function SecurityHeroArt() {
+  return (
+    <svg className="absolute inset-0 w-full h-full" viewBox="0 0 400 320" aria-hidden="true">
+      <defs>
+        <linearGradient id="sec-sweep" x1="0" y1="0" x2="1" y2="0">
+          <stop offset="0" stopColor="#34D399" stopOpacity="0" />
+          <stop offset="1" stopColor="#34D399" stopOpacity="0.45" />
+        </linearGradient>
+        <clipPath id="sec-shield">
+          <path d="M200 92 L244 108 V150 C244 178 224 196 200 206 C176 196 156 178 156 150 V108 Z" />
+        </clipPath>
+      </defs>
+      {[60, 95, 130].map((r) => (
+        <circle key={r} cx="200" cy="160" r={r} fill="none" stroke="#34D399" strokeOpacity="0.22" />
+      ))}
+      <line x1="60" y1="160" x2="340" y2="160" stroke="#34D399" strokeOpacity="0.12" />
+      <line x1="200" y1="20" x2="200" y2="300" stroke="#34D399" strokeOpacity="0.12" />
+      <g style={spin(5)}>
+        <path d="M200 160 L330 160 A130 130 0 0 0 292 68 Z" fill="url(#sec-sweep)" />
+      </g>
+      {[[120, 96], [290, 118], [268, 236], [110, 220], [318, 196]].map(([x, y], i) => (
+        <circle key={i} cx={x} cy={y} r="4" fill="#6EE7B7">
+          <animate attributeName="opacity" values="0;1;0" dur="5s" begin={`${i * 1}s`} repeatCount="indefinite" />
+        </circle>
+      ))}
+      <path d="M200 92 L244 108 V150 C244 178 224 196 200 206 C176 196 156 178 156 150 V108 Z" fill="#064E3B" stroke="#34D399" strokeWidth="2" />
+      <g clipPath="url(#sec-shield)">
+        <rect x="150" width="100" height="30" fill="#34D399" fillOpacity="0.35">
+          <animate attributeName="y" values="62;206" dur="2.6s" repeatCount="indefinite" />
+        </rect>
+      </g>
+      <rect x="186" y="142" width="28" height="24" rx="5" fill="#6EE7B7" />
+      <path d="M192 142 v-7 a8 8 0 0 1 16 0 v7" fill="none" stroke="#6EE7B7" strokeWidth="3.5" />
+      <circle cx="200" cy="154" r="3" fill="#064E3B" />
+    </svg>
+  );
+}
+
+function OpsHeroArt() {
+  const line = 'M0 70 L30 62 L60 66 L90 40 L120 48 L150 30 L180 38 L210 22 L240 30 L270 16';
+  return (
+    <div className="absolute inset-0 flex items-center justify-center p-6 pt-20 sm:p-10 sm:pt-20" aria-hidden="true">
+      <div className="w-full max-w-md rounded-2xl border border-white/10 bg-white/[0.03] backdrop-blur-sm p-5 flex flex-col gap-5">
+        <div className="flex items-center justify-between text-xs">
+          <span className="font-semibold text-white">Service health</span>
+          <span className="inline-flex items-center gap-1.5 text-emerald-400">
+            <span className="w-2 h-2 rounded-full bg-emerald-400 pulse-soft" /> 24/7
+          </span>
         </div>
-      </section>
-
-      {/* Tech Stack */}
-      <section className="py-16 relative">
-        <div className="container text-center">
-          <div className="mb-8">
-            <span className="eyebrow">Enterprise Ecosystem</span>
-            <h2 className="text-2xl font-bold text-white mt-2">Technologies We Partner With</h2>
-          </div>
-          <div className="flex flex-wrap gap-3 justify-center">
-            {service.techStack.map((tech) => (
-              <span key={tech} className="px-4 py-2 rounded-full bg-white/5 border border-white/10 text-slate-300 text-sm font-semibold">
-                {tech}
+        <svg viewBox="0 0 270 80" className="w-full h-20">
+          <defs>
+            <linearGradient id="ops-fill" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0" stopColor="#F472B6" stopOpacity="0.35" />
+              <stop offset="1" stopColor="#F472B6" stopOpacity="0" />
+            </linearGradient>
+          </defs>
+          <path d={`${line} L270 80 L0 80 Z`} fill="url(#ops-fill)" />
+          <path d={line} fill="none" stroke="#F472B6" strokeWidth="2.5" strokeLinecap="round" strokeDasharray="400" strokeDashoffset="400">
+            <animate attributeName="stroke-dashoffset" values="400;0;0" keyTimes="0;0.6;1" dur="5s" repeatCount="indefinite" />
+          </path>
+          <circle cx="270" cy="16" r="4" fill="#F472B6" className="pulse-soft" />
+        </svg>
+        <div className="flex flex-col gap-2.5">
+          {['Network', 'Infrastructure', 'Backups'].map((label, i) => (
+            <div key={label} className="flex items-center gap-3 text-xs">
+              <span className="w-2 h-2 rounded-full bg-emerald-400 pulse-soft" style={{ animationDelay: `${i * 0.4}s` }} />
+              <span className="text-slate-300 w-24 shrink-0">{label}</span>
+              <span className="flex-1 flex gap-[2px] h-3">
+                {Array.from({ length: 24 }, (_, k) => (
+                  <span key={k} className="flex-1 rounded-[2px]" style={{ background: '#34D399', opacity: 0.35 + ((k * 7 + i * 5) % 10) / 16 }} />
+                ))}
               </span>
-            ))}
-          </div>
+            </div>
+          ))}
         </div>
-      </section>
+      </div>
+    </div>
+  );
+}
 
-      {/* Process */}
-      <section className="py-20 bg-slate-950/60 relative border-y border-white/5">
-        <div className="container">
-          <div className="text-center max-w-2xl mx-auto mb-16">
-            <span className="eyebrow">Proven Delivery Framework</span>
-            <h2 className="text-3xl md:text-4xl font-extrabold text-white mt-3 tracking-tight">How We Execute</h2>
-            <p className="text-sm text-slate-400 mt-2">Transparent, milestone-driven engagement designed for predictability.</p>
-          </div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {service.process.map((step) => (
-              <div key={step.step} className="glass-card glass-card-hover p-6">
-                <div className="text-3xl font-black text-cyan-400 mb-3">{step.step}</div>
-                <h3 className="text-base font-bold text-white mb-2">{step.title}</h3>
-                <p className="text-xs text-slate-400 leading-relaxed">{step.desc}</p>
-              </div>
-            ))}
-          </div>
+function CodeHeroArt() {
+  const lines = [
+    { w: 42, c: '#818CF8', indent: 0 },
+    { w: 66, c: '#22D3EE', indent: 1 },
+    { w: 52, c: '#34D399', indent: 2 },
+    { w: 60, c: '#F472B6', indent: 2 },
+    { w: 46, c: '#22D3EE', indent: 1 },
+    { w: 30, c: '#818CF8', indent: 0 },
+  ];
+  const stages = ['Build', 'Test', 'Deploy'];
+  return (
+    <div className="absolute inset-0 flex flex-col items-center justify-center gap-5 p-6 pt-20 sm:p-10 sm:pt-20" aria-hidden="true">
+      <div className="w-full max-w-md rounded-2xl border border-white/10 bg-[#070C1C] overflow-hidden font-mono shadow-2xl">
+        <div className="flex items-center gap-1.5 px-4 py-2.5 border-b border-white/10">
+          <span className="w-2.5 h-2.5 rounded-full bg-rose-400" />
+          <span className="w-2.5 h-2.5 rounded-full bg-amber-400" />
+          <span className="w-2.5 h-2.5 rounded-full bg-emerald-400" />
+          <span className="ml-3 text-[10px]" style={{ color: '#64748B' }}>services/platform.ts</span>
         </div>
-      </section>
-
-      {/* FAQs */}
-      <section className="py-20 relative">
-        <div className="container max-w-3xl">
-          <div className="text-center max-w-2xl mx-auto mb-16">
-            <span className="eyebrow">Frequently Asked Questions</span>
-            <h2 className="text-3xl md:text-4xl font-extrabold text-white mt-3 tracking-tight">Got Questions? We Have Answers.</h2>
-          </div>
-
-          <div className="flex flex-col gap-4">
-            {service.faqs.map((faq) => (
-              <div key={faq.q} className="glass-card p-6">
-                <h3 className="text-base font-bold text-white mb-2">{faq.q}</h3>
-                <p className="text-sm text-slate-400 leading-relaxed m-0">{faq.a}</p>
-              </div>
-            ))}
-          </div>
+        <div className="p-4 flex flex-col gap-2.5">
+          {lines.map((l, i) => (
+            <div key={i} className="flex items-center gap-3">
+              <span className="text-[9px] w-3 text-right" style={{ color: '#475569' }}>{i + 1}</span>
+              <span
+                className="h-2 rounded-full"
+                style={{
+                  width: `${l.w}%`,
+                  marginLeft: `${l.indent * 14}px`,
+                  background: l.c,
+                  opacity: 0.85,
+                  animation: `reveal-left 900ms cubic-bezier(0.16,1,0.3,1) ${i * 140}ms backwards`,
+                }}
+              />
+            </div>
+          ))}
+          <span className="w-1.5 h-3 ml-6 pulse-soft" style={{ background: '#22D3EE' }} />
         </div>
-      </section>
-
-      {/* CTA */}
-      <section className="cta-section">
-        <div className="container text-center">
-          <h2 className="text-white text-3xl md:text-4xl font-black mb-4">
-            Ready to Transform Your {service.title.split(' ')[0]} Capabilities?
-          </h2>
-          <p className="text-slate-400 mb-8 max-w-lg mx-auto">
-            Book a 30-minute discovery call with our principal solutions architects.
-          </p>
-          <div className="flex gap-4 justify-center flex-wrap">
-            <Link href="/contact" className="btn btn--primary btn--lg">
-              Book a Free Consultation
-            </Link>
-            <Link href="/services" className="btn btn--secondary btn--lg">
-              View All Services
-            </Link>
+      </div>
+      <div className="w-full max-w-md flex items-center gap-2">
+        {stages.map((s, i) => (
+          <div key={s} className="flex items-center gap-2 flex-1 last:flex-none">
+            <span className="surface-glass rounded-full px-3 py-1.5 text-[11px] font-semibold text-white inline-flex items-center gap-1.5">
+              <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 pulse-soft" style={{ animationDelay: `${i * 0.5}s` }} />
+              {s}
+            </span>
+            {i < stages.length - 1 && <span className="flex-1 h-px bg-gradient-to-r from-cyan-400 to-indigo-400 opacity-60" />}
           </div>
-        </div>
-      </section>
-    </>
+        ))}
+      </div>
+    </div>
   );
 }

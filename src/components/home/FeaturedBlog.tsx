@@ -1,92 +1,103 @@
-'use client';
-
+import type { CSSProperties } from 'react';
 import Link from 'next/link';
+import SectionHeading from '@/components/ui/SectionHeading';
 
 const posts = [
   {
+    category: 'AI & MCP',
+    title: 'What Is an MCP Server? A Practical Guide to Building Model Context Protocol Servers',
+    excerpt: 'MCP lets AI assistants such as Claude and ChatGPT use your APIs, databases and tools safely. Here is how it works and how we build production-ready servers.',
+    readTime: '9 min read',
+    date: 'Oct 9, 2026',
+    href: '/blog/what-is-an-mcp-server',
+    colors: ['#6366F1', '#22D3EE'],
+  },
+  {
     category: 'AI & Analytics',
     title: 'The Enterprise AI Readiness Framework: 5 Steps to Production-Ready ML',
-    excerpt: 'Moving from AI pilots to production requires more than good models. We break down the organizational, data, and infrastructure requirements for enterprise AI success.',
+    excerpt: 'Moving from AI pilots to production requires more than good models. We break down the organizational, data, and infrastructure requirements.',
     readTime: '8 min read',
     date: 'Oct 2, 2026',
-    badge: 'Research Paper',
     href: '/blog/enterprise-ai-readiness-framework',
-    accent: 'text-cyan-400'
+    colors: ['#6366F1', '#A78BFA'],
   },
   {
     category: 'Cloud Infrastructure',
     title: 'Multi-Cloud vs Hybrid Cloud: Making the Right Architecture Decision',
-    excerpt: 'The cloud strategy you choose today will shape your infrastructure for the next decade. Here is how to evaluate multi-cloud vs hybrid cloud for your enterprise.',
+    excerpt: 'The cloud strategy you choose today will shape your infrastructure for the next decade. Here is how to evaluate both.',
     readTime: '6 min read',
     date: 'Sep 28, 2026',
-    badge: 'Architecture Guide',
     href: '/blog/multi-cloud-vs-hybrid-cloud',
-    accent: 'text-emerald-400'
-  },
-  {
-    category: 'Cybersecurity',
-    title: 'Zero Trust Security Architecture: Implementation Guide for Enterprises',
-    excerpt: 'Zero trust is no longer optional. This step-by-step guide covers how to design and implement a zero trust security architecture without disrupting operations.',
-    readTime: '10 min read',
-    date: 'Sep 22, 2026',
-    badge: 'Security Blueprint',
-    href: '/blog/zero-trust-security-implementation',
-    accent: 'text-indigo-400'
+    colors: ['#0EA5E9', '#22D3EE'],
   },
 ];
 
 export default function FeaturedBlog() {
   return (
-    <section className="py-24 relative" aria-labelledby="blog-heading">
+    <section className="py-28 relative" aria-labelledby="blog-heading">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-end flex-wrap gap-4 mb-12">
-          <div>
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-500/10 border border-cyan-500/20 text-cyan-400 text-xs font-semibold uppercase tracking-wider mb-3">
-              Executive Insights
-            </div>
-            <h2 className="text-3xl sm:text-4xl font-black text-white tracking-tight" id="blog-heading">
-              From Our Engineering Hub
-            </h2>
-          </div>
-          <Link
-            href="/blog"
-            className="inline-flex items-center gap-2 px-6 py-2.5 rounded-full bg-white/5 hover:bg-white/10 text-white border border-white/15 text-xs font-semibold backdrop-blur-md transition-all cursor-pointer"
-          >
-            View All Insights →
+        <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-14">
+          <SectionHeading align="left" kicker="Insights" id="blog-heading" title={<>From our <span className="text-gradient">engineering desk</span></>} />
+          <Link suppressHydrationWarning data-reveal href="/blog" className="btn btn--secondary shrink-0 md:mb-6">
+            All articles
+            <svg className="btn-arrow w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12" /><polyline points="12 5 19 12 12 19" /></svg>
           </Link>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {posts.map((post) => (
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+          {posts.map((post, i) => (
             <Link
               key={post.title}
               href={post.href}
-              className="bg-slate-900/60 backdrop-blur-xl border border-white/10 hover:border-indigo-500/40 rounded-3xl p-6 flex flex-col justify-between min-h-[300px] shadow-xl hover:shadow-2xl hover:shadow-indigo-950/40 transition-all duration-300 group hover:-translate-y-1"
+              suppressHydrationWarning data-reveal
+              style={{ '--d': `${i * 100}ms` } as CSSProperties}
+              className="surface lift group rounded-[1.75rem] p-2.5 flex flex-col"
             >
-              <div>
-                <div className="flex items-center justify-between mb-4">
-                  <span className="text-xs font-semibold px-3 py-1 rounded-full bg-white/5 border border-white/10 text-slate-300">
-                    {post.category}
-                  </span>
-                  <span className="text-[11px] text-slate-500">{post.date}</span>
+              <BlogCover colors={post.colors} index={i} category={post.category} />
+              <div className="p-5 pt-6 flex flex-col flex-1">
+                <div className="flex items-center gap-3 text-xs text-slate-500 mb-3">
+                  <span>{post.date}</span>
+                  <span className="w-1 h-1 rounded-full bg-slate-500" />
+                  <span>{post.readTime}</span>
                 </div>
-
-                <h3 className="text-base font-bold text-white leading-snug mb-3 group-hover:text-cyan-400 transition-colors">
-                  {post.title}
-                </h3>
-                <p className="text-xs text-slate-400 leading-relaxed">
-                  {post.excerpt}
-                </p>
-              </div>
-
-              <div className="flex items-center justify-between pt-4 border-t border-white/10 mt-4">
-                <span className="text-[11px] text-slate-500">⏱️ {post.readTime}</span>
-                <span className={`text-xs font-semibold ${post.accent}`}>Read Article →</span>
+                <h3 className="text-xl font-bold text-white leading-snug mb-3 group-hover:text-cyan-400 transition-colors">{post.title}</h3>
+                <p className="text-sm text-slate-400 leading-relaxed">{post.excerpt}</p>
               </div>
             </Link>
           ))}
         </div>
       </div>
     </section>
+  );
+}
+
+// Generated cover art: gradient mesh + geometric pattern, zooms on hover
+export function BlogCover({ colors, index, category }: { colors: string[]; index: number; category: string }) {
+  const [a, b] = colors;
+  return (
+    <div className="relative aspect-[16/10] rounded-[1.4rem] overflow-hidden">
+      <div
+        className="absolute inset-0 transition-transform duration-700 ease-out group-hover:scale-110"
+        style={{ background: `radial-gradient(circle at 20% 20%, ${b}, transparent 55%), radial-gradient(circle at 80% 90%, ${a}, transparent 60%), linear-gradient(135deg, #0B1226, #111B3A)` }}
+      >
+        <svg className="absolute inset-0 w-full h-full" viewBox="0 0 320 200" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+          {index % 3 === 0 &&
+            Array.from({ length: 6 }, (_, i) => (
+              <circle key={i} cx="250" cy="60" r={20 + i * 24} fill="none" stroke="#FFFFFF" strokeOpacity={0.22 - i * 0.03} />
+            ))}
+          {index % 3 === 1 &&
+            Array.from({ length: 9 }, (_, i) => (
+              <rect key={i} x={40 + (i % 3) * 56} y={30 + Math.floor(i / 3) * 50} width="44" height="38" rx="8" fill="#FFFFFF" fillOpacity={0.05 + (i % 4) * 0.04} stroke="#FFFFFF" strokeOpacity="0.2" />
+            ))}
+          {index % 3 === 2 &&
+            Array.from({ length: 8 }, (_, i) => (
+              <path key={i} d={`M0 ${40 + i * 22} Q 160 ${i * 22 - 20} 320 ${50 + i * 22}`} fill="none" stroke="#FFFFFF" strokeOpacity={0.08 + i * 0.02} />
+            ))}
+        </svg>
+      </div>
+      <span className="absolute left-4 top-4 text-[11px] font-bold uppercase tracking-wider px-3 py-1.5 rounded-full bg-black/30 backdrop-blur-md border border-white/20" style={{ color: '#FFFFFF' }}>
+        {category}
+      </span>
+    </div>
   );
 }

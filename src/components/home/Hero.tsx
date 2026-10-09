@@ -1,208 +1,194 @@
-'use client';
-
+import type { CSSProperties } from 'react';
 import Link from 'next/link';
-import { useState } from 'react';
+import { projects } from '@/data/projects';
+import { SITE } from '@/data/site';
+import { PixelMark } from '@/components/ui/Logo';
+
+const words = ['scale.', 'delight.', 'perform.', 'last.'];
+
+const team = ['TD', 'NM', 'VK', 'JM', 'PS'];
+
+// Tech nodes placed on the orbit rings: [label, ring radius %, angle deg, color]
+const nodes: [string, number, number, string][] = [
+  ['React', 50, 20, '#22D3EE'],
+  ['.NET', 50, 140, '#A78BFA'],
+  ['Azure', 50, 260, '#38BDF8'],
+  ['Angular', 36, 80, '#F472B6'],
+  ['Node.js', 36, 210, '#34D399'],
+  ['AI', 36, 320, '#FBBF24'],
+];
 
 export default function Hero() {
-  const [activeTab, setActiveTab] = useState<'telemetry' | 'agent' | 'cloud'>('telemetry');
-
   return (
-    <section className="relative min-h-screen flex items-center pt-36 pb-20 overflow-hidden bg-[radial-gradient(circle_at_50%_10%,rgba(99,102,241,0.18)_0%,rgba(6,182,212,0.05)_45%,transparent_70%)]" aria-label="Enterprise Hero">
-      {/* Background Floating Orbs */}
-      <div className="absolute inset-0 pointer-events-none z-0" aria-hidden="true">
-        <div className="absolute top-[15%] left-[20%] w-[450px] h-[450px] bg-indigo-500/20 rounded-full blur-[90px] animate-orb-float-1" />
-        <div className="absolute top-[30%] right-[15%] w-[500px] h-[500px] bg-cyan-500/15 rounded-full blur-[100px] animate-orb-float-2" />
-      </div>
+    <section className="relative min-h-screen flex items-center pt-32 pb-20 overflow-hidden" aria-label="Introduction">
+      <div className="absolute inset-0 bg-grid-fade pointer-events-none" aria-hidden="true" />
+      <div className="absolute top-[-10%] left-1/2 -translate-x-1/2 w-[1100px] h-[600px] rounded-full bg-[radial-gradient(closest-side,rgba(99,102,241,0.28),transparent)] pointer-events-none" aria-hidden="true" />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-[1.15fr_0.85fr] gap-12 items-center">
-          {/* Left: Text */}
-          <div className="flex flex-col gap-6">
-            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-indigo-500/10 border border-indigo-500/30 shadow-lg shadow-indigo-500/20 w-fit">
-              <span className="w-2 h-2 rounded-full bg-emerald-400 relative">
-                <span className="absolute -inset-1 rounded-full bg-emerald-400/50 animate-ping" />
-              </span>
-              <span className="text-xs font-bold text-indigo-300 uppercase tracking-wider">
-                Enterprise 2026 Edition • AI &amp; Autonomous Cloud
-              </span>
-            </div>
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
+        <div className="grid grid-cols-1 lg:grid-cols-[1.1fr_0.9fr] gap-14 lg:gap-8 items-center">
+          {/* Copy */}
+          <div className="flex flex-col items-start">
+            <div suppressHydrationWarning data-reveal className="kicker mb-7">Web · Mobile · AI · Cloud</div>
 
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-black text-white tracking-tight leading-[1.08]">
-              Engineering the{' '}
-              <span className="bg-gradient-to-r from-indigo-400 via-cyan-400 to-emerald-400 bg-clip-text text-transparent">
-                Autonomous Enterprise
-              </span>{' '}
-              at Infinite Scale
+            <h1
+              suppressHydrationWarning data-reveal
+              style={{ '--d': '80ms' } as CSSProperties}
+              className="text-[2.75rem] leading-[1.02] sm:text-6xl lg:text-7xl xl:text-[5.5rem] font-extrabold text-white"
+            >
+              Digital products,
+              <br />
+              engineered to{' '}
+              <span className="word-rotator" style={{ "--n": words.length } as CSSProperties} aria-label={words[0]}>
+                {words.map((w, i) => (
+                  <span key={w} className="text-gradient pr-1" style={{ "--i": i } as CSSProperties} aria-hidden="true">
+                    {w}
+                  </span>
+                ))}
+              </span>
             </h1>
 
-            <p className="text-base sm:text-lg text-slate-400 leading-relaxed max-w-xl">
-              Ahaan Technologies delivers full-stack AI engineering, resilient multi-cloud architectures, and Zero Trust cybersecurity to accelerate mission-critical transformation.
+            <p
+              suppressHydrationWarning data-reveal
+              style={{ '--d': '160ms' } as CSSProperties}
+              className="mt-7 text-base sm:text-lg text-slate-400 leading-relaxed max-w-xl"
+            >
+              Inovaraa Solutions is a software development company building AI agents, MCP servers, web platforms and
+              mobile apps for healthcare, logistics, finance and fast-growing businesses.
             </p>
 
-            <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-4 pt-2">
-              <Link
-                href="/contact"
-                className="inline-flex items-center justify-center gap-2 font-semibold px-6 sm:px-8 py-3 sm:py-3.5 rounded-full bg-gradient-to-r from-indigo-500 via-cyan-500 to-emerald-400 text-white shadow-lg shadow-indigo-500/30 hover:brightness-110 hover:-translate-y-0.5 transition-all text-sm cursor-pointer w-full sm:w-auto text-center"
-                id="hero-primary-cta"
-              >
-                Launch Enterprise Pilot
-                <svg className="w-4 h-4 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" aria-hidden="true">
-                  <line x1="5" y1="12" x2="19" y2="12" />
-                  <polyline points="12 5 19 12 12 19" />
-                </svg>
+            <div suppressHydrationWarning data-reveal style={{ '--d': '240ms' } as CSSProperties} className="mt-9 flex flex-col sm:flex-row gap-3 w-full sm:w-auto">
+              <Link href="/contact" className="btn btn--primary btn--lg" id="hero-primary-cta">
+                Start a Project
+                <svg className="btn-arrow w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12" /><polyline points="12 5 19 12 12 19" /></svg>
               </Link>
-              <Link
-                href="/services"
-                className="inline-flex items-center justify-center gap-2 font-semibold px-6 sm:px-8 py-3 sm:py-3.5 rounded-full bg-white/5 hover:bg-white/10 text-white border border-white/15 backdrop-blur-md hover:-translate-y-0.5 transition-all text-sm cursor-pointer w-full sm:w-auto text-center"
-                id="hero-secondary-cta"
-              >
-                Explore Capabilities
+              <Link href="/projects" className="btn btn--secondary btn--lg" id="hero-secondary-cta">
+                <svg className="w-4 h-4" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z" /></svg>
+                See Our Work
               </Link>
             </div>
 
-            <div className="flex items-center gap-4 sm:gap-6 flex-wrap pt-4 border-t border-white/10 text-xs font-semibold text-slate-300">
-              <div className="flex items-center gap-1.5">
-                <span className="text-emerald-400 font-bold">✓</span>
-                <span>$4.8B+ Enterprise Value</span>
+            <div suppressHydrationWarning data-reveal style={{ '--d': '320ms' } as CSSProperties} className="mt-12 flex items-center gap-4">
+              <div className="flex -space-x-2.5">
+                {team.map((t, i) => (
+                  <span
+                    key={t}
+                    className="w-10 h-10 rounded-full border-2 border-[var(--bg-primary)] bg-gradient-to-br from-indigo-500 to-cyan-400 text-white text-[11px] font-bold flex items-center justify-center"
+                    style={{ zIndex: team.length - i }}
+                  >
+                    {t}
+                  </span>
+                ))}
               </div>
-              <div className="flex items-center gap-1.5">
-                <span className="text-emerald-400 font-bold">✓</span>
-                <span>99.999% SLA Uptime</span>
-              </div>
-              <div className="flex items-center gap-1.5">
-                <span className="text-emerald-400 font-bold">✓</span>
-                <span>SOC 2 &amp; ISO 27001</span>
+              <div className="text-sm leading-tight">
+                <div className="font-semibold text-white">12 in-house experts</div>
+                <div className="text-slate-500">{projects.length}+ products shipped across 5+ industries</div>
               </div>
             </div>
           </div>
 
-          {/* Right: Interactive Terminal */}
-          <div className="relative mt-4 lg:mt-0">
-            <div className="bg-slate-950/90 backdrop-blur-3xl border border-white/15 rounded-3xl shadow-2xl shadow-black/80 overflow-hidden">
-              <div className="flex items-center justify-between px-4 sm:px-5 py-3 bg-slate-900/90 border-b border-white/10">
-                <div className="flex gap-1.5 sm:gap-2">
-                  <span className="w-2.5 h-2.5 rounded-full bg-rose-500" />
-                  <span className="w-2.5 h-2.5 rounded-full bg-amber-500" />
-                  <span className="w-2.5 h-2.5 rounded-full bg-emerald-500" />
-                </div>
-                <span className="font-mono text-[10px] sm:text-xs text-slate-400 font-medium truncate max-w-[170px] sm:max-w-none">ahaan.mesh-control // prod-v26.4</span>
-                <span className="badge badge--emerald text-[9px] sm:text-[10px] py-0.5 px-2">LIVE</span>
-              </div>
+          {/* Orbit graphic */}
+          <div suppressHydrationWarning data-reveal="scale" style={{ '--d': '200ms' } as CSSProperties} className="relative mx-auto w-full max-w-[540px] aspect-square">
+            <OrbitSystem />
 
-              <div className="flex px-3 sm:px-4 py-2 bg-slate-900/60 border-b border-white/5 gap-1.5 sm:gap-2 overflow-x-auto">
-                <button
-                  type="button"
-                  className={`text-[11px] sm:text-xs font-medium px-2.5 sm:px-3 py-1 rounded-lg transition-colors cursor-pointer shrink-0 ${
-                    activeTab === 'telemetry'
-                      ? 'bg-indigo-500/20 text-white border border-indigo-500/40'
-                      : 'text-slate-400 hover:text-slate-200'
-                  }`}
-                  onClick={() => setActiveTab('telemetry')}
-                >
-                  ⚡ Telemetry
-                </button>
-                <button
-                  type="button"
-                  className={`text-[11px] sm:text-xs font-medium px-2.5 sm:px-3 py-1 rounded-lg transition-colors cursor-pointer shrink-0 ${
-                    activeTab === 'agent'
-                      ? 'bg-indigo-500/20 text-white border border-indigo-500/40'
-                      : 'text-slate-400 hover:text-slate-200'
-                  }`}
-                  onClick={() => setActiveTab('agent')}
-                >
-                  🧠 Neural Agents
-                </button>
-                <button
-                  type="button"
-                  className={`text-[11px] sm:text-xs font-medium px-2.5 sm:px-3 py-1 rounded-lg transition-colors cursor-pointer shrink-0 ${
-                    activeTab === 'cloud'
-                      ? 'bg-indigo-500/20 text-white border border-indigo-500/40'
-                      : 'text-slate-400 hover:text-slate-200'
-                  }`}
-                  onClick={() => setActiveTab('cloud')}
-                >
-                  ☁️ SRE Fleet
-                </button>
-              </div>
-
-              <div className="p-4 sm:p-6 flex flex-col gap-3 sm:gap-4">
-                {activeTab === 'telemetry' && (
-                  <>
-                    <div className="grid grid-cols-2 gap-2.5 sm:gap-3">
-                      <div className="bg-white/[0.03] border border-white/[0.06] rounded-2xl p-4 flex flex-col gap-1">
-                        <span className="text-[11px] uppercase tracking-wider text-slate-400">Cluster Throughput</span>
-                        <span className="text-2xl font-black text-cyan-400 tracking-tight">4.8M req/s</span>
-                        <span className="text-[10px] text-emerald-400">↑ 99.4% parallel efficiency</span>
-                      </div>
-                      <div className="bg-white/[0.03] border border-white/[0.06] rounded-2xl p-4 flex flex-col gap-1">
-                        <span className="text-[11px] uppercase tracking-wider text-slate-400">Edge P99 Latency</span>
-                        <span className="text-2xl font-black text-emerald-400 tracking-tight">8.4 ms</span>
-                        <span className="text-[10px] text-slate-400">Global Anycast Mesh</span>
-                      </div>
-                      <div className="bg-white/[0.03] border border-white/[0.06] rounded-2xl p-4 flex flex-col gap-1">
-                        <span className="text-[11px] uppercase tracking-wider text-slate-400">FinOps Optimization</span>
-                        <span className="text-2xl font-black text-white tracking-tight">-48.2%</span>
-                        <span className="text-[10px] text-cyan-400">Automated spot balancing</span>
-                      </div>
-                      <div className="bg-white/[0.03] border border-white/[0.06] rounded-2xl p-4 flex flex-col gap-1">
-                        <span className="text-[11px] uppercase tracking-wider text-slate-400">Zero Trust Shield</span>
-                        <span className="text-2xl font-black text-emerald-400 tracking-tight">0 Breaches</span>
-                        <span className="text-[10px] text-slate-400">Continuous token audit</span>
-                      </div>
-                    </div>
-
-                    <div className="bg-black/50 border border-white/5 rounded-xl p-3.5 font-mono text-[11px] text-slate-400 flex flex-col gap-1.5">
-                      <div className="flex gap-2">
-                        <span className="text-cyan-400">[06:42:19]</span>
-                        <span>Multi-region failover verified (AWS us-east-1 ➔ Azure eu-west).</span>
-                      </div>
-                      <div className="flex gap-2">
-                        <span className="text-emerald-400">[06:42:20]</span>
-                        <span className="text-emerald-400">Autonomous agent pipeline rebalanced: 12,400 inferences/sec.</span>
-                      </div>
-                    </div>
-                  </>
-                )}
-
-                {activeTab === 'agent' && (
-                  <div className="bg-black/50 border border-white/5 rounded-xl p-4 font-mono text-xs text-slate-300 flex flex-col gap-2.5">
-                    <div className="flex justify-between items-center border-b border-white/10 pb-2">
-                      <span className="font-bold text-white">Agent Orchestrator</span>
-                      <span className="badge badge--cyan text-[10px]">Active (12 Pods)</span>
-                    </div>
-                    <div><span className="text-cyan-400">model:</span> Ahaan-Enterprise-RAG-v4 (128k context)</div>
-                    <div><span className="text-cyan-400">vector_db:</span> Milvus cluster (0.4ms retrieval, 40M vectors)</div>
-                    <div className="text-emerald-400"><span className="text-cyan-400">guardrail:</span> 100% PII masked, 0 hallucination drift</div>
-                  </div>
-                )}
-
-                {activeTab === 'cloud' && (
-                  <div className="bg-black/50 border border-white/5 rounded-xl p-4 font-mono text-xs text-slate-300 flex flex-col gap-3">
-                    <div className="flex justify-between items-center border-b border-white/10 pb-2">
-                      <span className="font-bold text-white">Global Kubernetes Fleet</span>
-                      <span className="badge badge--emerald text-[10px]">All Healthy</span>
-                    </div>
-                    <div className="grid grid-cols-3 gap-2">
-                      <div className="bg-white/5 p-2 rounded-lg text-center">
-                        <div className="text-[10px] text-slate-400">AWS EKS</div>
-                        <div className="text-emerald-400 font-bold">99.999%</div>
-                      </div>
-                      <div className="bg-white/5 p-2 rounded-lg text-center">
-                        <div className="text-[10px] text-slate-400">Azure AKS</div>
-                        <div className="text-emerald-400 font-bold">99.998%</div>
-                      </div>
-                      <div className="bg-white/5 p-2 rounded-lg text-center">
-                        <div className="text-[10px] text-slate-400">GCP GKE</div>
-                        <div className="text-emerald-400 font-bold">100.0%</div>
-                      </div>
-                    </div>
-                  </div>
-                )}
-              </div>
-            </div>
+            <StatusCard className="top-[6%] left-[-4%] sm:left-[-8%] float-slow" color="#34D399" title="Build passed" sub="main · 2m ago" icon="check" />
+            <StatusCard className="bottom-[12%] right-[-4%] sm:right-[-6%] float-slower" color="#818CF8" title="Release v2.4 live" sub="Web + iOS + Android" icon="rocket" />
+            <StatusCard className="bottom-[2%] left-[4%] float-slow hidden sm:flex" color="#22D3EE" title="Code review approved" sub="QA sign-off ✓" icon="eye" />
           </div>
         </div>
       </div>
+
+      {/* Scroll cue */}
+      <div className="absolute bottom-6 left-1/2 -translate-x-1/2 hidden md:flex flex-col items-center gap-2 text-[10px] uppercase tracking-[0.25em] text-slate-500" aria-hidden="true">
+        Scroll
+        <span className="w-5 h-8 rounded-full border border-white/20 flex justify-center pt-1.5">
+          <span className="w-1 h-1.5 rounded-full bg-cyan-400 float-slow" />
+        </span>
+      </div>
     </section>
+  );
+}
+
+function OrbitSystem() {
+  return (
+    <div className="absolute inset-0" aria-hidden="true">
+      {/* Rings */}
+      <div className="absolute inset-0 rounded-full border border-white/10" />
+      <div className="absolute inset-[14%] rounded-full border border-dashed border-white/10" />
+      <div className="absolute inset-[30%] rounded-full border border-white/10" />
+      <div className="absolute inset-[8%] rounded-full bg-[radial-gradient(closest-side,rgba(99,102,241,0.18),transparent)]" />
+
+      {/* Rotating node layers: outer ring and inner ring spin opposite ways */}
+      {[50, 36].map((ring) => {
+        const duration = ring === 50 ? 60 : 45;
+        const reverse = ring === 36;
+        return (
+          <div
+            key={ring}
+            className="absolute inset-0"
+            style={{ animation: `spin ${duration}s linear infinite ${reverse ? 'reverse' : ''}` }}
+          >
+            {nodes
+              .filter(([, r]) => r === ring)
+              .map(([label, r, angle, color]) => {
+                const rad = (angle * Math.PI) / 180;
+                const x = 50 + r * Math.cos(rad);
+                const y = 50 + r * Math.sin(rad);
+                return (
+                  <div key={label} className="absolute -translate-x-1/2 -translate-y-1/2" style={{ left: `${x}%`, top: `${y}%` }}>
+                    <div style={{ animation: `spin ${duration}s linear infinite ${reverse ? '' : 'reverse'}` }}>
+                      <span
+                        className="surface-glass flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-semibold text-white whitespace-nowrap shadow-lg"
+                        style={{ boxShadow: `0 8px 24px -8px ${color}` }}
+                      >
+                        <span className="w-2 h-2 rounded-full" style={{ background: color, boxShadow: `0 0 10px ${color}` }} />
+                        {label}
+                      </span>
+                    </div>
+                  </div>
+                );
+              })}
+          </div>
+        );
+      })}
+
+      {/* Core */}
+      <div className="absolute inset-[38%] flex items-center justify-center">
+        <div className="absolute inset-0 rounded-[2rem] bg-gradient-to-br from-indigo-500 via-sky-500 to-emerald-400 blur-2xl opacity-60 pulse-soft" />
+        <div className="border-glow is-live relative w-full h-full rounded-[2rem] bg-[#111B3A] border border-white/10 flex items-center justify-center shadow-2xl">
+          <PixelMark className="relative z-[2] w-[64%] h-[64%]" title={SITE.name} />
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function StatusCard({
+  className,
+  color,
+  title,
+  sub,
+  icon,
+}: {
+  className: string;
+  color: string;
+  title: string;
+  sub: string;
+  icon: 'check' | 'rocket' | 'eye';
+}) {
+  const paths = {
+    check: <polyline points="20 6 9 17 4 12" />,
+    rocket: <path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09zM12 15l-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z" />,
+    eye: <><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" /><circle cx="12" cy="12" r="3" /></>,
+  };
+  return (
+    <div className={`absolute z-10 surface-glass flex items-center gap-3 pl-2 pr-4 py-2 rounded-2xl shadow-2xl ${className}`} aria-hidden="true">
+      <span className="w-9 h-9 rounded-xl flex items-center justify-center" style={{ background: `${color}22`, color }}>
+        <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">{paths[icon]}</svg>
+      </span>
+      <span className="leading-tight">
+        <span className="block text-[13px] font-semibold text-white">{title}</span>
+        <span className="block text-[11px] text-slate-400">{sub}</span>
+      </span>
+    </div>
   );
 }

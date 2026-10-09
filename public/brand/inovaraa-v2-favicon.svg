@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <!-- Small-size version: flat colours (no gradients) on a dark rounded tile so it pops in browser tabs -->
+  <rect width="64" height="64" rx="16" fill="#120E24"/>
+  <g transform="translate(32 32) scale(0.56)">
+    <path d="M2 -4 A30 30 0 0 1 46 -40 A48 48 0 0 1 2 -4 Z" fill="#7C5CFF"/>
+    <path d="M2 -4 A30 30 0 0 1 46 -40 A48 48 0 0 1 2 -4 Z" fill="#FF3D9A" transform="rotate(90)"/>
+    <path d="M2 -4 A30 30 0 0 1 46 -40 A48 48 0 0 1 2 -4 Z" fill="#FF9F1C" transform="rotate(180)"/>
+    <path d="M2 -4 A30 30 0 0 1 46 -40 A48 48 0 0 1 2 -4 Z" fill="#14E0B0" transform="rotate(270)"/>
+  </g>
+</svg>

@@ -1,4 +1,5 @@
 import type { MetadataRoute } from 'next';
+import { SITE } from '@/data/site';
 
 export default function robots(): MetadataRoute.Robots {
   return {
@@ -9,7 +10,7 @@ export default function robots(): MetadataRoute.Robots {
         disallow: ['/api/', '/_next/'],
       },
     ],
-    sitemap: 'https://ahaantechnologies.com/sitemap.xml',
-    host: 'https://ahaantechnologies.com',
+    sitemap: `${SITE.url}/sitemap.xml`,
+    host: SITE.url,
   };
 }

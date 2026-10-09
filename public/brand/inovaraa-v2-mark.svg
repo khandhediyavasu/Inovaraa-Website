@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" role="img" aria-labelledby="t">
+  <title id="t">Inovaraa Solutions</title>
+  <!-- "Bloom": four asymmetric petals spinning out from one point = an idea in motion.
+       Each petal: tight arc on one side, flatter arc on the other, so the set reads as a pinwheel. -->
+  <defs>
+    <linearGradient id="p1" x1="0" y1="1" x2="1" y2="0"><stop offset="0" stop-color="#5B5BFF"/><stop offset="1" stop-color="#A855F7"/></linearGradient>
+    <linearGradient id="p2" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FF3D9A"/><stop offset="1" stop-color="#FF7A59"/></linearGradient>
+    <linearGradient id="p3" x1="1" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FFB020"/><stop offset="1" stop-color="#FF7A1A"/></linearGradient>
+    <linearGradient id="p4" x1="1" y1="1" x2="0" y2="0"><stop offset="0" stop-color="#14E0B0"/><stop offset="1" stop-color="#3DD9FF"/></linearGradient>
+  </defs>
+  <g transform="translate(60 60)">
+    <path d="M2 -4 A30 30 0 0 1 46 -40 A48 48 0 0 1 2 -4 Z" fill="url(#p1)"/>
+    <path d="M2 -4 A30 30 0 0 1 46 -40 A48 48 0 0 1 2 -4 Z" fill="url(#p2)" transform="rotate(90)"/>
+    <path d="M2 -4 A30 30 0 0 1 46 -40 A48 48 0 0 1 2 -4 Z" fill="url(#p3)" transform="rotate(180)"/>
+    <path d="M2 -4 A30 30 0 0 1 46 -40 A48 48 0 0 1 2 -4 Z" fill="url(#p4)" transform="rotate(270)"/>
+  </g>
+</svg>

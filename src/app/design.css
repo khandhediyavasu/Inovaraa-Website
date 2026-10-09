@@ -1,0 +1,489 @@
+/* ==========================================================================
+   DESIGN SYSTEM v2 — motion, graphics and surfaces
+   Imported from globals.css. Plain CSS (no @apply) so it works anywhere.
+
+   Usage cheatsheet
+   - data-reveal / data-reveal="left|right|scale|fade" + style="--d:120ms"
+       fade-in on scroll (driven by <Effects/>). Safe on hover cards.
+   - data-count on an element whose text is e.g. "9+" or "5+ years"
+       counts up from 0 when revealed.
+   - .spotlight            cursor-following glow inside a card
+   - .border-glow          rotating gradient border
+   - .text-gradient        animated brand gradient text
+   - .marquee > .marquee__track (children duplicated twice)
+   - .surface              solid card surface for both themes
+   ========================================================================== */
+
+@property --angle {
+  syntax: '<angle>';
+  inherits: false;
+  initial-value: 0deg;
+}
+
+:root,
+[data-theme="dark"] {
+  --surface: #0B1226;
+  --surface-2: #0F1830;
+  --surface-border: rgba(255, 255, 255, 0.08);
+  --ink: #F8FAFC;
+  --ink-2: #A5B0C3;
+  --ink-3: #6B7890;
+  --brand-1: #818CF8;
+  --brand-2: #22D3EE;
+  --brand-3: #34D399;
+  --brand-4: #F472B6;
+  --glow: rgba(99, 102, 241, 0.35);
+  --aurora-1: rgba(99, 102, 241, 0.32);
+  --aurora-2: rgba(34, 211, 238, 0.22);
+  --aurora-3: rgba(244, 114, 182, 0.16);
+  --font-display: 'Bricolage Grotesque', 'Plus Jakarta Sans', system-ui, sans-serif;
+}
+
+[data-theme="light"] {
+  --surface: #FFFFFF;
+  --surface-2: #F6F8FC;
+  --surface-border: rgba(15, 23, 42, 0.08);
+  --ink: #0B1020;
+  --ink-2: #475569;
+  --ink-3: #7A8699;
+  --brand-1: #4F46E5;
+  --brand-2: #0891B2;
+  --brand-3: #059669;
+  --brand-4: #DB2777;
+  --glow: rgba(79, 70, 229, 0.18);
+  --aurora-1: rgba(129, 140, 248, 0.28);
+  --aurora-2: rgba(34, 211, 238, 0.2);
+  --aurora-3: rgba(244, 114, 182, 0.14);
+}
+
+/* Footer is dark in both themes */
+[data-theme="light"] footer {
+  --surface: #0B1226;
+  --surface-2: #0F1830;
+  --surface-border: rgba(255, 255, 255, 0.08);
+  --ink: #F8FAFC;
+  --ink-2: #A5B0C3;
+  --ink-3: #6B7890;
+  --brand-1: #818CF8;
+  --brand-2: #22D3EE;
+  --brand-3: #34D399;
+  --btn-secondary-bg: rgba(255, 255, 255, 0.06);
+  --btn-secondary-border: rgba(255, 255, 255, 0.14);
+  --btn-secondary-text: #FFFFFF;
+  --border-color: rgba(255, 255, 255, 0.08);
+}
+
+.footer-wordmark {
+  background-image: linear-gradient(180deg, rgba(129, 140, 248, 0.35), rgba(34, 211, 238, 0.05) 70%, transparent);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Pixel i logo: playful hover on any parent with .group (header/footer links) */
+.pixel-mark .pm-dot,
+.pixel-mark .pm-accent,
+.pixel-mark .pm-faint,
+.pixel-mark .pm-i {
+  transform-box: fill-box;
+  transform-origin: center;
+  transition: transform 500ms cubic-bezier(0.34, 1.56, 0.64, 1), fill-opacity 300ms ease;
+}
+.group:hover .pixel-mark .pm-dot { transform: translateY(-16%); }
+.group:hover .pixel-mark .pm-accent { transform: rotate(45deg) scale(0.86); }
+.group:hover .pixel-mark .pm-faint { fill-opacity: 0.42; }
+
+/* ---------- Typography ---------- */
+
+h1, h2, h3, .font-display {
+  font-family: var(--font-display);
+  letter-spacing: -0.025em;
+}
+
+h1 { letter-spacing: -0.035em; }
+
+.text-gradient {
+  background-image: linear-gradient(90deg, var(--brand-1), var(--brand-2), var(--brand-3), var(--brand-1));
+  background-size: 300% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: gradient-pan 10s linear infinite;
+}
+
+.text-outline {
+  color: transparent;
+  -webkit-text-stroke: 1px color-mix(in srgb, var(--ink) 35%, transparent);
+}
+
+/* Small label above section titles */
+.kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.35rem 0.9rem 0.35rem 0.5rem;
+  border-radius: 9999px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink-2);
+  background: color-mix(in srgb, var(--surface) 70%, transparent);
+  border: 1px solid var(--surface-border);
+  backdrop-filter: blur(10px);
+}
+
+.kicker::before {
+  content: '';
+  width: 1.1rem;
+  height: 1.1rem;
+  border-radius: 9999px;
+  background:
+    radial-gradient(circle, var(--brand-2) 0 3px, transparent 4px),
+    conic-gradient(var(--brand-1), var(--brand-2), var(--brand-3), var(--brand-1));
+  -webkit-mask: radial-gradient(circle, #000 3.5px, transparent 4px, transparent 6px, #000 6.5px);
+  mask: radial-gradient(circle, #000 3.5px, transparent 4px, transparent 6px, #000 6.5px);
+  /* transform rotation is GPU-composited; animating --angle would repaint every frame */
+  animation: spin 3s linear infinite;
+}
+
+/* ---------- Page background: aurora ---------- */
+
+.aurora {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.aurora span {
+  position: absolute;
+  border-radius: 9999px;
+  /* soft edge via gradient instead of filter: blur (much cheaper to animate) */
+  will-change: transform;
+}
+
+.aurora span:nth-child(1) {
+  width: 70vw; height: 70vw; top: -30vw; left: -18vw;
+  background: radial-gradient(closest-side, var(--aurora-1), transparent);
+  animation: aurora-drift-1 26s ease-in-out infinite alternate;
+}
+
+.aurora span:nth-child(2) {
+  width: 60vw; height: 60vw; top: 0; right: -24vw;
+  background: radial-gradient(closest-side, var(--aurora-2), transparent);
+  animation: aurora-drift-2 32s ease-in-out infinite alternate;
+}
+
+.aurora span:nth-child(3) {
+  width: 50vw; height: 50vw; bottom: -24vw; left: 22vw;
+  background: radial-gradient(closest-side, var(--aurora-3), transparent);
+  animation: aurora-drift-3 38s ease-in-out infinite alternate;
+}
+
+
+/* Fading dot/line grids for hero areas */
+.bg-grid-fade {
+  background-image:
+    linear-gradient(to right, color-mix(in srgb, var(--ink) 7%, transparent) 1px, transparent 1px),
+    linear-gradient(to bottom, color-mix(in srgb, var(--ink) 7%, transparent) 1px, transparent 1px);
+  background-size: 56px 56px;
+  -webkit-mask-image: radial-gradient(ellipse 70% 60% at 50% 30%, #000 30%, transparent 75%);
+  mask-image: radial-gradient(ellipse 70% 60% at 50% 30%, #000 30%, transparent 75%);
+}
+
+.bg-dots-fade {
+  background-image: radial-gradient(color-mix(in srgb, var(--ink) 16%, transparent) 1px, transparent 1px);
+  background-size: 22px 22px;
+  -webkit-mask-image: radial-gradient(ellipse 60% 60% at 50% 50%, #000 20%, transparent 70%);
+  mask-image: radial-gradient(ellipse 60% 60% at 50% 50%, #000 20%, transparent 70%);
+}
+
+/* ---------- Surfaces ---------- */
+
+.surface {
+  background-color: var(--surface);
+  border: 1px solid var(--surface-border);
+  box-shadow: 0 1px 0 0 color-mix(in srgb, #FFFFFF 6%, transparent) inset, 0 24px 48px -28px rgba(0, 0, 0, 0.45);
+}
+
+[data-theme="light"] .surface {
+  box-shadow: 0 1px 2px rgba(15, 23, 42, 0.04), 0 24px 48px -32px rgba(15, 23, 42, 0.22);
+}
+
+/* Translucent panel. No backdrop-filter: many of these move (marquees, orbits,
+   floating cards) and live blur on moving elements makes the whole page janky. */
+.surface-glass {
+  background-color: color-mix(in srgb, var(--surface) 88%, transparent);
+  border: 1px solid var(--surface-border);
+}
+
+/* Real frosted glass, reserved for a few static overlays (header bar, menus) */
+.glass-blur {
+  background-color: color-mix(in srgb, var(--surface) 72%, transparent);
+  backdrop-filter: blur(16px) saturate(140%);
+  -webkit-backdrop-filter: blur(16px) saturate(140%);
+}
+
+.lift {
+  transition: transform 450ms cubic-bezier(0.16, 1, 0.3, 1), box-shadow 450ms ease, border-color 300ms ease;
+}
+
+.lift:hover {
+  transform: translateY(-6px);
+  border-color: color-mix(in srgb, var(--brand-1) 45%, transparent);
+  box-shadow: 0 30px 60px -30px var(--glow);
+}
+
+/* Cursor-following glow (vars set by <Effects/>) */
+.spotlight {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+}
+
+.spotlight::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  border-radius: inherit;
+  background: radial-gradient(420px circle at var(--mx, 50%) var(--my, -20%), color-mix(in srgb, var(--brand-1) 22%, transparent), transparent 60%);
+  opacity: 0;
+  transition: opacity 400ms ease;
+  pointer-events: none;
+}
+
+.spotlight::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  background: radial-gradient(260px circle at var(--mx, 50%) var(--my, -20%), color-mix(in srgb, var(--brand-2) 80%, transparent), transparent 70%);
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  opacity: 0;
+  transition: opacity 400ms ease;
+  pointer-events: none;
+}
+
+.spotlight:hover::before,
+.spotlight:hover::after {
+  opacity: 1;
+}
+
+/* Rotating gradient border */
+.border-glow {
+  position: relative;
+  isolation: isolate;
+}
+
+.border-glow::before {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  z-index: 1;
+  border-radius: inherit;
+  padding: 1px;
+  background: conic-gradient(from var(--angle), transparent 0 55%, var(--brand-2) 70%, var(--brand-1) 82%, transparent 95%);
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  animation: spin-angle 5s linear infinite;
+  /* Repaints every frame, so large cards only spin while hovered */
+  animation-play-state: paused;
+  pointer-events: none;
+}
+
+.border-glow:hover::before,
+.border-glow.is-live::before {
+  animation-play-state: running;
+}
+
+/* Icon tile */
+.icon-tile {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 3rem;
+  height: 3rem;
+  border-radius: 1rem;
+  color: color-mix(in srgb, var(--tile, var(--brand-2)) 72%, var(--ink));
+  background:
+    linear-gradient(160deg, color-mix(in srgb, var(--tile, var(--brand-2)) 22%, transparent), color-mix(in srgb, var(--tile, var(--brand-2)) 6%, transparent));
+  border: 1px solid color-mix(in srgb, var(--tile, var(--brand-2)) 30%, transparent);
+  box-shadow: 0 10px 30px -12px color-mix(in srgb, var(--tile, var(--brand-2)) 60%, transparent);
+}
+
+/* Theme toggle: icons swap with a spin, driven by [data-theme] so it is right before hydration */
+.theme-toggle__sun { opacity: 0; transform: rotate(-90deg) scale(0.4); }
+.theme-toggle__moon { opacity: 1; transform: none; }
+[data-theme="light"] .theme-toggle__sun { opacity: 1; transform: none; }
+[data-theme="light"] .theme-toggle__moon { opacity: 0; transform: rotate(90deg) scale(0.4); }
+[data-theme="light"] .theme-toggle { background-color: #FFFBEB; border-color: #FDE68A; }
+
+/* Edge-docked theme switch (FloatingThemeToggle) */
+.theme-dock {
+  color: var(--ink);
+  background-color: color-mix(in srgb, var(--surface) 80%, transparent);
+  border-color: var(--surface-border);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  box-shadow: -10px 10px 30px -14px rgba(0, 0, 0, 0.45);
+}
+.theme-dock__icon { color: #22D3EE; background: rgba(34, 211, 238, 0.12); }
+[data-theme="light"] .theme-dock__icon { color: #D97706; background: #FFFBEB; }
+.theme-dock__label-light { display: none; }
+[data-theme="light"] .theme-dock__label-dark { display: none; }
+[data-theme="light"] .theme-dock__label-light { display: inline; }
+
+/* ---------- Buttons ---------- */
+
+.btn--primary {
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(120deg, #6366F1, #06B6D4 55%, #10B981);
+  background-size: 160% 100%;
+  background-position: 0% 50%;
+  transition: background-position 600ms ease, transform 250ms cubic-bezier(0.16, 1, 0.3, 1), box-shadow 250ms ease;
+}
+
+.btn--primary:hover {
+  background-position: 100% 50%;
+}
+
+.btn--primary::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -60%;
+  width: 40%;
+  height: 100%;
+  background: linear-gradient(100deg, transparent, rgba(255, 255, 255, 0.45), transparent);
+  transform: skewX(-20deg);
+  animation: shimmer 3.6s ease-in-out infinite;
+  pointer-events: none;
+}
+
+.btn .btn-arrow {
+  transition: transform 300ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.btn:hover .btn-arrow {
+  transform: translateX(4px);
+}
+
+/* ---------- Marquee ---------- */
+
+.marquee {
+  position: relative;
+  overflow: hidden;
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 10%, #000 90%, transparent);
+  mask-image: linear-gradient(90deg, transparent, #000 10%, #000 90%, transparent);
+}
+
+.marquee__track {
+  display: flex;
+  width: max-content;
+  gap: var(--gap, 1rem);
+  animation: marquee var(--speed, 40s) linear infinite;
+}
+
+.marquee--reverse .marquee__track {
+  animation-direction: reverse;
+}
+
+.marquee:hover .marquee__track {
+  animation-play-state: paused;
+}
+
+/* ---------- Motion utilities ---------- */
+
+.float-slow { animation: float 7s ease-in-out infinite; }
+.float-slower { animation: float 10s ease-in-out infinite; animation-delay: -3s; }
+.spin-slow { animation: spin 60s linear infinite; }
+.spin-slow-rev { animation: spin 80s linear infinite reverse; }
+.pulse-soft { animation: pulse-soft 3s ease-in-out infinite; }
+
+/* Word rotator: stacked words that slide up in turn */
+.word-rotator {
+  display: inline-grid;
+  vertical-align: bottom;
+  overflow: hidden;
+  height: 1.12em;
+}
+
+.word-rotator > span {
+  grid-area: 1 / 1;
+  animation: word-cycle calc(var(--n, 4) * 2.6s) cubic-bezier(0.7, 0, 0.3, 1) infinite;
+  animation-delay: calc(var(--i, 0) * 2.6s);
+  transform: translateY(110%);
+  line-height: 1.12;
+}
+
+/* Scroll reveal: keyframe-based so hover transforms keep working afterwards */
+.js [data-reveal]:not([data-shown]) {
+  opacity: 0;
+}
+
+.js [data-reveal][data-shown] {
+  animation: reveal-up 900ms cubic-bezier(0.16, 1, 0.3, 1) var(--d, 0ms) backwards;
+}
+
+.js [data-reveal="left"][data-shown] { animation-name: reveal-left; }
+.js [data-reveal="right"][data-shown] { animation-name: reveal-right; }
+.js [data-reveal="scale"][data-shown] { animation-name: reveal-scale; }
+.js [data-reveal="fade"][data-shown] { animation-name: reveal-fade; }
+
+/* Line that draws itself from the left */
+.js [data-reveal="grow"]:not([data-shown]) { opacity: 1; transform: scaleX(0); }
+.js [data-reveal="grow"][data-shown] { animation: grow-x 1.8s cubic-bezier(0.65, 0, 0.35, 1) var(--d, 0ms) backwards; }
+@keyframes grow-x { from { transform: scaleX(0); } }
+
+/* ---------- Keyframes ---------- */
+
+@keyframes gradient-pan { to { background-position: 300% 0; } }
+@keyframes spin-angle { to { --angle: 360deg; } }
+@keyframes spin { to { transform: rotate(360deg); } }
+@keyframes marquee { to { transform: translateX(calc(-50% - var(--gap, 1rem) / 2)); } }
+@keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-14px); } }
+@keyframes pulse-soft { 0%, 100% { opacity: 0.55; } 50% { opacity: 1; } }
+@keyframes shimmer { 0% { left: -60%; } 55%, 100% { left: 130%; } }
+
+@keyframes word-cycle {
+  0% { transform: translateY(110%); }
+  5%, 20% { transform: translateY(0); }
+  25%, 100% { transform: translateY(-110%); }
+}
+
+@keyframes reveal-up { from { opacity: 0; transform: translateY(28px); filter: blur(6px); } }
+@keyframes reveal-left { from { opacity: 0; transform: translateX(-36px); filter: blur(6px); } }
+@keyframes reveal-right { from { opacity: 0; transform: translateX(36px); filter: blur(6px); } }
+@keyframes reveal-scale { from { opacity: 0; transform: scale(0.94); filter: blur(6px); } }
+@keyframes reveal-fade { from { opacity: 0; } }
+
+@keyframes aurora-drift-1 { to { transform: translate(18vw, 12vh) scale(1.15); } }
+@keyframes aurora-drift-2 { to { transform: translate(-16vw, 22vh) scale(0.9); } }
+@keyframes aurora-drift-3 { to { transform: translate(-20vw, -18vh) scale(1.2); } }
+
+@keyframes dash-flow { to { stroke-dashoffset: -40; } }
+@keyframes orbit-pulse { 0%, 100% { r: 3; opacity: 0.6; } 50% { r: 5; opacity: 1; } }
+
+/* ---------- Reduced motion ---------- */
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .js [data-reveal]:not([data-shown]) { opacity: 1; }
+  .word-rotator > span { transform: translateY(110%); }
+  .word-rotator > span:first-child { transform: none; }
+  .marquee__track { animation: none; }
+}

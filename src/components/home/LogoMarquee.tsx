@@ -1,49 +1,46 @@
-'use client';
+import type { CSSProperties } from 'react';
 
-const partners = [
-  'AWS Premier Tier', 'Microsoft Solutions Partner', 'Google Cloud Premier',
-  'Snowflake Elite Partner', 'Databricks AI Partner', 'CrowdStrike Authorized',
-  'HashiCorp Certified', 'NVIDIA AI Inception', 'Kubernetes KCSP', 'Terraform Cloud',
-  'AWS Premier Tier', 'Microsoft Solutions Partner', 'Google Cloud Premier',
-  'Snowflake Elite Partner', 'Databricks AI Partner', 'CrowdStrike Authorized',
-];
+// Technologies the team ships with (from delivered projects)
+const rowA = ['.NET Core', 'Angular', 'React', 'Next.js', 'Node.js', 'TypeScript', 'React Native', 'C#'];
+const rowB = ['Microsoft Azure', 'AWS', 'SQL Server', 'MongoDB', 'Docker', 'Kubernetes', 'CI/CD Pipelines', 'SonarQube'];
+
+const hues = ['#22D3EE', '#818CF8', '#34D399', '#F472B6', '#FBBF24', '#38BDF8'];
+
+function Row({ items, reverse = false, speed }: { items: string[]; reverse?: boolean; speed: string }) {
+  const doubled = [...items, ...items];
+  return (
+    <div className={`marquee ${reverse ? 'marquee--reverse' : ''}`} style={{ '--speed': speed, '--gap': '0.75rem' } as CSSProperties}>
+      <div className="marquee__track">
+        {doubled.map((item, i) => (
+          <span
+            key={i}
+            className="surface-glass inline-flex items-center gap-2.5 pl-2 pr-5 py-2 rounded-full text-sm font-semibold text-slate-300 whitespace-nowrap"
+            aria-hidden={i >= items.length}
+          >
+            <span
+              className="w-7 h-7 rounded-full flex items-center justify-center text-[11px] font-black"
+              style={{ color: "#FFFFFF", background: `linear-gradient(135deg, ${hues[i % hues.length]}, ${hues[(i + 2) % hues.length]})` }}
+            >
+              {item.replace(/[^A-Za-z#]/g, '').slice(0, 2)}
+            </span>
+            {item}
+          </span>
+        ))}
+      </div>
+    </div>
+  );
+}
 
 export default function LogoMarquee() {
   return (
-    <section aria-label="Ecosystem & Enterprise Partners" className="py-12 border-y border-white/5 bg-[var(--bg-primary)]/60 overflow-hidden">
-      <div className="max-w-7xl mx-auto px-4 text-center mb-6">
-        <p className="text-[11px] font-bold uppercase tracking-widest text-slate-500">
-          Enterprise Cloud &amp; AI Ecosystem Alliances
-        </p>
+    <section aria-label="Technologies we work with" className="relative py-14">
+      <p suppressHydrationWarning data-reveal className="text-center text-[11px] font-bold uppercase tracking-[0.25em] text-slate-500 mb-8">
+        The stack behind our products
+      </p>
+      <div suppressHydrationWarning data-reveal="fade" className="flex flex-col gap-3">
+        <Row items={rowA} speed="45s" />
+        <Row items={rowB} speed="55s" reverse />
       </div>
-
-      <div className="relative w-full overflow-hidden">
-        {/* Left/Right ambient gradient fades */}
-        <div className="absolute top-0 left-0 w-24 h-full bg-gradient-to-r from-[var(--bg-primary)] to-transparent z-10 pointer-events-none" />
-        <div className="absolute top-0 right-0 w-24 h-full bg-gradient-to-l from-[var(--bg-primary)] to-transparent z-10 pointer-events-none" />
-
-        <div className="flex gap-6 w-max animate-marquee">
-          {partners.map((p, i) => (
-            <div
-              key={i}
-              className="inline-flex items-center gap-2 px-5 py-2 bg-white/[0.02] border border-white/[0.06] rounded-full text-slate-300 text-xs font-semibold whitespace-nowrap tracking-wide"
-            >
-              <span className="text-cyan-400">✦</span>
-              {p}
-            </div>
-          ))}
-        </div>
-      </div>
-
-      <style jsx>{`
-        @keyframes marqueeScroll {
-          0% { transform: translateX(0); }
-          100% { transform: translateX(-50%); }
-        }
-        .animate-marquee {
-          animation: marqueeScroll 30s linear infinite;
-        }
-      `}</style>
     </section>
   );
 }

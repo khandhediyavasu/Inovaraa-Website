@@ -1,6 +1,6 @@
 'use client';
 
-import React, { createContext, useContext, useEffect, useState } from 'react';
+import React, { createContext, useContext, useSyncExternalStore } from 'react';
 
 type Theme = 'dark' | 'light';
 
@@ -16,40 +16,35 @@ const ThemeContext = createContext<ThemeContextType>({
   setTheme: () => {},
 });
 
+// The inline script in layout.tsx sets data-theme on <html> before first paint
+// (saved choice, else OS preference). The DOM attribute is the source of truth.
+function subscribe(onChange: () => void) {
+  const observer = new MutationObserver(onChange);
+  observer.observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
+  return () => observer.disconnect();
+}
+
+const getSnapshot = (): Theme => (document.documentElement.getAttribute('data-theme') === 'light' ? 'light' : 'dark');
+const getServerSnapshot = (): Theme => 'dark';
+
+function applyTheme(t: Theme) {
+  const root = document.documentElement;
+  root.setAttribute('data-theme', t);
+  root.classList.toggle('light', t === 'light');
+  root.classList.toggle('dark', t === 'dark');
+}
+
 export function ThemeProvider({ children }: { children: React.ReactNode }) {
-  const [theme, setThemeState] = useState<Theme>('dark');
-  const [mounted, setMounted] = useState(false);
-
-  useEffect(() => {
-    const saved = localStorage.getItem('theme') as Theme | null;
-    const initialTheme: Theme = saved === 'light' ? 'light' : 'dark';
-    setThemeState(initialTheme);
-    applyTheme(initialTheme);
-    setMounted(true);
-  }, []);
-
-  const applyTheme = (t: Theme) => {
-    const root = document.documentElement;
-    root.setAttribute('data-theme', t);
-    if (t === 'light') {
-      root.classList.add('light');
-      root.classList.remove('dark');
-    } else {
-      root.classList.add('dark');
-      root.classList.remove('light');
-    }
-  };
+  const theme = useSyncExternalStore(subscribe, getSnapshot, getServerSnapshot);
 
   const setTheme = (newTheme: Theme) => {
-    setThemeState(newTheme);
-    localStorage.setItem('theme', newTheme);
+    try {
+      localStorage.setItem('theme', newTheme);
+    } catch {}
     applyTheme(newTheme);
   };
 
-  const toggleTheme = () => {
-    const nextTheme = theme === 'dark' ? 'light' : 'dark';
-    setTheme(nextTheme);
-  };
+  const toggleTheme = () => setTheme(theme === 'dark' ? 'light' : 'dark');
 
   return (
     <ThemeContext.Provider value={{ theme, toggleTheme, setTheme }}>

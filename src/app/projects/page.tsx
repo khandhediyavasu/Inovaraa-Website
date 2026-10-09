@@ -1,38 +1,29 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
+import PageHero from '@/components/ui/PageHero';
 import ProjectsDelivered from '@/components/projects/ProjectsDelivered';
 
 export const metadata: Metadata = {
-  title: 'Our Work | Ahaan Technologies',
-  description: 'Healthcare, logistics, finance, real estate and retail platforms delivered by the Ahaan Technologies engineering team.',
-  alternates: { canonical: 'https://ahaantechnologies.com/projects' },
+  title: 'Our Work: Software Projects Delivered',
+  description: 'Healthcare, logistics, finance, real estate and retail platforms delivered by the Inovaraa Solutions engineering team.',
+  alternates: { canonical: '/projects' },
 };
 
 export default function ProjectsPage() {
   return (
     <>
-      <div className="pt-20">
-        <nav className="breadcrumbs justify-center pt-12 mb-0" aria-label="Breadcrumb">
-          <div><Link href="/" className="hover:text-white transition-colors">Home</Link></div>
-          <span className="text-slate-500">›</span>
-          <div className="text-cyan-400 font-medium">Our Work</div>
-        </nav>
-        <ProjectsDelivered headingLevel="h1" />
-      </div>
-
-      <section className="cta-section">
-        <div className="container text-center">
-          <h2 className="text-white text-3xl md:text-4xl font-black mb-4">
-            Have a Project in Mind?
-          </h2>
-          <p className="text-slate-400 mb-8 max-w-lg mx-auto">
-            Tell us what you want to build and we&apos;ll share a plan, timeline and team within 24 hours.
-          </p>
-          <Link href="/contact" className="btn btn--primary btn--lg">
-            Start Your Project
-          </Link>
-        </div>
-      </section>
+      <PageHero
+        crumb="Our Work"
+        kicker="Portfolio"
+        title={<>Products we&apos;ve <span className="text-gradient">designed, built &amp; shipped</span></>}
+        description="Healthcare, logistics, finance, real estate and retail platforms, each built end to end by our engineers."
+      >
+        <Link href="/contact" className="btn btn--primary btn--lg">
+          Start Your Project
+          <svg className="btn-arrow w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12" /><polyline points="12 5 19 12 12 19" /></svg>
+        </Link>
+      </PageHero>
+      <ProjectsDelivered showHeading={false} />
     </>
   );
 }

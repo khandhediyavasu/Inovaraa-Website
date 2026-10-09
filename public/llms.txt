@@ -1,0 +1,23 @@
+# Inovaraa Solutions
+
+> Inovaraa Solutions (inovaraa.com) is a software development company that builds AI agents, MCP (Model Context Protocol) servers, custom web platforms, mobile apps and cloud solutions for healthcare, logistics, finance, real estate and retail businesses.
+
+## Leadership
+- Tejas Daraniya: Chief Executive Officer (https://inovaraa.com/team/tejas-daraniya)
+- Nikhil Mahindrakar: Director (https://inovaraa.com/team/nikhil-mahindrakar)
+- Vasu Khandhediya: Chief Technology Officer (https://inovaraa.com/team/vasu-khandhediya)
+
+## Services
+- [AI Agent & MCP Server Development](https://inovaraa.com/services/ai-agents-mcp-servers): custom MCP servers that connect Claude, ChatGPT and other AI assistants to a company's APIs, databases and tools; AI agents; LLM integration; server setup and hosting.
+- [Custom Software Development](https://inovaraa.com/services/software-development): web platforms, portals, APIs and SaaS built with .NET, Node.js, Angular and React.
+- [Cloud Infrastructure](https://inovaraa.com/services/cloud-infrastructure): Azure and AWS setup, CI/CD and DevOps, delivered with DevOps partner RytumX.
+- [Managed Services & QA](https://inovaraa.com/services/managed-services): dedicated QA engineers, maintenance and support.
+
+## Key pages
+- [Our Work](https://inovaraa.com/projects): healthcare, logistics, finance, real estate and retail projects the team has delivered.
+- [What Is an MCP Server?](https://inovaraa.com/blog/what-is-an-mcp-server): practical guide to building Model Context Protocol servers.
+- [About](https://inovaraa.com/about)
+- [Contact](https://inovaraa.com/contact)
+
+## Technologies
+.NET Core, C#, Angular, React, Next.js, Node.js, TypeScript, Python, SQL Server, MongoDB, Azure, AWS, Docker, Linux, Model Context Protocol SDKs, Claude API, OpenAI API.

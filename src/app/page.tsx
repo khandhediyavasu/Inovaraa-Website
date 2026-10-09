@@ -5,41 +5,40 @@ import LogoMarquee from '@/components/home/LogoMarquee';
 import ServicesOverview from '@/components/home/ServicesOverview';
 import ProcessSection from '@/components/home/ProcessSection';
 import ProjectsDelivered from '@/components/projects/ProjectsDelivered';
-import CaseStudies from '@/components/home/CaseStudies';
 import Industries from '@/components/home/Industries';
 import Testimonials from '@/components/home/Testimonials';
 import FeaturedBlog from '@/components/home/FeaturedBlog';
 import FaqSection from '@/components/home/FaqSection';
-import CtaSection from '@/components/home/CtaSection';
+import JsonLd, { faqSchema } from '@/components/seo/JsonLd';
+import { homeFaqs } from '@/data/faqs';
+import { SITE } from '@/data/site';
 
 export const metadata: Metadata = {
-  title: 'Enterprise IT Services & AI-Powered Digital Transformation',
-  description:
-    'Ahaan Technologies delivers AI-powered IT services, cloud infrastructure, digital transformation, cybersecurity, and managed services for global enterprises. Get a free consultation today.',
-  keywords: ['IT services company', 'enterprise IT solutions', 'digital transformation', 'cloud services', 'AI analytics'],
-  alternates: { canonical: 'https://ahaantechnologies.com' },
+  title: { absolute: `${SITE.name} | AI, MCP Server & Software Development Company` },
+  description: SITE.description,
+  alternates: { canonical: '/' },
   openGraph: {
-    title: 'Ahaan Technologies | Enterprise IT Services & Digital Transformation',
-    description: 'AI-powered IT services and digital transformation for enterprises worldwide.',
-    url: 'https://ahaantechnologies.com',
+    title: `${SITE.name} | AI, MCP Server & Software Development Company`,
+    description: SITE.description,
+    url: '/',
   },
 };
 
+// The closing call-to-action lives in the footer, so pages don't repeat it.
 export default function HomePage() {
   return (
     <>
+      <JsonLd data={faqSchema(homeFaqs)} />
       <Hero />
       <StatsStrip />
       <LogoMarquee />
       <ServicesOverview />
+      <ProjectsDelivered limit={3} showViewAll showImpact={false} />
       <ProcessSection />
-      <ProjectsDelivered limit={3} showViewAll />
-      <CaseStudies />
       <Industries />
       <Testimonials />
       <FeaturedBlog />
       <FaqSection />
-      <CtaSection />
     </>
   );
 }

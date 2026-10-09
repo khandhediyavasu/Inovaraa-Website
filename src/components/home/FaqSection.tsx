@@ -1,50 +1,37 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, type CSSProperties } from 'react';
 import Link from 'next/link';
-
-const faqs = [
-  {
-    q: 'How does Ahaan Technologies guarantee zero downtime during cloud migrations?',
-    a: 'We leverage blue-green replication, canary cutover pipelines, and distributed data streaming (Kafka / AWS DMS) to ensure uninterrupted production transactions while switching traffic between legacy systems and the new cloud environment.'
-  },
-  {
-    q: 'How do you safeguard proprietary enterprise data in Generative AI implementations?',
-    a: 'All LLM instances are deployed inside your private VPC with strict Zero Trust IAM and zero data retention agreements. We employ semantic vector databases with token masking to ensure sensitive PII never leaves your corporate perimeter.'
-  },
-  {
-    q: 'What response times and uptime SLAs are contractually backed?',
-    a: 'We provide contractual 99.999% uptime SLAs for managed multi-cloud environments and guarantee sub-15 minute response times for Critical (P1) operational anomalies 24/7/365, backed by financial penalties for SLA breaches.'
-  },
-  {
-    q: 'How fast can an enterprise engineering pod be spun up?',
-    a: 'Our standard pod onboarding takes between 10 to 14 business days, complete with dedicated Solutions Architects, Senior Software Engineers, QA Automation specialists, and DevSecOps practitioners.'
-  },
-  {
-    q: 'Who retains intellectual property rights and codebase ownership?',
-    a: 'You retain 100% intellectual property rights and code ownership from day one. All code, Terraform templates, Docker containers, and CI/CD pipelines are pushed directly into your enterprise repositories.'
-  }
-];
+import { homeFaqs as faqs } from '@/data/faqs';
 
 export default function FaqSection() {
   const [openIdx, setOpenIdx] = useState<number | null>(0);
 
   return (
-    <section className="py-24 relative" id="faq" aria-labelledby="faq-heading">
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center max-w-2xl mx-auto mb-16">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-indigo-500/10 border border-indigo-500/20 text-indigo-300 text-xs font-semibold uppercase tracking-wider mb-4">
-            Enterprise FAQs
-          </div>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-white tracking-tight leading-tight mb-4" id="faq-heading">
-            Frequently Addressed Questions
+    <section className="py-28 relative" id="faq" aria-labelledby="faq-heading">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid lg:grid-cols-[0.8fr_1.2fr] gap-12 lg:gap-16">
+        <div className="lg:sticky lg:top-32 self-start">
+          <div suppressHydrationWarning data-reveal className="kicker mb-5">FAQ</div>
+          <h2 id="faq-heading" suppressHydrationWarning data-reveal style={{ '--d': '80ms' } as CSSProperties} className="text-4xl sm:text-5xl font-extrabold text-white leading-[1.05] mb-5">
+            Questions, <span className="text-gradient">answered</span>
           </h2>
-          <p className="text-slate-400 text-base leading-relaxed">
-            Need a custom architecture or compliance assessment?{' '}
-            <Link href="/contact" className="text-cyan-400 font-semibold hover:underline">
-              Speak directly with our Principal Architects →
-            </Link>
+          <p suppressHydrationWarning data-reveal style={{ '--d': '160ms' } as CSSProperties} className="text-slate-400 leading-relaxed mb-8">
+            Can&apos;t find what you&apos;re looking for? Talk to the people who will actually build your product.
           </p>
+          <div suppressHydrationWarning data-reveal style={{ '--d': '240ms' } as CSSProperties} className="surface rounded-3xl p-6 flex items-center gap-4">
+            <div className="flex -space-x-2">
+              {['TD', 'VK'].map((i) => (
+                <span key={i} className="w-11 h-11 rounded-full border-2 border-[var(--surface)] bg-gradient-to-br from-indigo-500 to-cyan-400 text-white text-xs font-bold flex items-center justify-center">{i}</span>
+              ))}
+            </div>
+            <div className="flex-1">
+              <div className="text-sm font-semibold text-white">Talk to our leadership</div>
+              <div className="text-xs text-slate-400">Reply within 24 hours</div>
+            </div>
+            <Link href="/contact" className="w-10 h-10 rounded-full bg-gradient-to-br from-indigo-500 to-cyan-500 text-white flex items-center justify-center hover:scale-110 transition-transform" aria-label="Contact us">
+              <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12" /><polyline points="12 5 19 12 12 19" /></svg>
+            </Link>
+          </div>
         </div>
 
         <div className="flex flex-col gap-3">
@@ -53,35 +40,38 @@ export default function FaqSection() {
             return (
               <div
                 key={faq.q}
-                className={`bg-slate-900/60 backdrop-blur-xl border rounded-2xl transition-all duration-200 overflow-hidden ${
-                  isOpen
-                    ? 'border-indigo-500/40 shadow-xl shadow-indigo-950/40'
-                    : 'border-white/10 hover:border-white/20'
+                suppressHydrationWarning data-reveal
+                style={{ '--d': `${i * 70}ms` } as CSSProperties}
+                className={`rounded-3xl border transition-all duration-500 ${
+                  isOpen ? 'surface border-indigo-400/40 shadow-2xl shadow-indigo-950/30' : 'border-white/10 bg-white/[0.02] hover:border-white/20'
                 }`}
               >
                 <button
                   type="button"
                   onClick={() => setOpenIdx(isOpen ? null : i)}
-                  className="w-full px-6 py-5 flex items-center justify-between text-left gap-4 text-white text-base font-semibold cursor-pointer"
+                  className="w-full px-6 sm:px-7 py-6 flex items-center justify-between text-left gap-6 cursor-pointer"
                   aria-expanded={isOpen}
                 >
-                  <span>{faq.q}</span>
-                  <div
-                    className={`w-7 h-7 rounded-full flex items-center justify-center shrink-0 transition-transform duration-200 ${
-                      isOpen
-                        ? 'bg-indigo-500/20 text-cyan-400 rotate-180'
-                        : 'bg-white/5 text-slate-400'
+                  <span className="flex items-baseline gap-4">
+                    <span className="font-mono text-xs text-slate-500">{String(i + 1).padStart(2, '0')}</span>
+                    <span className="text-base sm:text-lg font-semibold text-white">{faq.q}</span>
+                  </span>
+                  <span
+                    className={`relative w-9 h-9 rounded-full flex items-center justify-center shrink-0 transition-all duration-500 ${
+                      isOpen ? 'bg-gradient-to-br from-indigo-500 to-cyan-500 text-white rotate-45' : 'bg-white/5 text-slate-300'
                     }`}
+                    aria-hidden="true"
                   >
-                    <svg className="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><polyline points="6 9 12 15 18 9"/></svg>
-                  </div>
+                    <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><line x1="12" y1="5" x2="12" y2="19" /><line x1="5" y1="12" x2="19" y2="12" /></svg>
+                  </span>
                 </button>
 
-                {isOpen && (
-                  <div className="px-6 pb-6 text-slate-400 text-sm leading-relaxed border-t border-white/5 pt-3">
-                    {faq.a}
+                {/* Smooth height via grid rows 0fr -> 1fr */}
+                <div className={`grid transition-[grid-template-rows] duration-500 ease-out ${isOpen ? 'grid-rows-[1fr]' : 'grid-rows-[0fr]'}`}>
+                  <div className="overflow-hidden">
+                    <p className="px-6 sm:px-7 pb-7 sm:pl-[4.25rem] text-slate-400 leading-relaxed">{faq.a}</p>
                   </div>
-                )}
+                </div>
               </div>
             );
           })}

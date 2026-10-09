@@ -1,15 +1,36 @@
+import { Suspense, type CSSProperties } from 'react';
 import type { Metadata } from 'next';
 import Link from 'next/link';
+import PageHero from '@/components/ui/PageHero';
+import SectionHeading from '@/components/ui/SectionHeading';
+import { BlogCover } from '@/components/home/FeaturedBlog';
 
 export const metadata: Metadata = {
-  title: 'Knowledge Hub & Technology Insights | Ahaan Technologies',
-  description: 'Stay ahead with expert insights on AI, cloud infrastructure, cybersecurity, and digital transformation from the Ahaan Technologies team.',
-  alternates: { canonical: 'https://ahaantechnologies.com/blog' },
+  title: 'Blog: AI, MCP & Software Development Insights',
+  description: 'Stay ahead with expert insights on AI, cloud infrastructure, cybersecurity, and digital transformation from the Inovaraa Solutions team.',
+  alternates: { canonical: '/blog' },
 };
 
 const categories = ['All Articles', 'AI & Analytics', 'Cloud Infrastructure', 'Cybersecurity', 'Digital Modernization'];
 
+const categoryColors: Record<string, [string, string]> = {
+  'AI & Analytics': ['#6366F1', '#A78BFA'],
+  'Cloud Infrastructure': ['#0EA5E9', '#22D3EE'],
+  Cybersecurity: ['#059669', '#34D399'],
+  'Digital Modernization': ['#F59E0B', '#F472B6'],
+};
+
 const posts = [
+  {
+    category: 'AI & Analytics',
+    title: 'What Is an MCP Server? A Practical Guide to Building Model Context Protocol Servers',
+    excerpt: 'MCP lets AI assistants such as Claude and ChatGPT use your APIs, databases and tools in a safe, standard way. Here is what an MCP server is, how it works and how we build production-ready ones.',
+    readTime: '9 min read',
+    date: 'Oct 9, 2026',
+    slug: 'what-is-an-mcp-server',
+    accent: 'text-cyan-400',
+    badge: 'Guide'
+  },
   {
     category: 'AI & Analytics',
     title: 'The Enterprise AI Readiness Framework: 5 Steps to Production-Ready ML',
@@ -72,96 +93,242 @@ const posts = [
   },
 ];
 
-export default function BlogPage() {
+type Post = (typeof posts)[number];
+
+const first = (v: string | string[] | undefined) => (Array.isArray(v) ? v[0] : v) ?? '';
+
+function filterHref(cat: string, search: string) {
+  const qs = new URLSearchParams();
+  if (cat !== 'All Articles') qs.set('category', cat);
+  if (search) qs.set('search', search);
+  const s = qs.toString();
+  return s ? `/blog?${s}#articles` : '/blog#articles';
+}
+
+const Arrow = ({ className = 'btn-arrow w-4 h-4' }: { className?: string }) => (
+  <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" aria-hidden="true">
+    <line x1="5" y1="12" x2="19" y2="12" />
+    <polyline points="12 5 19 12 12 19" />
+  </svg>
+);
+
+type SearchParams = Promise<{ [key: string]: string | string[] | undefined }>;
+
+export default function BlogPage({ searchParams }: { searchParams: SearchParams }) {
   return (
     <>
-      <section className="page-hero pt-32 pb-16 relative">
-        <div className="container text-center">
-          <nav className="breadcrumbs justify-center" aria-label="Breadcrumb">
-            <div><Link href="/" className="hover:text-white transition-colors">Home</Link></div>
-            <span className="text-slate-500">›</span>
-            <div className="text-cyan-400 font-medium">Knowledge Hub</div>
-          </nav>
-          <div className="max-w-3xl mx-auto">
-            <span className="eyebrow">Insights &amp; Blueprints</span>
-            <h1 className="text-white my-4 text-4xl md:text-5xl lg:text-6xl font-black tracking-tight leading-tight">
-              Technology Insights from Our Engineers
-            </h1>
-            <p className="text-lg text-slate-400 leading-relaxed">
-              Practical architecture blueprints, technical deep dives, and executive strategies on AI, multi-cloud, security, and digital modernization.
-            </p>
-          </div>
-        </div>
-      </section>
+      <PageHero
+        crumb="Knowledge Hub"
+        kicker="Insights & Blueprints"
+        title={<>Technology insights from <span className="text-gradient">our engineers</span></>}
+        description="Practical architecture blueprints, technical deep dives, and executive strategies on AI, multi-cloud, security, and digital modernization."
+      >
+        <a href="#articles" className="btn btn--primary btn--lg">
+          Browse articles
+          <Arrow />
+        </a>
+        <a href="#newsletter" className="btn btn--secondary btn--lg">Get the digest</a>
+      </PageHero>
 
-      <section className="py-20 relative">
-        <div className="container">
-          {/* Category Filter */}
-          <div className="flex gap-2 flex-wrap mb-12" role="group" aria-label="Filter by category">
-            {categories.map((cat, i) => (
-              <button
-                key={cat}
-                type="button"
-                className={`text-xs px-4 py-1.5 rounded-full border transition-colors cursor-pointer ${
-                  i === 0
-                    ? 'bg-indigo-500/20 text-white border-indigo-500/40 shadow-sm'
-                    : 'bg-white/5 text-slate-400 border-white/10 hover:text-white hover:bg-white/10'
-                }`}
-              >
-                {cat}
-              </button>
-            ))}
-          </div>
+      <section id="articles" className="pb-24 sm:pb-28 relative scroll-mt-28">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          {/* Category filter + articles (reads ?category= and ?search=; static list while it streams) */}
+          <Suspense fallback={<ArticleList activeCategory="All Articles" search="" />}>
+            <FilteredArticles searchParams={searchParams} />
+          </Suspense>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {posts.map((post) => (
-              <Link
-                key={post.slug}
-                href={`/blog/${post.slug}`}
-                className="glass-card glass-card-hover p-8 flex flex-col justify-between min-h-[340px] group"
-              >
-                <div>
-                  <div className="flex items-center justify-between mb-4">
-                    <span className="badge badge--cyan">{post.category}</span>
-                    <span className="text-xs text-slate-500">{post.date}</span>
-                  </div>
-
-                  <h2 className="text-lg font-bold text-white leading-snug group-hover:text-cyan-400 transition-colors mb-3">
-                    {post.title}
-                  </h2>
-                  <p className="text-xs text-slate-400 leading-relaxed mb-6">
-                    {post.excerpt}
-                  </p>
-                </div>
-
-                <div className="pt-4 border-t border-white/5 flex items-center justify-between text-xs">
-                  <span className="text-slate-500">⏱️ {post.readTime}</span>
-                  <span className="font-semibold text-cyan-400 flex items-center gap-1">
-                    Read Blueprint →
-                  </span>
-                </div>
-              </Link>
-            ))}
-          </div>
-
-          {/* Newsletter Box */}
-          <div className="mt-20 bg-gradient-to-r from-indigo-950/60 to-slate-900/80 border border-white/10 rounded-3xl p-10 text-center relative overflow-hidden">
-            <h2 className="text-2xl font-bold text-white mb-2">Never Miss a Technical Architecture Release</h2>
-            <p className="text-sm text-slate-400 mb-6 max-w-md mx-auto">Monthly technical digest of our highest-impact whitepapers and architectures.</p>
-            <form action="#" className="flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
-              <input
-                type="email"
-                placeholder="Enter work email"
-                required
-                className="flex-1 px-4 py-2.5 rounded-full bg-slate-950/80 border border-white/15 text-white text-sm outline-none focus:border-cyan-400 placeholder:text-slate-500"
+          {/* Newsletter */}
+          <div
+            id="newsletter"
+            suppressHydrationWarning data-reveal="scale"
+            className="surface border-glow mt-24 rounded-[2rem] px-6 py-14 sm:px-12 relative overflow-hidden scroll-mt-28"
+          >
+            <div className="absolute inset-0 bg-dots-fade pointer-events-none" aria-hidden="true" />
+            <EnvelopeOrbit />
+            <div className="relative max-w-xl mx-auto text-center">
+              <SectionHeading
+                kicker="Newsletter"
+                title={<>Never miss a <span className="text-gradient">technical architecture release</span></>}
+                description="Monthly technical digest of our highest-impact whitepapers and architectures."
+                className="[&_h2]:text-3xl [&_h2]:sm:text-4xl [&_h2]:lg:text-5xl"
               />
-              <button type="submit" className="btn btn--primary btn--sm shrink-0">
-                Subscribe
-              </button>
-            </form>
+              <form action="#" className="mt-8 flex flex-col sm:flex-row gap-3 max-w-md mx-auto p-1.5 rounded-[1.4rem] sm:rounded-full surface-glass">
+                <label htmlFor="newsletter-email" className="sr-only">Work email</label>
+                <input
+                  id="newsletter-email"
+                  type="email"
+                  placeholder="Enter work email"
+                  required
+                  className="flex-1 min-w-0 px-5 py-3 rounded-full bg-transparent text-white text-sm outline-none placeholder:text-slate-500"
+                />
+                <button type="submit" className="btn btn--primary shrink-0">
+                  Subscribe
+                  <Arrow />
+                </button>
+              </form>
+            </div>
           </div>
         </div>
       </section>
     </>
+  );
+}
+
+async function FilteredArticles({ searchParams }: { searchParams: SearchParams }) {
+  const params = await searchParams;
+  const search = first(params.search).trim();
+  const requested = first(params.category);
+  const activeCategory = categories.includes(requested) ? requested : 'All Articles';
+  return <ArticleList activeCategory={activeCategory} search={search} />;
+}
+
+function ArticleList({ activeCategory, search }: { activeCategory: string; search: string }) {
+  const needle = search.toLowerCase();
+  const filtered = posts.filter(
+    (p) =>
+      (activeCategory === 'All Articles' || p.category === activeCategory) &&
+      (!needle || [p.title, p.excerpt, p.category, p.badge].some((t) => t.toLowerCase().includes(needle)))
+  );
+  const [featured, ...rest] = filtered;
+  const featuredIndex = featured ? posts.indexOf(featured) : 0;
+
+  return (
+    <>
+          <div suppressHydrationWarning data-reveal className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-5 mb-10">
+            <nav className="flex gap-2 flex-wrap" aria-label="Filter by category">
+              {categories.map((cat) => {
+                const active = cat === activeCategory;
+                return (
+                  <Link
+                    key={cat}
+                    href={filterHref(cat, search)}
+                    scroll={false}
+                    aria-current={active ? 'page' : undefined}
+                    className={`text-xs sm:text-sm font-semibold px-4 py-2 rounded-full border transition-all ${
+                      active
+                        ? 'text-white bg-gradient-to-r from-indigo-500 to-cyan-500 border-transparent shadow-lg shadow-indigo-500/25'
+                        : 'bg-white/5 text-slate-400 border-white/10 hover:text-white hover:bg-white/10'
+                    }`}
+                  >
+                    {cat}
+                  </Link>
+                );
+              })}
+            </nav>
+            <p className="text-sm text-slate-500">
+              {filtered.length} {filtered.length === 1 ? 'article' : 'articles'}
+              {search && (
+                <>
+                  {' '}matching <span className="text-white font-semibold">&ldquo;{search}&rdquo;</span>{' '}
+                  <Link href={filterHref(activeCategory, '')} scroll={false} className="text-cyan-400 hover:underline ml-1">Clear search</Link>
+                </>
+              )}
+            </p>
+          </div>
+
+          {featured ? (
+            <>
+              <FeaturedCard post={featured} index={featuredIndex} />
+
+              {rest.length > 0 && (
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 mt-5">
+                  {rest.map((post, i) => (
+                    <PostCard key={post.slug} post={post} index={posts.indexOf(post)} delay={(i % 3) * 100} />
+                  ))}
+                </div>
+              )}
+            </>
+          ) : (
+            <div suppressHydrationWarning data-reveal="scale" className="surface rounded-[1.75rem] px-6 py-16 text-center">
+              <div className="icon-tile mx-auto mb-5" style={{ '--tile': '#22D3EE' } as CSSProperties}>
+                <svg className="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true"><circle cx="11" cy="11" r="8" /><line x1="21" y1="21" x2="16.65" y2="16.65" /></svg>
+              </div>
+              <h2 className="text-2xl font-bold text-white mb-2">No articles found</h2>
+              <p className="text-slate-400 mb-7">Try another keyword or browse every article.</p>
+              <Link href="/blog#articles" className="btn btn--secondary">View all articles</Link>
+            </div>
+          )}
+
+    </>
+  );
+}
+
+function FeaturedCard({ post, index }: { post: Post; index: number }) {
+  const colors = categoryColors[post.category] ?? ['#6366F1', '#22D3EE'];
+  return (
+    <Link
+      href={`/blog/${post.slug}`}
+      suppressHydrationWarning data-reveal
+      className="surface spotlight lift group rounded-[1.75rem] p-2.5 grid grid-cols-1 lg:grid-cols-[1.15fr_1fr] gap-2 lg:gap-6"
+    >
+      <div className="relative">
+        <BlogCover colors={colors} index={index} category={post.category} />
+        <span className="absolute right-4 top-4 text-[11px] font-bold uppercase tracking-wider px-3 py-1.5 rounded-full bg-black/30 backdrop-blur-md border border-white/20 flex items-center gap-1.5" style={{ color: '#FFFFFF' }}>
+          <span className="w-1.5 h-1.5 rounded-full bg-emerald-300 pulse-soft" aria-hidden="true" />
+          Featured
+        </span>
+      </div>
+      <div className="p-5 sm:p-7 lg:pl-2 lg:pr-10 flex flex-col justify-center">
+        <div className="flex flex-wrap items-center gap-3 text-xs text-slate-500 mb-4">
+          <span className="font-bold uppercase tracking-wider" style={{ color: `color-mix(in srgb, ${colors[0]} 70%, var(--ink))` }}>{post.badge}</span>
+          <span className="w-1 h-1 rounded-full bg-slate-500" />
+          <span>{post.date}</span>
+          <span className="w-1 h-1 rounded-full bg-slate-500" />
+          <span>{post.readTime}</span>
+        </div>
+        <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-white leading-[1.12] mb-4 group-hover:text-cyan-400 transition-colors">
+          {post.title}
+        </h2>
+        <p className="text-base text-slate-400 leading-relaxed mb-7">{post.excerpt}</p>
+        <span className="inline-flex items-center gap-2 text-sm font-semibold text-cyan-400">
+          Read blueprint
+          <Arrow className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />
+        </span>
+      </div>
+    </Link>
+  );
+}
+
+function PostCard({ post, index, delay }: { post: Post; index: number; delay: number }) {
+  const colors = categoryColors[post.category] ?? ['#6366F1', '#22D3EE'];
+  return (
+    <Link
+      href={`/blog/${post.slug}`}
+      suppressHydrationWarning data-reveal
+      style={{ '--d': `${delay}ms` } as CSSProperties}
+      className="surface spotlight lift group rounded-[1.75rem] p-2.5 flex flex-col"
+    >
+      <BlogCover colors={colors} index={index} category={post.category} />
+      <div className="p-5 pt-6 flex flex-col flex-1">
+        <div className="flex flex-wrap items-center gap-3 text-xs text-slate-500 mb-3">
+          <span className="font-bold uppercase tracking-wider" style={{ color: `color-mix(in srgb, ${colors[0]} 70%, var(--ink))` }}>{post.badge}</span>
+          <span className="w-1 h-1 rounded-full bg-slate-500" />
+          <span>{post.date}</span>
+        </div>
+        <h2 className="text-xl font-bold text-white leading-snug mb-3 group-hover:text-cyan-400 transition-colors">{post.title}</h2>
+        <p className="text-sm text-slate-400 leading-relaxed mb-6">{post.excerpt}</p>
+        <div className="mt-auto pt-4 border-t border-white/10 flex items-center justify-between text-xs">
+          <span className="text-slate-500 flex items-center gap-1.5">
+            <svg className="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true"><circle cx="12" cy="12" r="9" /><polyline points="12 7 12 12 15 14" /></svg>
+            {post.readTime}
+          </span>
+          <span className="font-semibold text-cyan-400 flex items-center gap-1">
+            Read blueprint
+            <Arrow className="w-3.5 h-3.5 transition-transform duration-300 group-hover:translate-x-1" />
+          </span>
+        </div>
+      </div>
+    </Link>
+  );
+}
+
+function EnvelopeOrbit() {
+  return (
+    <svg className="absolute -right-24 -top-24 w-80 h-80 opacity-60 pointer-events-none hidden sm:block spin-slow" viewBox="0 0 320 320" aria-hidden="true">
+      <circle cx="160" cy="160" r="110" fill="none" stroke="var(--brand-1)" strokeOpacity="0.35" strokeDasharray="3 9" />
+      <circle cx="160" cy="160" r="150" fill="none" stroke="var(--brand-2)" strokeOpacity="0.25" />
+      <circle cx="270" cy="160" r="5" fill="var(--brand-2)" />
+      <circle cx="160" cy="10" r="4" fill="var(--brand-1)" />
+    </svg>
   );
 }
