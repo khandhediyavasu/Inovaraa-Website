@@ -340,6 +340,27 @@ h1 { letter-spacing: -0.035em; }
 [data-theme="light"] .theme-dock__label-dark { display: none; }
 [data-theme="light"] .theme-dock__label-light { display: inline; }
 
+/* Navigation progress bar (NavProgress): grows while a page loads, then fills and fades */
+.nav-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 80;
+  height: 3px;
+  width: 100%;
+  opacity: 0;
+  pointer-events: none;
+  background: linear-gradient(90deg, #6366F1, #22D3EE, #10B981);
+  box-shadow: 0 0 10px rgba(34, 211, 238, 0.6);
+  transition: opacity 400ms ease 150ms;
+}
+.nav-progress.is-loading {
+  opacity: 1;
+  transition: none;
+  animation: nav-load 8s cubic-bezier(0.1, 0.7, 0.2, 1) forwards;
+}
+@keyframes nav-load { from { width: 0; } to { width: 88%; } }
+
 /* ---------- Buttons ---------- */
 
 .btn--primary {

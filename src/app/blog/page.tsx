@@ -4,6 +4,7 @@ import Link from 'next/link';
 import PageHero from '@/components/ui/PageHero';
 import SectionHeading from '@/components/ui/SectionHeading';
 import { BlogCover } from '@/components/home/FeaturedBlog';
+import NewsletterForm from '@/components/ui/NewsletterForm';
 
 export const metadata: Metadata = {
   title: 'Blog: AI, MCP & Software Development Insights',
@@ -152,20 +153,7 @@ export default function BlogPage({ searchParams }: { searchParams: SearchParams 
                 description="Monthly technical digest of our highest-impact whitepapers and architectures."
                 className="[&_h2]:text-3xl [&_h2]:sm:text-4xl [&_h2]:lg:text-5xl"
               />
-              <form action="#" className="mt-8 flex flex-col sm:flex-row gap-3 max-w-md mx-auto p-1.5 rounded-[1.4rem] sm:rounded-full surface-glass">
-                <label htmlFor="newsletter-email" className="sr-only">Work email</label>
-                <input
-                  id="newsletter-email"
-                  type="email"
-                  placeholder="Enter work email"
-                  required
-                  className="flex-1 min-w-0 px-5 py-3 rounded-full bg-transparent text-white text-sm outline-none placeholder:text-slate-500"
-                />
-                <button type="submit" className="btn btn--primary shrink-0">
-                  Subscribe
-                  <Arrow />
-                </button>
-              </form>
+              <NewsletterForm variant="blog" />
             </div>
           </div>
         </div>

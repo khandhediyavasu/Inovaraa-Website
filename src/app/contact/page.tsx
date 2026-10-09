@@ -4,6 +4,7 @@ import { useState, useRef } from 'react';
 import type { CSSProperties, FormEvent, ReactNode } from 'react';
 import PageHero from '@/components/ui/PageHero';
 import SectionHeading from '@/components/ui/SectionHeading';
+import { openEmail } from '@/lib/mailto';
 
 const offices = [
   { city: 'New York', country: 'USA', address: '350 Fifth Avenue, Suite 4200, New York, NY 10118', flag: '🇺🇸', color: '#22D3EE' },
@@ -13,8 +14,8 @@ const offices = [
 ];
 
 const services = [
-  'Cloud Infrastructure', 'AI & Data Analytics', 'Digital Transformation',
-  'Cybersecurity', 'Managed Services', 'Software Development', 'General Inquiry',
+  'AI Agents & MCP Servers', 'Software Development', 'Cloud Infrastructure', 'AI & Data Analytics', 'Digital Transformation',
+  'Cybersecurity', 'Managed Services', 'General Inquiry',
 ];
 
 const reasons: { title: string; desc: string; color: string; icon: ReactNode }[] = [
@@ -71,13 +72,26 @@ export default function ContactPage() {
     return e;
   };
 
-  const handleSubmit = async (e: FormEvent) => {
+  const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
     const errs = validate();
     if (Object.keys(errs).length > 0) { setErrors(errs); return; }
     setErrors({});
-    setStatus('submitting');
-    await new Promise((r) => setTimeout(r, 1200));
+    // No email backend yet: hand the inquiry to the visitor's email app, fully written
+    // and addressed to info@inovaraa.com, so it actually reaches us. Instant, no fake delay.
+    const f = formData;
+    openEmail({
+      subject: `Project inquiry: ${f.service} (${f.company})`,
+      body: [
+        `Name: ${f.firstName} ${f.lastName}`,
+        `Email: ${f.email}`,
+        `Company: ${f.company}`,
+        f.phone ? `Phone: ${f.phone}` : null,
+        `Service: ${f.service}`,
+        '',
+        f.message,
+      ].filter((line) => line !== null).join('\n'),
+    });
     setStatus('success');
     formRef.current?.reset();
   };
@@ -123,9 +137,10 @@ export default function ContactPage() {
                     </svg>
                     <style>{'@keyframes contact-draw { to { stroke-dashoffset: 0; } }'}</style>
                   </div>
-                  <h3 className="text-2xl font-bold text-white mb-2">Message Received</h3>
+                  <h3 className="text-2xl font-bold text-white mb-2">Almost done: press Send</h3>
                   <p className="text-sm text-slate-300 leading-relaxed max-w-md mx-auto">
-                    Thank you for reaching out. One of our Principal Solutions Architects will review your requirements and reach out within 24 business hours.
+                    Your email app has opened with your message already written to info@inovaraa.com. Press Send and we&apos;ll reply within 24 hours.
+                    If nothing opened, email us directly at <a href="mailto:info@inovaraa.com" className="text-cyan-400 underline underline-offset-4">info@inovaraa.com</a>.
                   </p>
                 </div>
               ) : (
@@ -278,7 +293,7 @@ export default function ContactPage() {
               <div suppressHydrationWarning data-reveal="right" style={{ '--d': '220ms' } as CSSProperties} className="surface spotlight rounded-[1.75rem] p-7 sm:p-8">
                 <h3 className="text-lg font-bold text-white mb-5">Direct Enterprise Inquiries</h3>
                 <div className="flex flex-col gap-3">
-                  <ContactRow href="mailto:contact@inovaraa.com" label="Email" value="contact@inovaraa.com" color="#22D3EE">
+                  <ContactRow href="mailto:info@inovaraa.com" label="Email" value="info@inovaraa.com" color="#22D3EE">
                     <rect width="20" height="16" x="2" y="4" rx="2" /><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
                   </ContactRow>
                   <ContactRow href="tel:+18004226826" label="Phone" value="+1 (800) 422-6826" color="#818CF8">

@@ -64,7 +64,7 @@ const sections: { id: string; title: ReactNode; label: string; body: ReactNode }
     body: (
       <p>
         Depending on your geographic location, you retain rights to inspect, update, or permanently delete personal data records. Direct all compliance requests to{' '}
-        <a href="mailto:privacy@inovaraa.com" className="text-cyan-400 underline underline-offset-4 hover:no-underline break-all">privacy@inovaraa.com</a>.
+        <a href="mailto:info@inovaraa.com" className="text-cyan-400 underline underline-offset-4 hover:no-underline break-all">info@inovaraa.com</a>.
       </p>
     ),
   },

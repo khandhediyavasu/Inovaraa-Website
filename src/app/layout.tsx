@@ -48,6 +48,7 @@ export const metadata: Metadata = {
 import { ThemeProvider } from '@/components/ThemeProvider';
 import Effects from '@/components/ui/Effects';
 import FloatingThemeToggle from '@/components/ui/FloatingThemeToggle';
+import NavProgress from '@/components/ui/NavProgress';
 import { SITE } from '@/data/site';
 import { leaders } from '@/data/team';
 import JsonLd, { ORG_ID, WEBSITE_ID, organizationSchema, personSchema } from '@/components/seo/JsonLd';
@@ -114,6 +115,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <div className="aurora" aria-hidden="true"><span /><span /><span /></div>
         <ThemeProvider>
           <Effects />
+          <NavProgress />
           <a
             href="#main-content"
             className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-50 focus:bg-indigo-600 focus:text-white focus:px-4 focus:py-2 focus:rounded-lg focus:shadow-xl focus:outline-none"

@@ -1,12 +1,12 @@
 // Brand + site settings in one place. These values flow to page metadata, the sitemap,
 // robots.txt, structured data (JSON-LD) and the footer.
-// TODO: confirm the email inbox and the social profile URLs.
+// TODO: confirm the social profile URLs.
 
 export const SITE = {
   name: 'Inovaraa Solutions',
   shortName: 'Inovaraa',
   url: 'https://inovaraa.com',
-  email: 'hello@inovaraa.com',
+  email: 'info@inovaraa.com',
   linkedin: 'https://www.linkedin.com/company/inovaraa',
   twitter: 'https://twitter.com/inovaraa',
   twitterHandle: '@inovaraa',

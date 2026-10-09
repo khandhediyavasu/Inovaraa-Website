@@ -1,7 +1,6 @@
-'use client';
-
 import Link from 'next/link';
 import Logo from '@/components/ui/Logo';
+import NewsletterForm from '@/components/ui/NewsletterForm';
 import { SITE } from '@/data/site';
 
 const serviceLinks = [
@@ -110,18 +109,7 @@ export default function Footer() {
               We design, build and run software for healthcare, logistics, finance and growing businesses, from first sprint to production.
             </p>
 
-            <form className="flex items-center gap-2 max-w-sm p-1.5 rounded-full bg-white/5 border border-white/10 focus-within:border-cyan-400/60 transition-colors" onSubmit={(e) => e.preventDefault()}>
-              <input
-                type="email"
-                className="flex-1 min-w-0 bg-transparent px-3 text-sm text-white outline-none placeholder:text-slate-500"
-                placeholder="Your email for updates"
-                required
-                aria-label="Email address"
-              />
-              <button type="submit" className="shrink-0 h-9 px-4 rounded-full text-xs font-semibold text-white bg-gradient-to-r from-indigo-500 to-cyan-500 hover:brightness-110 transition cursor-pointer">
-                Subscribe
-              </button>
-            </form>
+            <NewsletterForm />
 
             <div className="flex items-center gap-2">
               {socials.map((s) => (
