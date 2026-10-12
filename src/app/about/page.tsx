@@ -62,13 +62,6 @@ const roleColors: Record<string, string> = {
   'HR Manager': '#FBBF24',
 };
 
-const milestones = [
-  { year: '2012', title: 'Founding & Distributed Systems Core', desc: 'Started in Pune, India building high-throughput financial message brokers.', color: '#22D3EE' },
-  { year: '2016', title: 'Global Multi-Cloud Expansion', desc: 'Opened North America & UK headquarters, achieved ISO 27001 & SOC 2 certifications.', color: '#818CF8' },
-  { year: '2021', title: 'AI & Data Lakehouse Practice', desc: 'Launched enterprise MLOps accelerator managing 50M+ daily events.', color: '#34D399' },
-  { year: '2026', title: 'Autonomous Enterprise Era', desc: 'Operating 24/7 global mesh across 450+ Fortune 1000 organizations.', color: '#F472B6' },
-];
-
 const partners = [
   {
     id: 'rytumx',
@@ -330,50 +323,6 @@ export default function AboutPage() {
                 </a>
               </article>
             ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ---------- Milestones ---------- */}
-      <section className="py-24 sm:py-28 relative overflow-hidden" aria-labelledby="journey-heading">
-        <div className="absolute inset-0 bg-dots-fade opacity-60 pointer-events-none" aria-hidden="true" />
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
-          <SectionHeading
-            kicker="Journey"
-            id="journey-heading"
-            title={<>Evolution of <span className="text-gradient">scale</span></>}
-            className="mb-20"
-          />
-
-          <div className="relative">
-            {/* Horizontal rail (desktop) */}
-            <div className="hidden lg:block absolute top-[7px] left-0 right-0 h-px bg-white/10" aria-hidden="true">
-              <div suppressHydrationWarning data-reveal="grow" className="h-full origin-left bg-gradient-to-r from-cyan-400 via-indigo-400 to-pink-400" />
-            </div>
-            {/* Vertical rail (mobile / tablet) */}
-            <div className="lg:hidden absolute top-2 bottom-2 left-[7px] w-px bg-gradient-to-b from-cyan-400 via-indigo-400 to-pink-400 opacity-60" aria-hidden="true" />
-
-            <ol className="grid grid-cols-1 lg:grid-cols-4 gap-10 lg:gap-6 list-none p-0 m-0">
-              {milestones.map((m, i) => (
-                <li
-                  key={m.year}
-                  suppressHydrationWarning data-reveal
-                  style={{ '--d': `${200 + i * 200}ms` } as CSSProperties}
-                  className="relative pl-10 lg:pl-0 lg:pt-12"
-                >
-                  <span className="absolute left-0 top-1 lg:top-0 w-[15px] h-[15px] rounded-full border-2" style={{ borderColor: m.color, background: 'var(--surface)' }} aria-hidden="true">
-                    <span className="absolute inset-[3px] rounded-full pulse-soft" style={{ background: m.color }} />
-                  </span>
-                  <div className="font-display text-5xl sm:text-6xl font-extrabold leading-none mb-5" style={accent(m.color)}>
-                    {m.year}
-                  </div>
-                  <div className="surface spotlight lift rounded-3xl p-6">
-                    <h3 className="text-lg font-bold text-white mb-2">{m.title}</h3>
-                    <p className="text-sm text-slate-400 leading-relaxed">{m.desc}</p>
-                  </div>
-                </li>
-              ))}
-            </ol>
           </div>
         </div>
       </section>
