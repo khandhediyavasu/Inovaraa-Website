@@ -8,6 +8,12 @@ services:
     restart: unless-stopped
     ports:
       - "127.0.0.1:3000:3000"
+    # Secrets (SMTP, LEADS_ADMIN_KEY) live in .env.local on the server; it is git- and docker-ignored
+    env_file:
+      - .env.local
+    # Keep the leads workbook outside the container so rebuilds don't wipe it
+    volumes:
+      - ./data:/app/data
     environment:
       NODE_ENV: production
       HOSTNAME: "0.0.0.0"
