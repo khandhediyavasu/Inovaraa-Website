@@ -2,7 +2,7 @@
 export const homeFaqs = [
   {
     q: 'What does Inovaraa Solutions do?',
-    a: 'Inovaraa Solutions is a software development company. We design, build and support custom web platforms, mobile apps, AI agents and MCP servers, with in-house QA, for healthcare, logistics, finance, real estate, retail and education businesses. Cloud and DevOps work is delivered with our partner RytumX, and education projects with our partner Alpha Computers.',
+    a: 'Inovaraa Solutions is a software development company. We design, build and support custom web platforms, mobile apps, AI agents and MCP servers, with in-house QA, for healthcare, logistics, finance, insurance, real estate, retail and education businesses. Cloud and DevOps work is delivered with our partner RytumX, and education projects with our partner Alpha Computers.',
   },
   {
     q: 'Do you build MCP (Model Context Protocol) servers?',

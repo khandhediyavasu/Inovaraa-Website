@@ -53,7 +53,7 @@ export default function Hero() {
               className="mt-7 text-base sm:text-lg text-slate-400 leading-relaxed max-w-xl"
             >
               Inovaraa Solutions is a software development company building AI agents, MCP servers, web platforms and
-              mobile apps for healthcare, logistics, finance, real estate, retail and education.
+              mobile apps for healthcare, logistics, finance, insurance, real estate, retail and education.
             </p>
 
             <div suppressHydrationWarning data-reveal style={{ '--d': '240ms' } as CSSProperties} className="mt-9 flex flex-col sm:flex-row gap-3 w-full sm:w-auto">
@@ -81,7 +81,7 @@ export default function Hero() {
               </div>
               <div className="text-sm leading-tight">
                 <div className="font-semibold text-white">In-house experts</div>
-                <div className="text-slate-500">{projects.length}+ projects delivered across 7 industries</div>
+                <div className="text-slate-500">{projects.length}+ projects delivered across 8 industries</div>
               </div>
             </div>
           </div>

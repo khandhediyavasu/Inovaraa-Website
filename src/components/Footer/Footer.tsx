@@ -106,7 +106,7 @@ export default function Footer() {
               <Logo size="lg" />
             </Link>
             <p className="text-sm text-slate-400 leading-relaxed max-w-xs">
-              We design, build and support software for healthcare, logistics, finance, real estate, retail and education, from the first sprint to production.
+              We design, build and support software for healthcare, logistics, finance, insurance, real estate, retail and education, from the first sprint to production.
             </p>
 
             <div className="flex flex-col gap-1.5 text-sm">

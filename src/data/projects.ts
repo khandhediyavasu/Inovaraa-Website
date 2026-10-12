@@ -118,8 +118,8 @@ export const projects: Project[] = [
 // a client may ask about any figure during a pitch.
 export const impactStats = [
   { value: `${projects.length}+`, label: 'projects delivered' },
-  // Healthcare, logistics, finance, real estate, food & retail, sales & self-service, education
+  // Healthcare, logistics, finance, insurance, real estate, food & retail, sales & self-service, education
   // (education through our partner Alpha Computers); matches the Industries page
-  { value: '7', label: 'industries served' },
+  { value: '8', label: 'industries served' },
   { value: '7+ years', label: 'of engineering experience' },
 ];

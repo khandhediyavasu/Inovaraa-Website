@@ -6,7 +6,7 @@ import SectionHeading from '@/components/ui/SectionHeading';
 
 export const metadata: Metadata = {
   title: 'Industries We Serve',
-  description: 'Industries where Inovaraa Solutions has delivered software: healthcare, logistics and shipping, finance and compliance, real estate, food supply and retail, sales and self-service, and education.',
+  description: 'Industries where Inovaraa Solutions has delivered software: healthcare, logistics and shipping, finance and compliance, insurance, real estate, food supply and retail, sales and self-service, and education.',
   alternates: { canonical: '/industries' },
 };
 
@@ -66,6 +66,21 @@ const industries: Industry[] = [
     services: ['Cybersecurity', 'Custom Software Development', 'AI & Data Analytics', 'Managed Services & QA'],
     color: '#A78BFA',
     icon: <><rect width="20" height="14" x="2" y="5" rx="2" /><line x1="2" x2="22" y1="10" y2="10" /></>,
+  },
+  {
+    title: 'Insurance',
+    short: 'Insurance',
+    slug: 'insurance',
+    desc: 'Software for insurers and agencies, including projects for the US auto insurance market: quotes, policies, claims and customer self-service.',
+    challenges: [
+      'Online quotes and policy issuance',
+      'Claims intake, tracking and status updates',
+      'Customer and agent portals for policy documents and payments',
+      'Clear requirements for complex rating and underwriting rules',
+    ],
+    services: ['Custom Software Development', 'Digital Transformation', 'Cybersecurity', 'Managed Services & QA'],
+    color: '#E879F9',
+    icon: <><path d="M22 12a10 10 0 0 0-20 0Z" /><path d="M12 12v7a2 2 0 0 0 4 0" /><line x1="12" y1="2" x2="12" y2="3" /></>,
   },
   {
     title: 'Real Estate',
@@ -134,6 +149,7 @@ const shipped: { sector: string; projects: string[]; color: string }[] = [
   { sector: 'Healthcare', projects: ['CareConnect', 'PhysioFlow'], color: '#F472B6' },
   { sector: 'Logistics & Shipping', projects: ['Shipping Management System'], color: '#38BDF8' },
   { sector: 'Finance & Compliance', projects: ['EUC Finance Compliance'], color: '#A78BFA' },
+  { sector: 'Insurance', projects: ['US Auto Insurance'], color: '#E879F9' },
   { sector: 'Real Estate', projects: ['BuildCon'], color: '#FBBF24' },
   { sector: 'Food Supply & Retail', projects: ['Food Stock', 'Tavili Native'], color: '#34D399' },
   { sector: 'Sales & Self-Service', projects: ['Sales CRM', 'Seva Kiosk'], color: '#22D3EE' },
@@ -178,7 +194,7 @@ export default function IndustriesPage() {
       {/* Sector index */}
       <section className="relative pb-20" aria-label="Sector index">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <ul className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-7 gap-3 list-none p-0 m-0 [&>li:last-child]:col-span-2 md:[&>li:last-child]:col-span-1">
+          <ul className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-8 gap-3 list-none p-0 m-0">
             {industries.map((ind, i) => (
               <li key={ind.slug} suppressHydrationWarning data-reveal style={{ '--d': `${i * 70}ms`, '--tile': ind.color } as CSSProperties}>
                 <Link href={`#${ind.slug}`} className="surface-glass spotlight lift group rounded-2xl p-4 flex flex-col items-start gap-4 h-full">
@@ -372,7 +388,7 @@ export default function IndustriesPage() {
                 </Link>
               </div>
             </div>
-            <ul className="relative grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 list-none p-0 m-0 sm:[&>li:last-child]:col-span-2 lg:[&>li:last-child]:col-span-1">
+            <ul className="relative grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 list-none p-0 m-0">
               {shipped.map((s, i) => (
                 <li
                   key={s.sector}

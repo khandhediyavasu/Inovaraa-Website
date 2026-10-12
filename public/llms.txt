@@ -1,11 +1,11 @@
 # Inovaraa Solutions
 
-> Inovaraa Solutions (inovaraa.com) is a software development company based in Ahmedabad, Gujarat, India. It builds AI agents, MCP (Model Context Protocol) servers, custom web platforms and mobile apps for healthcare, logistics, finance, real estate, retail and education businesses. It has delivered 9+ projects and has 7+ years of engineering experience. Contact: info@inovaraa.com, +91 94997 38788.
+> Inovaraa Solutions (inovaraa.com) is a software development company based in Ahmedabad, Gujarat, India. It builds AI agents, MCP (Model Context Protocol) servers, custom web platforms and mobile apps for healthcare, logistics, finance, insurance, real estate, retail and education businesses. It has delivered 9+ projects and has 7+ years of engineering experience. Contact: info@inovaraa.com, +91 94997 38788.
 
 ## Leadership
 - Tejas Thakkar: Chief Executive Officer (https://inovaraa.com/team/tejas-thakkar)
-- Nikhil Mahindrakar: Director (https://inovaraa.com/team/nikhil-mahindrakar)
 - Vasu Thakkar: Chief Technology Officer (https://inovaraa.com/team/vasu-thakkar)
+- Nikhil Mahindrakar: Director (https://inovaraa.com/team/nikhil-mahindrakar)
 
 ## Services
 - [Custom Software Development](https://inovaraa.com/services/software-development): web platforms, portals, APIs and SaaS built with .NET, Node.js, Angular and React.
@@ -25,7 +25,7 @@ CareConnect (aged and disability care), PhysioFlow (physiotherapy clinic managem
 
 ## Key pages
 - [Our Work](https://inovaraa.com/projects): projects the team has delivered.
-- [Industries](https://inovaraa.com/industries): healthcare, logistics, finance, real estate, retail, sales and self-service, and education.
+- [Industries](https://inovaraa.com/industries): healthcare, logistics, finance, insurance, real estate, retail, sales and self-service, and education.
 - [What Is an MCP Server?](https://inovaraa.com/blog/what-is-an-mcp-server): practical guide to building Model Context Protocol servers.
 - [About](https://inovaraa.com/about)
 - [Contact](https://inovaraa.com/contact)

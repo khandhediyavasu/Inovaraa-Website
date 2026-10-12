@@ -39,12 +39,12 @@ const values: { title: string; desc: string; color: string; icon: ReactNode }[] 
 
 const leadership = [
   { name: 'Tejas Thakkar', slug: 'tejas-thakkar', title: 'Chief Executive Officer', initials: 'TT', color: '#22D3EE' },
-  { name: 'Nikhil Mahindrakar', slug: 'nikhil-mahindrakar', title: 'Director', initials: 'NM', color: '#818CF8' },
   { name: 'Vasu Thakkar', slug: 'vasu-thakkar', title: 'Chief Technology Officer', initials: 'VT', color: '#34D399' },
+  { name: 'Nikhil Mahindrakar', slug: 'nikhil-mahindrakar', title: 'Director', initials: 'NM', color: '#818CF8' },
 ];
 
 const team: { name: string; role?: string; initials: string }[] = [
-  { name: 'Jaimin Manfroliya', role: 'Web Developer', initials: 'JM' },
+  { name: 'Jaimin Mangroliya', role: 'Web Developer', initials: 'JM' },
   { name: 'Parth Suhagiya', role: 'Web Developer', initials: 'PS' },
   { name: 'Vijeet Shah', role: 'QA', initials: 'VS' },
   { name: 'Meet Patel', role: 'QA', initials: 'MP' },
@@ -108,7 +108,7 @@ export default function AboutPage() {
         crumb="About"
         kicker="About Us"
         title={<>A small team that <span className="text-gradient">ships real software</span></>}
-        description="Inovaraa Solutions is an Ahmedabad-based team building web platforms, mobile apps, AI agents and MCP servers for healthcare, logistics, finance, real estate, retail and education."
+        description="Inovaraa Solutions is an Ahmedabad-based team building web platforms, mobile apps, AI agents and MCP servers for healthcare, logistics, finance, insurance, real estate, retail and education."
       >
         <a href="#leadership" className="btn btn--primary btn--lg">
           Meet the leadership

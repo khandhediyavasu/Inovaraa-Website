@@ -17,7 +17,7 @@ export const SITE = {
   twitterHandle: '@inovaraa',
   tagline: 'Software development company building AI agents, MCP servers, web platforms and mobile apps.',
   description:
-    'Inovaraa Solutions is a software development company that builds AI agents, MCP (Model Context Protocol) servers, custom web platforms, mobile apps and cloud solutions for healthcare, logistics, finance, real estate, retail and education businesses.',
+    'Inovaraa Solutions is a software development company that builds AI agents, MCP (Model Context Protocol) servers, custom web platforms, mobile apps and cloud solutions for healthcare, logistics, finance, insurance, real estate, retail and education businesses.',
   // Search phrases the site is written to rank for
   keywords: [
     'Inovaraa',
@@ -43,6 +43,7 @@ export const SITE = {
     'education software development',
     'software development company India',
     'software development company Ahmedabad',
+    'insurance software development',
     'IT company Ahmedabad',
     'AI development company Ahmedabad',
     'Vasu Thakkar',

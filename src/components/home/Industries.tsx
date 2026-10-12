@@ -26,6 +26,13 @@ const industries: { title: string; desc: string; projects: string[]; color: stri
     icon: <><rect width="20" height="14" x="2" y="5" rx="2" /><line x1="2" x2="22" y1="10" y2="10" /></>,
   },
   {
+    title: 'Insurance',
+    desc: 'Policy, quote, claims and customer-portal software, including projects for the US auto insurance market.',
+    projects: ['US Auto Insurance'],
+    color: '#E879F9',
+    icon: <><path d="M22 12a10 10 0 0 0-20 0Z" /><path d="M12 12v7a2 2 0 0 0 4 0" /><line x1="12" y1="2" x2="12" y2="3" /></>,
+  },
+  {
     title: 'Real Estate',
     desc: 'Inquiry tracking, unit booking, receipts and buy-sell flows for developers.',
     projects: ['BuildCon'],
@@ -67,10 +74,10 @@ export default function Industries() {
           className="mb-16"
         />
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
           {industries.map((ind, i) => {
             // A lone card on the last row spans the full width as a horizontal banner
-            const wide = industries.length % 3 === 1 && i === industries.length - 1;
+            const wide = industries.length % 4 === 1 && i === industries.length - 1;
             if (wide) return (
             <Link
               key={ind.title}
