@@ -1,4 +1,3 @@
-
 name: Deploy Inovaraa Website
 
 on:
@@ -20,8 +19,8 @@ jobs:
           key: ${{ secrets.SERVER_SSH_KEY }}
           port: ${{ secrets.SERVER_PORT || 22 }}
           debug: true
+          envs: GITHUB_SHA
           script: |
             cd /root/projects/Inovaraa-Website
             git pull origin main
             docker compose up -d --build
-
