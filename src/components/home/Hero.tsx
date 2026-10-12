@@ -35,7 +35,7 @@ export default function Hero() {
               style={{ '--d': '80ms' } as CSSProperties}
               className="text-[2.75rem] leading-[1.02] sm:text-6xl lg:text-7xl xl:text-[5.5rem] font-extrabold text-white"
             >
-              Digital products,
+              Digital solutions,
               <br />
               engineered to{' '}
               <span className="word-rotator" style={{ "--n": words.length } as CSSProperties} aria-label={words[0]}>
