@@ -51,7 +51,7 @@ export default async function LeaderPage({ params }: { params: Promise<{ slug: s
       />
 
       <PageHero
-        crumb={`Team / ${l.name}`}
+        crumb={`About / ${l.name}`}
         kicker={l.role}
         title={<>{l.name.split(' ')[0]} <span className="text-gradient">{l.name.split(' ').slice(1).join(' ')}</span></>}
         description={l.headline}
@@ -60,7 +60,7 @@ export default async function LeaderPage({ params }: { params: Promise<{ slug: s
           Contact {l.givenName}
           <svg className="btn-arrow w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12" /><polyline points="12 5 19 12 12 19" /></svg>
         </Link>
-        <Link href="/about#leadership" className="btn btn--secondary btn--lg">Meet the team</Link>
+        <Link href="/about#leadership" className="btn btn--secondary btn--lg">Meet the leadership</Link>
       </PageHero>
 
       <section className="pb-24" aria-labelledby="bio-heading">

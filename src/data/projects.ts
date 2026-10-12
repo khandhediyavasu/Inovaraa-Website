@@ -23,18 +23,18 @@ export interface Project {
 
 export const projects: Project[] = [
   {
-    slug: 'ramcare',
-    name: 'Ram Care',
+    slug: 'careconnect',
+    name: 'CareConnect',
     category: 'Healthcare · Aged Care',
     description:
-      'A care management platform for Ram Care, a Queensland-based in-home aged and disability care provider. It runs personalised care plans, dementia care, nursing, transport and self-managed packages.',
+      'A care management platform for an in-home aged and disability care provider. It runs personalized care plans, dementia care, nursing, transport and self-managed packages.',
     tint: '#FDE7CF',
     accent: '#EA580C',
     screen: 'dashboard',
   },
   {
-    slug: 'plus-physio',
-    name: 'Plus Physio',
+    slug: 'physioflow',
+    name: 'PhysioFlow',
     category: 'Healthcare · Physiotherapy',
     description:
       'Clinic management software for physiotherapy practices. Patients register themselves, staff book and manage appointments, and invoicing and payments are built in.',
@@ -93,11 +93,11 @@ export const projects: Project[] = [
     screen: 'website',
   },
   {
-    slug: 'vadtal-kiosk',
-    name: 'Vadtal Temple Kiosk',
+    slug: 'seva-kiosk',
+    name: 'Seva Kiosk',
     category: 'Self-service Kiosk',
     description:
-      'A self-service kiosk for Vadtal temple. Visitors choose prasad items, pay by UPI and collect a printed receipt.',
+      'A self-service kiosk for a temple. Visitors choose prasad items, pay by UPI and collect a printed receipt.',
     tint: '#FED9B5',
     accent: '#F97316',
     screen: 'tiles',
@@ -118,8 +118,9 @@ export const projects: Project[] = [
 // a client may ask about any figure during a pitch.
 export const impactStats = [
   { value: `${projects.length}+`, label: 'projects delivered' },
-  // Healthcare, logistics, finance, real estate, food & retail (from the projects above)
-  { value: '5+', label: 'industries served' },
+  // Healthcare, logistics, finance, real estate, food & retail, sales & self-service, education
+  // (education through our partner Alpha Computers); matches the Industries page
+  { value: '7', label: 'industries served' },
   { value: '5+ years', label: 'of engineering experience' },
   // 3 executive leaders + 9 team members on the About page
   { value: '12', label: 'in-house experts' },

@@ -7,12 +7,17 @@ export const SITE = {
   shortName: 'Inovaraa',
   url: 'https://inovaraa.com',
   email: 'info@inovaraa.com',
+  phone: '+91 94997 38788',
+  phoneHref: 'tel:+919499738788',
+  address: { city: 'Ahmedabad', region: 'Gujarat', country: 'India', countryCode: 'IN' },
+  location: 'Ahmedabad, Gujarat, India',
+  mapUrl: 'https://www.google.com/maps/search/?api=1&query=Ahmedabad%2C+Gujarat%2C+India',
   linkedin: 'https://www.linkedin.com/company/inovaraa',
   twitter: 'https://twitter.com/inovaraa',
   twitterHandle: '@inovaraa',
   tagline: 'Software development company building AI agents, MCP servers, web platforms and mobile apps.',
   description:
-    'Inovaraa Solutions is a software development company that builds AI agents, MCP (Model Context Protocol) servers, custom web platforms, mobile apps and cloud solutions for healthcare, logistics, finance and growing businesses.',
+    'Inovaraa Solutions is a software development company that builds AI agents, MCP (Model Context Protocol) servers, custom web platforms, mobile apps and cloud solutions for healthcare, logistics, finance, real estate, retail and education businesses.',
   // Search phrases the site is written to rank for
   keywords: [
     'Inovaraa',
@@ -34,10 +39,16 @@ export const SITE = {
     'Node.js development',
     'cloud and DevOps services',
     'server setup and deployment',
-    'Vasu Khandhediya',
+    'school management software',
+    'education software development',
+    'software development company India',
+    'software development company Ahmedabad',
+    'IT company Ahmedabad',
+    'AI development company Ahmedabad',
+    'Vasu Thakkar',
     'Nikhil Mahindrakar',
-    'Tejas Daraniya',
+    'Tejas Thakkar',
   ],
-  // Pixel i logo colours, matched to the site palette (indigo → blue → cyan → teal on navy)
+  // Pixel i logo colors, matched to the site palette (indigo → blue → cyan → teal on navy)
   colors: { indigo: '#6366F1', blue: '#0EA5E9', cyan: '#22D3EE', teal: '#10B981', navy: '#0B1226' },
 } as const;

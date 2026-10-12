@@ -10,6 +10,17 @@ import { PixelMark, Wordmark } from '@/components/ui/Logo';
 
 const services = [
   {
+    label: 'Custom Software Development',
+    href: '/services/software-development',
+    icon: (
+      <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <polyline points="16 18 22 12 16 6"/>
+        <polyline points="8 6 2 12 8 18"/>
+      </svg>
+    ),
+    desc: 'Web, mobile & business apps you own',
+  },
+  {
     label: 'AI Agents & MCP Servers',
     href: '/services/ai-agents-mcp-servers',
     icon: (
@@ -20,16 +31,6 @@ const services = [
     desc: 'Connect Claude & ChatGPT to your software',
   },
   {
-    label: 'Cloud Infrastructure',
-    href: '/services/cloud-infrastructure',
-    icon: (
-      <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-        <path d="M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9Z"/>
-      </svg>
-    ),
-    desc: 'Multi-cloud, FinOps & Kubernetes architecture',
-  },
-  {
     label: 'AI & Data Analytics',
     href: '/services/ai-data-analytics',
     icon: (
@@ -37,17 +38,17 @@ const services = [
         <path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/>
       </svg>
     ),
-    desc: 'Autonomous AI agents, RAG & Lakehouses',
+    desc: 'Dashboards, data sync & in-app AI features',
   },
   {
-    label: 'Digital Transformation',
-    href: '/services/digital-transformation',
+    label: 'Cloud & DevOps',
+    href: '/services/cloud-infrastructure',
     icon: (
       <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-        <path d="m3 16 4 4 4-4M7 20V4M21 8l-4-4-4 4M17 4v16"/>
+        <path d="M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9Z"/>
       </svg>
     ),
-    desc: 'Legacy monolith modernization & RPA',
+    desc: 'Azure, AWS & CI/CD, with RytumX',
   },
   {
     label: 'Cybersecurity',
@@ -57,10 +58,20 @@ const services = [
         <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
       </svg>
     ),
-    desc: 'Zero trust frameworks & 24/7 SOC defense',
+    desc: 'Secure-by-design apps & security reviews',
   },
   {
-    label: 'Managed Services',
+    label: 'Digital Transformation',
+    href: '/services/digital-transformation',
+    icon: (
+      <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <path d="m3 16 4 4 4-4M7 20V4M21 8l-4-4-4 4M17 4v16"/>
+      </svg>
+    ),
+    desc: 'From spreadsheets & paper to web apps',
+  },
+  {
+    label: 'Managed Services & QA',
     href: '/services/managed-services',
     icon: (
       <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -68,18 +79,7 @@ const services = [
         <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/>
       </svg>
     ),
-    desc: '24/7 proactive NOC & guaranteed SLAs',
-  },
-  {
-    label: 'Software Development',
-    href: '/services/software-development',
-    icon: (
-      <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-        <polyline points="16 18 22 12 16 6"/>
-        <polyline points="8 6 2 12 8 18"/>
-      </svg>
-    ),
-    desc: 'High-throughput enterprise applications',
+    desc: 'Testing, maintenance & support after launch',
   },
 ];
 
@@ -292,7 +292,7 @@ export default function Header() {
                           <span className="relative text-[11px] font-bold uppercase tracking-widest text-white/80">Our Work</span>
                           <span className="relative">
                             <span className="block font-display text-4xl font-extrabold">{projects.length}+</span>
-                            <span className="block text-sm text-white/85 mt-1">products shipped for healthcare, logistics, finance &amp; more</span>
+                            <span className="block text-sm text-white/85 mt-1">projects delivered for healthcare, logistics, finance &amp; more</span>
                             <span className="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold">
                               See projects
                               <svg className="w-4 h-4 group-hover/promo:translate-x-1 transition-transform" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12" /><polyline points="12 5 19 12 12 19" /></svg>

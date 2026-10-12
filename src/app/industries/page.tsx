@@ -6,7 +6,7 @@ import SectionHeading from '@/components/ui/SectionHeading';
 
 export const metadata: Metadata = {
   title: 'Industries We Serve',
-  description: 'Inovaraa Solutions delivers industry-specific IT solutions for financial services, healthcare, manufacturing, retail, energy, aerospace, education, and telecom.',
+  description: 'Industries where Inovaraa Solutions has delivered software: healthcare, logistics and shipping, finance and compliance, real estate, food supply and retail, sales and self-service, and education.',
   alternates: { canonical: '/industries' },
 };
 
@@ -23,72 +23,107 @@ type Industry = {
 
 const industries: Industry[] = [
   {
-    title: 'Financial Services & FinTech',
-    short: 'Finance',
-    slug: 'financial-services',
-    desc: 'Regulatory compliance, digital banking, fraud detection, and real-time analytics for banks, insurers, and fintechs.',
-    challenges: ['Regulatory compliance (GDPR, SOX, PCI-DSS)', 'Legacy core banking modernization', 'Real-time fraud detection with sub-10ms inference', 'Digital customer experience & open banking APIs'],
-    services: ['Cybersecurity', 'AI & Analytics', 'Cloud Infrastructure', 'Digital Transformation'],
-    color: '#A78BFA',
-    icon: <><rect width="20" height="14" x="2" y="5" rx="2" /><line x1="2" x2="22" y1="10" y2="10" /></>,
-  },
-  {
-    title: 'Healthcare & Life Sciences',
+    title: 'Healthcare',
     short: 'Healthcare',
     slug: 'healthcare',
-    desc: 'HIPAA-compliant platforms, clinical AI, patient engagement, and interoperability solutions for health systems and pharma.',
-    challenges: ['HIPAA & clinical data sovereignty compliance', 'Interoperability & HL7 FHIR pipelines', 'Clinical decision support AI with zero hallucination', 'Patient experience digitization & EHR integration'],
-    services: ['AI & Analytics', 'Cybersecurity', 'Software Development', 'Managed Services'],
+    desc: 'Care management and clinic software for in-home care providers and physiotherapy practices, from care plans to appointments and invoicing.',
+    challenges: [
+      'Personalized care plans for aged, dementia and disability care',
+      'Nursing, transport and self-managed package tracking in one system',
+      'Patient self-registration and online appointment booking',
+      'Built-in invoicing and payments for clinics',
+    ],
+    services: ['Custom Software Development', 'AI & Data Analytics', 'Cybersecurity', 'Managed Services & QA'],
     color: '#F472B6',
     icon: <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z" />,
   },
   {
-    title: 'Smart Manufacturing & Industry 4.0',
-    short: 'Manufacturing',
-    slug: 'manufacturing',
-    desc: 'Industry 4.0 transformation including IoT, predictive maintenance, smart supply chain, and quality intelligence.',
-    challenges: ['Legacy OT/IT integration & air-gapping', 'Predictive equipment maintenance with edge sensors', 'End-to-end supply chain telemetry visibility', 'Automated computer vision quality control'],
-    services: ['AI & Analytics', 'Digital Transformation', 'Cloud Infrastructure', 'IoT'],
-    color: '#FBBF24',
-    icon: <path d="M2 20a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8l-7 5V8l-7 5V4a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2Z" />,
+    title: 'Logistics & Shipping',
+    short: 'Logistics',
+    slug: 'logistics',
+    desc: 'Transport management for truck and coastal transshipments, covering door-to-door and port-to-port moves with tracking and billing.',
+    challenges: [
+      'Truck and coastal transshipment orders in one place',
+      'Live vehicle tracking and dispatching',
+      'Ledgers, invoicing and billing without spreadsheets',
+      'Door-to-door and port-to-port workflows',
+    ],
+    services: ['Custom Software Development', 'Cloud & DevOps (with RytumX)', 'Digital Transformation', 'AI & Data Analytics'],
+    color: '#38BDF8',
+    icon: <><rect x="1" y="3" width="15" height="13" /><polygon points="16 8 20 8 23 11 23 16 16 16 16 8" /><circle cx="5.5" cy="18.5" r="2.5" /><circle cx="18.5" cy="18.5" r="2.5" /></>,
   },
   {
-    title: 'Retail & Omnichannel E-commerce',
+    title: 'Finance & Compliance',
+    short: 'Finance',
+    slug: 'finance',
+    desc: 'End-user computing (EUC) controls that help finance teams keep track of the spreadsheets and tools their reporting depends on.',
+    challenges: [
+      'Inventory and discovery of end-user computing tools',
+      'Data classification and risk assessment',
+      'Ongoing monitoring of critical files and models',
+      'Information security controls for finance teams',
+    ],
+    services: ['Cybersecurity', 'Custom Software Development', 'AI & Data Analytics', 'Managed Services & QA'],
+    color: '#A78BFA',
+    icon: <><rect width="20" height="14" x="2" y="5" rx="2" /><line x1="2" x2="22" y1="10" y2="10" /></>,
+  },
+  {
+    title: 'Real Estate',
+    short: 'Real Estate',
+    slug: 'real-estate',
+    desc: 'Booking software for apartment and shop developers, from the first inquiry to the final receipt.',
+    challenges: [
+      'Inquiry tracking with daily inquiry reports',
+      'Project and unit inventory for apartments and shops',
+      'Bookings and receipts in one system',
+      'Unit buy-sell records',
+    ],
+    services: ['Custom Software Development', 'Digital Transformation', 'Managed Services & QA'],
+    color: '#FBBF24',
+    icon: <><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" /><polyline points="9 22 9 12 15 12 15 22" /></>,
+  },
+  {
+    title: 'Food Supply & Retail',
     short: 'Retail',
     slug: 'retail',
-    desc: 'Omnichannel platforms, demand forecasting, personalization engines, and supply chain optimization for retailers.',
-    challenges: ['Omnichannel inventory unification across 1,000+ stores', 'Real-time inventory intelligence & stockout prevention', 'Sub-second customer personalization at scale', 'High-concurrency flash sale traffic resilience'],
-    services: ['Digital Transformation', 'AI & Analytics', 'Software Development'],
+    desc: 'Stock and invoicing platforms for food suppliers that connect to ERP systems and online stores, including a multi-company version.',
+    challenges: [
+      'Supplier, product and pricing management',
+      'Integration with large ERP systems',
+      'APIs for e-commerce stores',
+      'Multi-company tenancy with real-time dashboards',
+    ],
+    services: ['Custom Software Development', 'Cloud & DevOps (with RytumX)', 'AI & Data Analytics', 'Digital Transformation'],
     color: '#34D399',
     icon: <><circle cx="8" cy="21" r="1" /><circle cx="19" cy="21" r="1" /><path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12" /></>,
   },
   {
-    title: 'Energy, CleanTech & Utilities',
-    short: 'Energy',
-    slug: 'energy',
-    desc: 'Smart grid technology, sustainability analytics, NERC CIP compliance, and operational intelligence for energy providers.',
-    challenges: ['NERC CIP regulatory compliance audits', 'Smart grid modernization & load balancing', 'Carbon accounting & ESG emission tracking', 'SCADA infrastructure zero-trust perimeter defense'],
-    services: ['Cybersecurity', 'AI & Analytics', 'Managed Services'],
+    title: 'Sales & Self-Service',
+    short: 'Sales',
+    slug: 'sales-self-service',
+    desc: 'CRMs that follow every customer from first contact to revenue, and self-service kiosks that take orders and payments on their own.',
+    challenges: [
+      'Lead-to-opportunity tracking',
+      'Invoices linked to every deal',
+      'Self-service ordering at a kiosk',
+      'UPI payments with printed receipts',
+    ],
+    services: ['Custom Software Development', 'AI Agents & MCP Servers', 'Digital Transformation', 'Managed Services & QA'],
     color: '#22D3EE',
-    icon: <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" />,
+    icon: <><rect x="5" y="2" width="14" height="20" rx="2" /><line x1="12" y1="18" x2="12.01" y2="18" /></>,
   },
   {
-    title: 'Aerospace & Mission-Critical Defense',
-    short: 'Aerospace',
-    slug: 'aerospace',
-    desc: 'Mission-critical systems, secure defense infrastructure, simulation platforms, and compliance for aerospace organizations.',
-    challenges: ['ITAR, CMMC & FedRAMP High compliance', 'Ultra-resilient failover with sub-second RTO', 'Air-gapped classified cloud environments', 'Software-defined supply chain traceability'],
-    services: ['Cybersecurity', 'Software Development', 'Cloud Infrastructure'],
-    color: '#38BDF8',
-    icon: <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />,
-  },
-  {
-    title: 'Education & EdTech',
+    title: 'Education',
     short: 'Education',
     slug: 'education',
-    desc: 'School, college and coaching-class management software, delivered in partnership with Alpha Computers and their Edusoft range.',
-    challenges: ['Admissions, fees and student records in one place', 'Automated attendance, timetables and bell schedules', 'Parent communication through SMS and mobile apps', 'Library, exams and report cards without paperwork'],
-    services: ['Software Development', 'Digital Transformation', 'Cloud Infrastructure', 'Managed Services'],
+    desc: 'School, college and coaching-class management software, delivered in partnership with Alpha Computers.',
+    challenges: [
+      'Admissions, fees and student records in one place',
+      'Attendance and timetables',
+      'Parent communication by SMS and mobile app',
+      'Exams and report cards without paperwork',
+    ],
+    services: ['Custom Software Development', 'Digital Transformation', 'Cloud & DevOps (with RytumX)', 'Managed Services & QA'],
     color: '#FB923C',
     icon: <><path d="M22 10 12 5 2 10l10 5 10-5Z" /><path d="M6 12v5c3 3 9 3 12 0v-5" /><line x1="22" y1="10" x2="22" y2="16" /></>,
   },
@@ -96,12 +131,12 @@ const industries: Industry[] = [
 
 // Sectors where the team has shipped real products (mirrors the home page)
 const shipped: { sector: string; projects: string[]; color: string }[] = [
-  { sector: 'Healthcare', projects: ['Ram Care', 'Plus Physio'], color: '#F472B6' },
-  { sector: 'Logistics & Shipping', projects: ['Shipping Management'], color: '#38BDF8' },
-  { sector: 'Finance & Compliance', projects: ['EUC Compliance'], color: '#A78BFA' },
+  { sector: 'Healthcare', projects: ['CareConnect', 'PhysioFlow'], color: '#F472B6' },
+  { sector: 'Logistics & Shipping', projects: ['Shipping Management System'], color: '#38BDF8' },
+  { sector: 'Finance & Compliance', projects: ['EUC Finance Compliance'], color: '#A78BFA' },
   { sector: 'Real Estate', projects: ['BuildCon'], color: '#FBBF24' },
   { sector: 'Food Supply & Retail', projects: ['Food Stock', 'Tavili Native'], color: '#34D399' },
-  { sector: 'Sales & Self-Service', projects: ['Sales CRM', 'Vadtal Kiosk'], color: '#22D3EE' },
+  { sector: 'Sales & Self-Service', projects: ['Sales CRM', 'Seva Kiosk'], color: '#22D3EE' },
   { sector: 'Education', projects: ['Alpha Computers'], color: '#FB923C' },
 ];
 
@@ -127,23 +162,23 @@ export default function IndustriesPage() {
     <>
       <PageHero
         crumb="Industries"
-        kicker="Sector Depth"
-        title={<>Industry Expertise That Goes <span className="text-gradient">Deeper Than Technology</span></>}
-        description="Our domain specialists understand your sector's unique compliance regulations, data sovereignty rules, and operational priorities."
+        kicker="Industries"
+        title={<>Software for sectors <span className="text-gradient">we have already worked in</span></>}
+        description="We have built and shipped software in each of these sectors, so we already know the workflows, data and day-to-day priorities involved."
       >
         <Link href="#sectors" className="btn btn--primary btn--lg">
           Explore sectors
           <Arrow />
         </Link>
         <Link href="/contact" className="btn btn--secondary btn--lg">
-          Consult a Domain Specialist
+          Talk to our team
         </Link>
       </PageHero>
 
       {/* Sector index */}
       <section className="relative pb-20" aria-label="Sector index">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <ul className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-7 gap-3 list-none p-0 m-0">
+          <ul className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-7 gap-3 list-none p-0 m-0 [&>li:last-child]:col-span-2 md:[&>li:last-child]:col-span-1">
             {industries.map((ind, i) => (
               <li key={ind.slug} suppressHydrationWarning data-reveal style={{ '--d': `${i * 70}ms`, '--tile': ind.color } as CSSProperties}>
                 <Link href={`#${ind.slug}`} className="surface-glass spotlight lift group rounded-2xl p-4 flex flex-col items-start gap-4 h-full">
@@ -168,8 +203,8 @@ export default function IndustriesPage() {
           <SectionHeading
             kicker="Sector playbooks"
             id="sectors-heading"
-            title={<>Built around your <span className="text-gradient">rules and realities</span></>}
-            description="Each sector brings its own regulations, legacy systems and pressure points. Here is how we approach them."
+            title={<>Built around how <span className="text-gradient">your business works</span></>}
+            description="What we have built in each sector, and the everyday problems those projects solve."
             className="mb-16"
           />
 
@@ -208,7 +243,7 @@ export default function IndustriesPage() {
                     <h2 className="text-3xl sm:text-4xl font-extrabold text-white leading-[1.08] mb-4">{ind.title}</h2>
                     <p className="text-slate-400 leading-relaxed mb-8 max-w-xl">{ind.desc}</p>
 
-                    <h3 className="text-[11px] font-bold uppercase tracking-[0.14em] text-slate-500 mb-3">Target Industry Solutions</h3>
+                    <h3 className="text-[11px] font-bold uppercase tracking-[0.14em] text-slate-500 mb-3">Services we bring</h3>
                     <div className="flex flex-wrap gap-1.5 mb-8">
                       {ind.services.map((svc) => (
                         <span
@@ -224,14 +259,14 @@ export default function IndustriesPage() {
 
                     <div className="mt-auto">
                       <Link href="/contact" className="btn btn--secondary">
-                        Discuss {ind.short} Architecture
+                        Discuss your {ind.short.toLowerCase()} project
                         <Arrow />
                       </Link>
                     </div>
                   </div>
 
                   <div className={`relative p-7 sm:p-10 lg:p-12 bg-white/[0.02] border-t lg:border-t-0 border-white/10 ${flip ? 'lg:order-1 lg:border-r' : 'lg:border-l'}`}>
-                    <h3 className="text-[11px] font-bold uppercase tracking-[0.14em] text-slate-500 mb-5">Sector Challenges We Solve</h3>
+                    <h3 className="text-[11px] font-bold uppercase tracking-[0.14em] text-slate-500 mb-5">Challenges we solve</h3>
                     <ol className="list-none p-0 m-0 flex flex-col gap-3">
                       {ind.challenges.map((c, j) => (
                         <li
@@ -264,7 +299,7 @@ export default function IndustriesPage() {
           <SectionHeading
             kicker="Coverage map"
             id="matrix-heading"
-            title={<>Practices mapped <span className="text-gradient">to every sector</span></>}
+            title={<>Services mapped <span className="text-gradient">to each sector</span></>}
             description="The service lines we bring to each industry, at a glance."
             className="mb-14"
           />
@@ -337,7 +372,7 @@ export default function IndustriesPage() {
                 </Link>
               </div>
             </div>
-            <ul className="relative grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 list-none p-0 m-0">
+            <ul className="relative grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 list-none p-0 m-0 sm:[&>li:last-child]:col-span-2 lg:[&>li:last-child]:col-span-1">
               {shipped.map((s, i) => (
                 <li
                   key={s.sector}

@@ -5,7 +5,7 @@ import ProjectsDelivered from '@/components/projects/ProjectsDelivered';
 
 export const metadata: Metadata = {
   title: 'Our Work: Software Projects Delivered',
-  description: 'Healthcare, logistics, finance, real estate and retail platforms delivered by the Inovaraa Solutions engineering team.',
+  description: 'Healthcare, logistics, finance, real estate, retail, sales and self-service platforms delivered by the Inovaraa Solutions engineering team.',
   alternates: { canonical: '/projects' },
 };
 
@@ -16,7 +16,7 @@ export default function ProjectsPage() {
         crumb="Our Work"
         kicker="Portfolio"
         title={<>Products we&apos;ve <span className="text-gradient">designed, built &amp; shipped</span></>}
-        description="Healthcare, logistics, finance, real estate and retail platforms, each built end to end by our engineers."
+        description="Healthcare, logistics, finance, real estate, retail, sales and self-service platforms, each built end to end by our engineers."
       >
         <Link href="/contact" className="btn btn--primary btn--lg">
           Start Your Project

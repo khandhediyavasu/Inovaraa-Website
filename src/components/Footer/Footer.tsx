@@ -4,13 +4,13 @@ import NewsletterForm from '@/components/ui/NewsletterForm';
 import { SITE } from '@/data/site';
 
 const serviceLinks = [
+  { label: 'Custom Software Development', href: '/services/software-development' },
   { label: 'AI Agents & MCP Servers', href: '/services/ai-agents-mcp-servers' },
-  { label: 'Cloud Infrastructure', href: '/services/cloud-infrastructure' },
   { label: 'AI & Data Analytics', href: '/services/ai-data-analytics' },
-  { label: 'Digital Transformation', href: '/services/digital-transformation' },
+  { label: 'Cloud & DevOps', href: '/services/cloud-infrastructure' },
   { label: 'Cybersecurity', href: '/services/cybersecurity' },
-  { label: 'Managed Services', href: '/services/managed-services' },
-  { label: 'Software Development', href: '/services/software-development' },
+  { label: 'Digital Transformation', href: '/services/digital-transformation' },
+  { label: 'Managed Services & QA', href: '/services/managed-services' },
 ];
 
 const companyLinks = [
@@ -19,7 +19,7 @@ const companyLinks = [
   { label: 'Our Work', href: '/projects' },
   { label: 'Case Studies', href: '/case-studies' },
   { label: 'Careers', href: '/careers' },
-  { label: 'Partners & Alliances', href: '/about#partners' },
+  { label: 'Partners', href: '/about#partners' },
 ];
 
 const resourceLinks = [
@@ -106,8 +106,14 @@ export default function Footer() {
               <Logo size="lg" />
             </Link>
             <p className="text-sm text-slate-400 leading-relaxed max-w-xs">
-              We design, build and run software for healthcare, logistics, finance and growing businesses, from first sprint to production.
+              We design, build and support software for healthcare, logistics, finance, real estate, retail and education, from the first sprint to production.
             </p>
+
+            <div className="flex flex-col gap-1.5 text-sm">
+              <a href={`mailto:${SITE.email}`} className="w-fit text-slate-300 hover:text-cyan-400 transition-colors">{SITE.email}</a>
+              <a href={SITE.phoneHref} className="w-fit text-slate-300 hover:text-cyan-400 transition-colors">{SITE.phone}</a>
+              <span className="text-slate-400">{SITE.location}</span>
+            </div>
 
             <NewsletterForm />
 

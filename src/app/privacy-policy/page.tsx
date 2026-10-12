@@ -4,10 +4,26 @@ import PageHero from '@/components/ui/PageHero';
 
 export const metadata: Metadata = {
   title: 'Privacy Policy',
-  description: 'Read the Inovaraa Solutions Privacy Policy to understand how we collect, use, and protect your personal information.',
+  description: 'How Inovaraa Solutions collects, uses and protects the information you send through our website. No analytics, no tracking cookies and no selling of data.',
   robots: { index: true, follow: true },
   alternates: { canonical: '/privacy-policy' },
 };
+
+const linkCls = 'text-cyan-400 underline underline-offset-4 hover:no-underline break-all';
+const Email = () => <a href="mailto:info@inovaraa.com" className={linkCls}>info@inovaraa.com</a>;
+
+function Bullets({ items }: { items: ReactNode[] }) {
+  return (
+    <ul className="flex flex-col gap-2.5">
+      {items.map((item, i) => (
+        <li key={i} className="flex items-start gap-3 text-slate-400">
+          <span className="mt-2 w-1.5 h-1.5 rounded-full bg-cyan-400 shrink-0" aria-hidden="true" />
+          <span>{item}</span>
+        </li>
+      ))}
+    </ul>
+  );
+}
 
 const sections: { id: string; title: ReactNode; label: string; body: ReactNode }[] = [
   {
@@ -15,7 +31,7 @@ const sections: { id: string; title: ReactNode; label: string; body: ReactNode }
     label: 'Introduction',
     title: 'Introduction',
     body: (
-      <p>Inovaraa Solutions (&ldquo;Inovaraa Solutions,&rdquo; &ldquo;we,&rdquo; &ldquo;us,&rdquo; or &ldquo;our&rdquo;) is committed to protecting your personal information and your right to privacy. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you visit our website inovaraa.com or engage with our services.</p>
+      <p>Inovaraa Solutions (&ldquo;we,&rdquo; &ldquo;us&rdquo; or &ldquo;our&rdquo;) is a software development company based in India. This policy explains, in plain language, what information we collect when you use inovaraa.com, what we do with it and the choices you have. We process personal data in line with India&apos;s Digital Personal Data Protection Act, 2023 (DPDP Act).</p>
     ),
   },
   {
@@ -24,48 +40,120 @@ const sections: { id: string; title: ReactNode; label: string; body: ReactNode }
     title: 'Information We Collect',
     body: (
       <>
-        <p className="mb-4">We collect information you provide directly to us, including:</p>
-        <ul className="flex flex-col gap-2.5">
-          {[
-            'Enterprise contact information (name, email, phone, organization)',
-            'Infrastructure and architectural consultation inquiries',
-            'Newsletter and technical whitepaper subscriptions',
-            'Career application records and resumes',
-          ].map((item) => (
-            <li key={item} className="flex items-start gap-3 text-slate-400">
-              <span className="mt-2 w-1.5 h-1.5 rounded-full bg-cyan-400 shrink-0" aria-hidden="true" />
-              {item}
-            </li>
-          ))}
-        </ul>
+        <p className="mb-4">We only collect what you choose to send us:</p>
+        <Bullets
+          items={[
+            'Contact form: your first and last name, email address, company, phone number (optional), the service you are interested in and your message.',
+            'Newsletter form: your email address only.',
+            'Emails you send us: whatever you include, such as project details or, if you apply for a job, your CV.',
+          ]}
+        />
+        <p className="mt-4">We do not use analytics tools, tracking cookies or advertising on this website, so we do not collect information about how you browse.</p>
       </>
     ),
   },
   {
     id: 'how-we-use',
-    label: 'How We Use Your Information',
+    label: 'How We Use It',
     title: 'How We Use Your Information',
     body: (
-      <p>We use the information we collect strictly to respond to technical inquiries, deliver enterprise IT services, provide SLA support, process career applications, and adhere to global legal compliance mandates. We do not sell or monetize personal data.</p>
+      <>
+        <p className="mb-4">We use your information to:</p>
+        <Bullets
+          items={[
+            'Reply to your message and follow up about your project or question.',
+            'Send you new articles if you subscribed to our newsletter.',
+            'Consider you for current or future roles if you emailed us your CV. We keep CVs only for that purpose.',
+          ]}
+        />
+        <p className="mt-4">We do not sell, rent or trade your personal data, and we do not use it for advertising.</p>
+      </>
     ),
   },
   {
-    id: 'data-security',
-    label: 'Data Security & Zero Trust',
-    title: <>Enterprise Data Security &amp; Zero Trust</>,
+    id: 'storage-and-sharing',
+    label: 'Storage & Sharing',
+    title: <>How We Store and Share It</>,
     body: (
-      <p>We implement defense-in-depth security safeguards including TLS 1.3 encryption in transit, AES-256 encryption at rest, Zero Trust identity access controls, and quarterly third-party penetration audits. We are certified under ISO 27001 and SOC 2 Type II.</p>
+      <>
+        <p className="mb-4">When you submit the contact or newsletter form, your details are sent to our server, where two things happen:</p>
+        <Bullets
+          items={[
+            <>The submission is emailed to <Email /> through our email provider, GoDaddy (SMTP).</>,
+            'The submission is saved as a row in a spreadsheet (Excel file) on our server, so we can keep track of inquiries and follow up.',
+          ]}
+        />
+        <p className="mt-4">Access is limited to our team. Apart from our email provider, we share your information only if you ask us to (for example, to involve one of our partners in your project) or if the law requires it.</p>
+      </>
+    ),
+  },
+  {
+    id: 'cookies',
+    label: 'Cookies & Browser Storage',
+    title: 'Cookies & Browser Storage',
+    body: (
+      <p>We do not use tracking or advertising cookies. The only thing this website stores in your browser is a <code className="font-mono text-[0.9em] text-white">theme</code> setting in local storage, which remembers whether you prefer light or dark mode. It never leaves your device, and you can clear it at any time in your browser settings.</p>
+    ),
+  },
+  {
+    id: 'retention',
+    label: 'How Long We Keep It',
+    title: 'How Long We Keep It',
+    body: (
+      <p>We keep your information for as long as we need it to respond to you and follow up, or until you ask us to delete it. Newsletter subscribers stay on the list until they unsubscribe.</p>
+    ),
+  },
+  {
+    id: 'security',
+    label: 'Security',
+    title: 'Keeping Your Information Safe',
+    body: (
+      <p>We take reasonable steps to protect your information, such as limiting access to the people on our team who need it. No website, email or storage system is perfectly secure, so we cannot guarantee absolute security, but if a breach ever affects your data, we will inform you as the DPDP Act requires.</p>
     ),
   },
   {
     id: 'privacy-rights',
-    label: 'Global Privacy Rights',
-    title: <>Global Privacy Rights (GDPR, CCPA &amp; HIPAA)</>,
+    label: 'Your Rights',
+    title: 'Your Rights',
     body: (
-      <p>
-        Depending on your geographic location, you retain rights to inspect, update, or permanently delete personal data records. Direct all compliance requests to{' '}
-        <a href="mailto:info@inovaraa.com" className="text-cyan-400 underline underline-offset-4 hover:no-underline break-all">info@inovaraa.com</a>.
-      </p>
+      <>
+        <p className="mb-4">Under the DPDP Act, you can ask us to:</p>
+        <Bullets
+          items={[
+            'Tell you what personal data we hold about you.',
+            'Correct or update it.',
+            'Delete it, or stop using it (withdraw your consent).',
+            'Remove you from our newsletter.',
+          ]}
+        />
+        <p className="mt-4">
+          Just email <Email /> and we will respond as soon as we can. If you are not satisfied with our response, you can raise a complaint with the Data Protection Board of India.
+        </p>
+      </>
+    ),
+  },
+  {
+    id: 'children',
+    label: 'Children',
+    title: 'Children',
+    body: (
+      <p>Our website and services are meant for businesses and adults. We do not knowingly collect personal data from anyone under 18. If you believe a child has sent us their details, please contact us and we will delete them.</p>
+    ),
+  },
+  {
+    id: 'changes',
+    label: 'Changes to This Policy',
+    title: 'Changes to This Policy',
+    body: (
+      <p>We may update this policy from time to time. When we do, we will change the &ldquo;Last updated&rdquo; date at the top of this page.</p>
+    ),
+  },
+  {
+    id: 'contact',
+    label: 'Contact Us',
+    title: 'Contact Us',
+    body: (
+      <p>Questions about this policy or your data? Email <Email />.</p>
     ),
   },
 ];
@@ -75,12 +163,12 @@ export default function PrivacyPolicyPage() {
     <>
       <PageHero
         crumb="Privacy Policy"
-        kicker="Data Governance"
-        title={<>Enterprise <span className="text-gradient">privacy policy</span></>}
+        kicker="Your Data"
+        title={<>Privacy <span className="text-gradient">policy</span></>}
         description={
           <span className="inline-flex items-center gap-2 text-sm">
             <span className="w-2 h-2 rounded-full bg-emerald-400 pulse-soft" aria-hidden="true" />
-            Last updated: October 1, 2026
+            Last updated: October 12, 2026
           </span>
         }
       />

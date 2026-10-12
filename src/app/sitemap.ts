@@ -24,7 +24,7 @@ const posts = [
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = SITE.url;
-  const now = new Date('2026-10-09T00:00:00.000Z');
+  const now = new Date('2026-10-12T00:00:00.000Z');
 
   return [
     { url: baseUrl, lastModified: now, changeFrequency: 'weekly', priority: 1 },

@@ -5,7 +5,7 @@ const portals = [
   { label: 'Services', href: '/services' },
   { label: 'About Us', href: '/about' },
   { label: 'Case Studies', href: '/case-studies' },
-  { label: 'Knowledge Hub', href: '/blog' },
+  { label: 'Blog', href: '/blog' },
   { label: 'Careers', href: '/careers' },
 ];
 
@@ -33,26 +33,26 @@ export default function NotFound() {
           style={{ '--d': '160ms' } as CSSProperties}
           className="mt-4 text-4xl sm:text-5xl font-extrabold text-white leading-[1.05]"
         >
-          Route <span className="text-gradient">not found</span>
+          Page <span className="text-gradient">not found</span>
         </h1>
 
         <p suppressHydrationWarning data-reveal style={{ '--d': '220ms' } as CSSProperties} className="mt-5 text-base sm:text-lg text-slate-400 leading-relaxed max-w-xl mx-auto">
-          The requested enterprise resource could not be located in the current mesh topology. Let us direct you to the active services.
+          The page you are looking for does not exist or has moved. Try one of the links below.
         </p>
 
         <div suppressHydrationWarning data-reveal style={{ '--d': '280ms' } as CSSProperties} className="mt-9 flex gap-3 justify-center flex-wrap">
           <Link href="/" className="btn btn--primary btn--lg">
             <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" aria-hidden="true"><line x1="19" y1="12" x2="5" y2="12" /><polyline points="12 19 5 12 12 5" /></svg>
-            Return to Homepage
+            Back to home
           </Link>
           <Link href="/contact" className="btn btn--secondary btn--lg">
-            Contact Support
+            Contact us
             <svg className="btn-arrow w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12" /><polyline points="12 5 19 12 12 19" /></svg>
           </Link>
         </div>
 
         <div suppressHydrationWarning data-reveal style={{ '--d': '340ms' } as CSSProperties} className="surface-glass rounded-3xl mt-14 p-6 sm:p-7">
-          <p className="text-[11px] font-bold uppercase tracking-[0.14em] text-slate-500 mb-4">Popular Enterprise Portals</p>
+          <p className="text-[11px] font-bold uppercase tracking-[0.14em] text-slate-500 mb-4">Popular pages</p>
           <nav className="flex gap-2 justify-center flex-wrap" aria-label="Popular pages">
             {portals.map((link) => (
               <Link

@@ -32,7 +32,7 @@ const tiles: Tile[] = [
     tags: ['MCP servers', 'AI agents', 'LLM apps'],
   },
   {
-    title: 'Cloud & DevOps',
+    title: 'Cloud & DevOps (with RytumX)',
     desc: 'Azure and AWS setups, CI/CD pipelines and monitoring, delivered with our DevOps partner RytumX.',
     href: '/services/cloud-infrastructure',
     color: '#38BDF8',
@@ -42,12 +42,12 @@ const tiles: Tile[] = [
   },
   {
     title: 'Cybersecurity',
-    desc: 'Secure-by-design code, access control, audits and compliance built into every release.',
+    desc: 'Secure coding practices, role-based access control and security reviews as part of how we build.',
     href: '/services/cybersecurity',
     color: '#34D399',
     span: 'lg:col-span-2',
     art: <ShieldArt />,
-    tags: ['Audits', 'Compliance'],
+    tags: ['Secure coding', 'Access control'],
   },
   {
     title: 'Digital Transformation',
@@ -91,7 +91,7 @@ export default function ServicesOverview() {
           />
           <div suppressHydrationWarning data-reveal style={{ '--d': '200ms' } as CSSProperties} className="lg:max-w-sm lg:pb-6">
             <p className="text-slate-400 leading-relaxed mb-5">
-              One team for design, development, QA and cloud, so nothing gets lost between vendors.
+              One team for design, development and QA, with cloud and DevOps from our partner RytumX.
             </p>
             <Link href="/services" className="btn btn--secondary">
               All services

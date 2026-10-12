@@ -4,18 +4,36 @@ import PageHero from '@/components/ui/PageHero';
 
 export const metadata: Metadata = {
   title: 'Terms of Service',
-  description: 'Review the Terms of Service for engaging with Inovaraa Solutions IT services, architectures, and platforms.',
+  description: 'The terms that apply to using the Inovaraa Solutions website, plus how our client project agreements, code ownership and partners fit in.',
   robots: { index: true, follow: true },
   alternates: { canonical: '/terms' },
 };
 
+const linkCls = 'text-cyan-400 underline underline-offset-4 hover:no-underline break-all';
+
 const sections: { id: string; title: ReactNode; label: string; body: ReactNode }[] = [
   {
-    id: 'agreement',
-    label: 'Agreement to Terms',
-    title: 'Agreement to Terms',
+    id: 'about',
+    label: 'About These Terms',
+    title: 'About These Terms',
     body: (
-      <p>By accessing inovaraa.com or entering into master service agreements with Inovaraa Solutions, you agree to be bound by these Terms of Service and applicable enterprise SLAs.</p>
+      <p>These terms apply to your use of inovaraa.com, the website of Inovaraa Solutions (&ldquo;we,&rdquo; &ldquo;us&rdquo; or &ldquo;our&rdquo;), a software development company based in Ahmedabad, Gujarat, India. By using the website, you agree to these terms. If you do not agree, please do not use the website.</p>
+    ),
+  },
+  {
+    id: 'use-of-website',
+    label: 'Use of the Website',
+    title: 'Use of the Website',
+    body: (
+      <p>You may browse the website and share its pages for any lawful purpose. Please do not try to disrupt the website, gain unauthorized access to it or our systems, send spam or automated submissions through our forms, or copy large parts of the content and present it as your own.</p>
+    ),
+  },
+  {
+    id: 'our-services',
+    label: 'Our Services',
+    title: 'Our Services',
+    body: (
+      <p>The website describes the services we offer, such as custom software development, AI agents and MCP servers, and related work. It is general information, not an offer. Every project we take on is governed by a separate written agreement or proposal with the client, which sets out the scope, timeline, price and other terms. If that agreement and these terms differ, the agreement applies.</p>
     ),
   },
   {
@@ -23,15 +41,26 @@ const sections: { id: string; title: ReactNode; label: string; body: ReactNode }
     label: 'Intellectual Property',
     title: <>Intellectual Property &amp; Code Ownership</>,
     body: (
-      <p>Unless explicitly stipulated in a specific statement of work, all customized source code, infrastructure templates, and application logic developed for clients become the exclusive intellectual property of the client upon settlement of invoices.</p>
+      <>
+        <p className="mb-4">The content of this website, including text, graphics and our name and logo, belongs to Inovaraa Solutions unless stated otherwise.</p>
+        <p>For client projects, the client owns the source code we write for them once the related invoices are paid, unless the agreement says otherwise. Open-source libraries and third-party components used in a project remain under their own licenses.</p>
+      </>
     ),
   },
   {
-    id: 'slas',
-    label: 'Service Level Agreements',
-    title: 'Service Level Agreements (SLAs)',
+    id: 'third-parties',
+    label: 'Third-Party Services & Partners',
+    title: <>Third-Party Services &amp; Partners</>,
     body: (
-      <p>Managed services and NOC infrastructure operations are delivered under contractual 99.999% uptime commitments with sub-15 minute critical response warranties.</p>
+      <p>We work with partners where it helps our clients. For example, DevOps and cloud infrastructure work is delivered with our partner RytumX. The website may also link to other websites. We are not responsible for the content or practices of third-party websites and services, and their own terms apply when you use them.</p>
+    ),
+  },
+  {
+    id: 'disclaimer',
+    label: 'Disclaimer',
+    title: 'Disclaimer',
+    body: (
+      <p>We work to keep the website accurate and up to date, but it is provided &ldquo;as is.&rdquo; Articles and other content are general information, not professional advice for your specific situation. We do not promise that the website will always be available or free of errors.</p>
     ),
   },
   {
@@ -39,7 +68,34 @@ const sections: { id: string; title: ReactNode; label: string; body: ReactNode }
     label: 'Limitation of Liability',
     title: 'Limitation of Liability',
     body: (
-      <p>Except in cases of gross negligence, neither party shall be liable for indirect, consequential, or punitive damages arising from the delivery or execution of digital transformation programs.</p>
+      <p>To the extent the law allows, we are not liable for any indirect, incidental or consequential loss arising from your use of the website or from any of our services. For client work, liability is governed by the agreement for that project. Nothing in these terms limits liability that cannot be limited by law, such as liability for fraud or gross negligence.</p>
+    ),
+  },
+  {
+    id: 'changes',
+    label: 'Changes to These Terms',
+    title: 'Changes to These Terms',
+    body: (
+      <p>We may update these terms from time to time. When we do, we will change the effective date at the top of this page. Continuing to use the website after a change means you accept the updated terms.</p>
+    ),
+  },
+  {
+    id: 'governing-law',
+    label: 'Governing Law',
+    title: 'Governing Law',
+    body: (
+      <p>These terms are governed by the laws of India, and any disputes relating to them are subject to the jurisdiction of the courts of India.</p>
+    ),
+  },
+  {
+    id: 'contact',
+    label: 'Contact',
+    title: 'Contact',
+    body: (
+      <p>
+        Questions about these terms? Email{' '}
+        <a href="mailto:info@inovaraa.com" className={linkCls}>info@inovaraa.com</a>.
+      </p>
     ),
   },
 ];
@@ -49,12 +105,12 @@ export default function TermsPage() {
     <>
       <PageHero
         crumb="Terms of Service"
-        kicker="Legal Framework"
+        kicker="Legal"
         title={<>Terms of <span className="text-gradient">service</span></>}
         description={
           <span className="inline-flex items-center gap-2 text-sm">
             <span className="w-2 h-2 rounded-full bg-emerald-400 pulse-soft" aria-hidden="true" />
-            Effective Date: October 1, 2026
+            Effective date: October 12, 2026
           </span>
         }
       />

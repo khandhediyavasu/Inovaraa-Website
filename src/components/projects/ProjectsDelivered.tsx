@@ -25,7 +25,7 @@ export default function ProjectsDelivered({
             kicker="Our Work"
             id="projects-heading"
             title={<>Projects our team <span className="text-gradient">has delivered</span></>}
-            description="Healthcare, logistics, finance, real estate and retail platforms, designed, built and shipped by our engineers."
+            description="Healthcare, logistics, finance, real estate, retail, sales and self-service platforms, designed, built and shipped by our engineers."
             className="mb-14"
           />
         )}

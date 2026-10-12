@@ -20,7 +20,7 @@ export default function FaqSection() {
           </p>
           <div suppressHydrationWarning data-reveal style={{ '--d': '240ms' } as CSSProperties} className="surface rounded-3xl p-6 flex items-center gap-4">
             <div className="flex -space-x-2">
-              {['TD', 'VK'].map((i) => (
+              {['TT', 'VT'].map((i) => (
                 <span key={i} className="w-11 h-11 rounded-full border-2 border-[var(--surface)] bg-gradient-to-br from-indigo-500 to-cyan-400 text-white text-xs font-bold flex items-center justify-center">{i}</span>
               ))}
             </div>

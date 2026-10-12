@@ -16,18 +16,70 @@ interface ServiceData {
   capabilities: { name: string; description: string; highlights: string[] }[];
   process: { step: string; title: string; desc: string }[];
   techStack: string[];
-  caseStudy?: { client: string; outcome: string; metrics: string };
+  // A real project from src/data/projects.ts. `result` is qualitative: no invented metrics.
+  caseStudy?: { client: string; outcome: string; result: string };
   faqs: { q: string; a: string }[];
 }
 
 const serviceDatabase: Record<string, ServiceData> = {
+  'software-development': {
+    title: 'Custom Software Development',
+    subtitle: 'Web, mobile and back-office software built around how your business actually works, from the first release to ongoing improvements.',
+    icon: '💻',
+    overview: 'We build custom web and mobile applications, internal tools and SaaS products with .NET Core, Angular, React, Next.js, Node.js and React Native. Our in-house team of 12 has delivered 9+ projects across healthcare, logistics, real estate, food supply and finance. You work directly with the engineers writing the code, and you own everything we build.',
+    benefits: [
+      { title: 'Software that fits your process', desc: 'We model the system on your real workflows, roles and data instead of forcing you into an off-the-shelf tool.' },
+      { title: 'Direct access to the team', desc: 'No layers of account managers. You talk to the developers and testers working on your product.' },
+      { title: 'Testing built in', desc: 'QA engineers test every release, with automated tests where they add the most value.' },
+      { title: 'Full code ownership', desc: 'You own the source code, designs and documentation, with repository access from day one.' },
+    ],
+    capabilities: [
+      {
+        name: 'Web & Mobile Applications',
+        description: 'Responsive web apps and cross-platform mobile apps for your customers, staff and partners.',
+        highlights: ['React, Next.js & Angular front ends', 'React Native mobile apps', 'Responsive, accessible UI'],
+      },
+      {
+        name: 'APIs & Back-End Services',
+        description: 'Reliable back ends and REST APIs built with .NET Core / C# and Node.js, backed by SQL Server or MongoDB.',
+        highlights: ['REST API design & documentation', '.NET Core & Node.js services', 'SQL Server & MongoDB data models'],
+      },
+      {
+        name: 'Business Software, CRMs & Portals',
+        description: 'Internal systems for bookings, sales, stock, billing and care management, shaped around your operations.',
+        highlights: ['Custom workflows & approvals', 'Role-based access', 'Integrations with existing systems'],
+      },
+      {
+        name: 'SaaS & Multi-Tenant Platforms',
+        description: 'Products that serve many customers or companies from one codebase, with real-time updates where they are needed.',
+        highlights: ['Multi-tenant data separation', 'Real-time dashboards', 'Admin & reporting screens'],
+      },
+    ],
+    process: [
+      { step: '01', title: 'Discovery', desc: 'Understand your users, workflows and data, then agree on scope and priorities.' },
+      { step: '02', title: 'Design & prototype', desc: 'Wireframes and clickable designs, so you can see the product before we build it.' },
+      { step: '03', title: 'Build in sprints', desc: 'Working features delivered in short sprints, with demos and feedback along the way.' },
+      { step: '04', title: 'Test & launch', desc: 'QA testing, fixes and a planned release, followed by support after launch.' },
+    ],
+    techStack: ['.NET Core / C#', 'Angular', 'React', 'Next.js', 'Node.js', 'TypeScript', 'React Native', 'SQL Server', 'MongoDB', 'Docker', 'Azure', 'AWS'],
+    caseStudy: {
+      client: 'BuildCon',
+      outcome: 'A booking system for apartments and shops. It covers inquiries, projects, bookings, receipts and unit buy-sell, with daily inquiry reports.',
+      result: 'Inquiries, bookings and receipts in one system',
+    },
+    faqs: [
+      { q: 'Who owns the source code?', a: 'You do. All source code, designs and documentation we produce for your project belong to you, and you have repository access throughout.' },
+      { q: 'What does a project team look like?', a: 'A typical team includes a project lead, developers and a QA engineer from our in-house team of 12. Cloud and DevOps work is handled together with our partner RytumX. Team size depends on the scope of the project.' },
+      { q: 'Can you take over an existing application?', a: 'Yes. We start with a code review to understand where things stand, fix the most urgent issues, and then move on to new features.' },
+    ],
+  },
   'ai-agents-mcp-servers': {
-    title: 'AI Agent & MCP Server Development',
+    title: 'AI Agents & MCP Servers',
     subtitle: 'Connect Claude, ChatGPT and other AI assistants to your software with custom MCP (Model Context Protocol) servers, AI agents and secure LLM integrations.',
     icon: '🧩',
-    overview: 'We design and build MCP servers and AI agents that let AI assistants work with your real systems: your APIs, databases, CRMs, ERPs and internal documents. Each server exposes clear, well-described tools with the right permissions, so the assistant can look things up and take action safely. We build on your existing stack (.NET, Node.js, Python, Angular or React), then handle server setup, deployment, monitoring and support.',
+    overview: 'We design and build MCP servers and AI agents that let AI assistants work with your real systems: your APIs, databases, CRMs, ERPs and internal documents. Each server exposes clear, well-described tools with the right permissions, so the assistant can look things up and take action safely. We build on your existing stack (.NET, Node.js, Python, Angular or React), and handle deployment, monitoring and support together with our DevOps partner RytumX.',
     benefits: [
-      { title: 'Build once, works everywhere', desc: 'One MCP server works with every MCP-compatible client, including Claude, ChatGPT, VS Code with GitHub Copilot and Cursor.' },
+      { title: 'Build once, run everywhere', desc: 'One MCP server works with every MCP-compatible client, including Claude, ChatGPT, VS Code with GitHub Copilot and Cursor.' },
       { title: 'Your data stays under control', desc: 'Least-privilege tools, authentication and audit logs decide exactly what the AI can read and do.' },
       { title: 'Fits your existing systems', desc: 'We wrap the APIs and databases you already run instead of asking you to rebuild them.' },
       { title: 'Real actions, not just chat', desc: 'Agents can create records, run reports and trigger workflows, with human approval where it matters.' },
@@ -49,15 +101,15 @@ const serviceDatabase: Record<string, ServiceData> = {
         highlights: ['Claude & OpenAI API integration', 'Document search (RAG)', 'Prompt and output testing'],
       },
       {
-        name: 'Server Setup, Deployment & Support',
-        description: 'We host and run what we build: Linux server setup, Docker containers, CI/CD pipelines, monitoring and ongoing maintenance on Azure, AWS or your own servers.',
+        name: 'Deployment & Support',
+        description: 'Together with our DevOps partner RytumX, we deploy and run what we build: Linux servers, Docker containers, CI/CD pipelines and monitoring on Azure, AWS or your own servers.',
         highlights: ['Linux & Docker setup', 'CI/CD pipelines', 'Monitoring & logging'],
       },
     ],
     process: [
       { step: '01', title: 'Use-case workshop', desc: 'Pick the questions and actions your users need, and the systems the AI must reach.' },
       { step: '02', title: 'Tool & security design', desc: 'Define tools, input schemas, permissions and approval steps before writing code.' },
-      { step: '03', title: 'Build & test', desc: 'Implement the MCP server or agent, then test with the MCP Inspector and real AI clients.' },
+      { step: '03', title: 'Build & test', desc: 'Implement the MCP server or agent, then test it with the MCP Inspector and real AI clients.' },
       { step: '04', title: 'Deploy & support', desc: 'Ship to your infrastructure with authentication, monitoring and ongoing improvements.' },
     ],
     techStack: ['Model Context Protocol (MCP)', 'TypeScript', 'Node.js', 'Python', '.NET / C#', 'Claude API', 'OpenAI API', 'Docker', 'Azure', 'AWS', 'Linux'],
@@ -66,311 +118,265 @@ const serviceDatabase: Record<string, ServiceData> = {
       { q: 'Which AI assistants can use an MCP server?', a: 'MCP is an open standard supported by a growing list of clients, including Claude, ChatGPT, Visual Studio Code with GitHub Copilot and Cursor. One server can serve all of them.' },
       { q: 'Can you build an MCP server for our existing .NET or Node.js application?', a: 'Yes. We build MCP servers alongside existing .NET, Node.js and Python systems using the official SDKs, wrapping the APIs and databases you already have.' },
       { q: 'How do you keep an MCP server secure?', a: 'We give every tool the least privilege it needs, validate all inputs on the server, use OAuth for remote servers, require human confirmation for destructive actions, and log every tool call.' },
-      { q: 'Do you also handle hosting and server setup?', a: 'Yes. We set up and maintain Linux servers, Docker containers, CI/CD pipelines and monitoring on Azure, AWS or your own infrastructure.' },
+      { q: 'Do you also handle hosting and server setup?', a: 'Yes. Together with our DevOps partner RytumX, we set up and maintain Linux servers, Docker containers, CI/CD pipelines and monitoring on Azure, AWS or your own infrastructure.' },
+    ],
+  },
+  'ai-data-analytics': {
+    title: 'AI & Data Analytics',
+    subtitle: 'Reporting dashboards, data that flows reliably between your systems, and practical AI features such as search, summaries and assistants inside the apps you already use.',
+    icon: '🧠',
+    overview: 'Most businesses already have the data they need; it is just spread across different systems and spreadsheets. We connect those systems, build dashboards that show what is happening now, and add LLM-powered features with the Claude and OpenAI APIs where they save real time, such as searching documents, summarizing records or answering questions about your data.',
+    benefits: [
+      { title: 'Your numbers in one place', desc: 'Dashboards and reports that pull from your existing systems, instead of manual exports.' },
+      { title: 'Data that stays in sync', desc: 'Scheduled or real-time syncs between your apps, ERP and online store, with error handling and logs.' },
+      { title: 'AI where it helps', desc: 'Search, summaries and assistants added to existing apps, scoped to tasks your team actually does.' },
+      { title: 'Your data stays controlled', desc: 'Role-based access, and clear choices about which data is sent to which AI provider.' },
+    ],
+    capabilities: [
+      {
+        name: 'Reporting Dashboards',
+        description: 'Live and scheduled dashboards for operations, sales and finance, built into your app or as a separate portal.',
+        highlights: ['Real-time dashboards', 'Scheduled reports & exports', 'Role-based views'],
+      },
+      {
+        name: 'Data Pipelines & Integrations',
+        description: 'Move data reliably between the systems you already run, such as ERPs, CRMs, online stores and databases.',
+        highlights: ['API & database integrations', 'Scheduled and event-based syncs', 'Data validation & error logs'],
+      },
+      {
+        name: 'LLM Features in Existing Apps',
+        description: 'Add AI-powered search, summaries and assistants to your web and mobile apps using the Claude and OpenAI APIs.',
+        highlights: ['Document search (RAG)', 'Summaries & drafting', 'In-app assistants'],
+      },
+      {
+        name: 'Data Access & Privacy',
+        description: 'Sensible controls over who can see what, and over which data leaves your systems.',
+        highlights: ['Role-based access', 'Masking of sensitive fields', 'Audit logs'],
+      },
+    ],
+    process: [
+      { step: '01', title: 'Data review', desc: 'Look at where your data lives, how it is used and which questions matter most.' },
+      { step: '02', title: 'Prototype', desc: 'Build a first dashboard or AI feature on real data, so you can judge it early.' },
+      { step: '03', title: 'Build & integrate', desc: 'Connect the systems, harden the pipelines and check the outputs with your team.' },
+      { step: '04', title: 'Launch & refine', desc: 'Release to users, watch how it is used and improve it based on feedback.' },
+    ],
+    techStack: ['Python', '.NET Core / C#', 'Node.js', 'SQL Server', 'MongoDB', 'Claude API', 'OpenAI API', 'React', 'Angular', 'Azure', 'AWS'],
+    caseStudy: {
+      client: 'Tavili Native',
+      outcome: 'Builds on Food Stock with multi-company tenancy and real-time dashboards. Live socket updates let one team manage many businesses from one place.',
+      result: 'Real-time dashboards across multiple companies',
+    },
+    faqs: [
+      { q: 'Will our data be used to train public AI models?', a: 'We use the business APIs from AI providers, review their data terms with you, and only send the data a feature actually needs. If some data must never leave your systems, we agree on that before building.' },
+      { q: 'How long does a first prototype take?', a: 'It depends on how ready your data is. We agree on a small first scope so you see something working early, then plan the rest from there.' },
+      { q: 'Can you work with our existing database?', a: 'Yes. We regularly work with SQL Server and MongoDB, and connect to other databases and systems through their APIs.' },
     ],
   },
   'cloud-infrastructure': {
-    title: 'Cloud Infrastructure & Modernization Services',
-    subtitle: 'Accelerate agility, reduce operational costs, and achieve enterprise resilience across AWS, Azure, and Google Cloud.',
+    title: 'Cloud & DevOps',
+    subtitle: 'Azure and AWS setup, deployments, CI/CD and monitoring for the software we build, delivered together with our DevOps partner RytumX.',
     icon: '☁️',
-    overview: 'Our cloud engineers and solutions architects guide your enterprise through every phase of cloud maturity — from initial architecture and migration to Kubernetes orchestration, FinOps optimization, and 24/7 SRE operations.',
+    overview: 'Every application needs a reliable home. For Inovaraa clients, cloud and DevOps work is delivered together with RytumX, our associated DevOps company. We set up environments on Azure or AWS, package applications with Docker, automate builds and deployments with CI/CD pipelines, and add monitoring so problems are spotted early.',
     benefits: [
-      { title: '40-60% Cost Reduction', desc: 'Continuous FinOps governance and automated right-sizing eliminate cloud waste.' },
-      { title: '99.99% Guaranteed Uptime', desc: 'Fault-tolerant multi-region architecture engineered for zero single points of failure.' },
-      { title: '10x Faster Deployment', desc: 'Infrastructure as Code (Terraform) and GitOps CI/CD pipelines automate releases.' },
-      { title: 'Enterprise Security & Compliance', desc: 'Zero trust controls compliant with SOC2, HIPAA, ISO 27001, and GDPR.' }
+      { title: 'Repeatable deployments', desc: 'Automated CI/CD pipelines replace manual, error-prone releases.' },
+      { title: 'Right-sized hosting', desc: 'Environments sized for your actual usage, so you are not paying for capacity you do not need.' },
+      { title: 'Problems spotted early', desc: 'Monitoring, logging and alerts, so issues are found before your users report them.' },
+      { title: 'One team, end to end', desc: 'The people who build your app work alongside RytumX, who run the infrastructure.' },
     ],
     capabilities: [
       {
-        name: 'Multi-Cloud & Hybrid Architecture',
-        description: 'Design unified infrastructure combining on-premise data centers and leading public clouds with centralized governance.',
-        highlights: ['Workload portability', 'Hybrid networking & direct connects', 'Disaster recovery failover']
+        name: 'Azure & AWS Setup',
+        description: 'Development, testing and production environments with sensible networking, access control and backups.',
+        highlights: ['Environment setup', 'Access & permissions', 'Backups'],
       },
       {
-        name: 'Cloud Migration & Modernization',
-        description: 'Migrate mission-critical legacy applications using re-architecting, containerization, and microservices strategies.',
-        highlights: ['Zero-downtime database migration', 'Legacy app refactoring', 'Lift-and-optimize execution']
+        name: 'Moving Apps to the Cloud',
+        description: 'Move applications from on-premise servers or shared hosting to Azure or AWS with a planned cutover.',
+        highlights: ['Migration planning', 'Database migration', 'Cutover & rollback plan'],
       },
       {
-        name: 'Kubernetes & Container Platforms',
-        description: 'Production-grade container orchestration using EKS, AKS, GKE, and OpenShift with automated scaling and mesh observability.',
-        highlights: ['Istio service mesh', 'Helm & ArgoCD GitOps', 'Automated horizontal scaling']
+        name: 'Containers & CI/CD',
+        description: 'Docker-based builds and automated pipelines that test and deploy every change.',
+        highlights: ['Docker containers', 'CI/CD pipelines', 'Staging & production releases'],
       },
       {
-        name: 'FinOps & Cloud Cost Optimization',
-        description: 'Comprehensive financial operations that track unit economics, manage reserved instances, and cut cloud waste.',
-        highlights: ['Real-time cost telemetry', 'Automated anomaly alerts', 'Spot instance orchestration']
-      }
+        name: 'Monitoring & Cost Reviews',
+        description: 'Ongoing visibility into uptime, errors and cloud spend.',
+        highlights: ['Uptime & error monitoring', 'Logging & alerts', 'Cloud cost reviews'],
+      },
     ],
     process: [
-      { step: '01', title: 'Discovery & Readiness Audit', desc: 'Assess existing workloads, technical debt, security posture, and TCO benchmarks.' },
-      { step: '02', title: 'Target Architecture Design', desc: 'Define landing zones, IAM policies, network topology, and automation toolchains.' },
-      { step: '03', title: 'Phased Migration Execution', desc: 'Pilot wave migrations with automated verification and zero disruption to end-users.' },
-      { step: '04', title: 'Continuous SRE & FinOps', desc: '24/7 site reliability engineering, proactive monitoring, and continuous cost optimization.' }
+      { step: '01', title: 'Review', desc: 'Look at your current hosting, release process and requirements.' },
+      { step: '02', title: 'Plan', desc: 'Agree with you and RytumX on the target setup on Azure or AWS.' },
+      { step: '03', title: 'Set up & migrate', desc: 'Build the environments and pipelines, then move workloads with a tested cutover plan.' },
+      { step: '04', title: 'Monitor & maintain', desc: 'Keep environments patched, monitored and tuned as your application grows.' },
     ],
-    techStack: ['AWS', 'Microsoft Azure', 'Google Cloud', 'Kubernetes', 'Terraform', 'Docker', 'ArgoCD', 'Prometheus', 'Datadog'],
+    techStack: ['Azure', 'AWS', 'Docker', 'CI/CD', 'Linux', '.NET Core / C#', 'Node.js', 'SQL Server', 'MongoDB'],
     caseStudy: {
-      client: 'Global FinTech Leader with 10M+ Users',
-      outcome: 'Migrated 450+ microservices to Kubernetes with zero downtime and cut infrastructure spend.',
-      metrics: '52% Cost Reduction · 99.995% Uptime'
+      client: 'Shipping Management System',
+      outcome: 'End-to-end logistics for truck and coastal transshipments, door to door and port to port, with live vehicle tracking, dispatching, ledgers, invoicing and billing.',
+      result: 'Delivered with our DevOps partner RytumX',
     },
     faqs: [
-      { q: 'How do you prevent downtime during enterprise cloud migrations?', a: 'We employ blue-green deployment strategies, continuous data replication, and rigorous pre-cutover testing to ensure uninterrupted services during migration.' },
-      { q: 'Which cloud providers do you support?', a: 'We are certified partners for AWS, Microsoft Azure, and Google Cloud Platform, and also support hybrid architectures with VMware and OpenShift.' },
-      { q: 'How does your FinOps service deliver ROI?', a: 'Our FinOps engineers typically identify 30% to 50% in immediate savings within the first 60 days through automated resource scheduling, reserved capacity planning, and architectural refactoring.' }
-    ]
+      { q: 'Which cloud providers do you support?', a: 'We work with Microsoft Azure and Amazon Web Services (AWS). Infrastructure and DevOps work is set up and run together with our partner RytumX.' },
+      { q: 'Who is RytumX?', a: 'RytumX (rytumx.com) is our associated company. It handles DevOps, cloud automation and DevSecOps for Inovaraa clients, so you deal with one team while both companies work together.' },
+      { q: 'How do you avoid downtime when moving to the cloud?', a: 'We test the new environment first, rehearse the data migration, schedule the cutover for a quiet period and keep a rollback option ready.' },
+      { q: 'Can we keep control of our cloud accounts?', a: 'Yes. The accounts stay in your name, and we work through access that you grant and can revoke at any time.' },
+    ],
   },
-  'ai-data-analytics': {
-    title: 'Enterprise AI & Data Analytics Solutions',
-    subtitle: 'Harness Generative AI, machine learning, and modern data platforms to turn raw data into strategic business advantage.',
-    icon: '🧠',
-    overview: 'We help leading enterprises build end-to-end data architectures, deploy custom machine learning algorithms, and integrate Generative AI agents securely into core operational workflows.',
+  cybersecurity: {
+    title: 'Cybersecurity',
+    subtitle: 'Security built into the software we deliver: access control, code and security reviews, vulnerability scanning, hardening, and help meeting data protection requirements.',
+    icon: '🔒',
+    overview: 'We are a software team, not a security operations center. Our focus is making the applications we build and maintain secure by design: proper authentication and access control, reviewed code, scanned dependencies, hardened configurations and careful handling of personal data. Security checks in the build pipeline (DevSecOps) are delivered with our partner RytumX.',
     benefits: [
-      { title: 'Actionable Intelligence', desc: 'Real-time telemetry and predictive forecasting to drive executive decision-making.' },
-      { title: 'Secure Enterprise AI', desc: 'Private LLM deployments and RAG architectures that keep proprietary data safe.' },
-      { title: 'Scalable Data Foundation', desc: 'Modern Lakehouse architectures that scale seamlessly to petabytes of data.' },
-      { title: 'Measurable Business ROI', desc: 'AI solutions mapped directly to conversion, retention, and operational efficiency.' }
+      { title: 'Secure by design', desc: 'Security decisions are made at the design stage, not bolted on after launch.' },
+      { title: 'The right access for the right people', desc: 'Role-based access, strong authentication and audit logs on sensitive actions.' },
+      { title: 'Fewer known vulnerabilities', desc: 'Code and dependencies are scanned regularly, and issues are fixed in priority order.' },
+      { title: 'Help with compliance', desc: 'Practical support for requirements such as data protection, data retention and audit trails.' },
     ],
     capabilities: [
       {
-        name: 'Generative AI & Agentic Systems',
-        description: 'Build enterprise-grade LLM applications, retrieval-augmented generation (RAG), and autonomous AI agents.',
-        highlights: ['Private vector databases', 'Custom fine-tuning & prompt engineering', 'Hallucination guardrails & safety']
+        name: 'Secure Application Development',
+        description: 'Secure coding practices, input validation and safe handling of secrets and personal data in every project.',
+        highlights: ['Secure coding practices', 'Secrets management', 'Encryption of sensitive data'],
       },
       {
-        name: 'Modern Data Platforms & Lakehouses',
-        description: 'Consolidate siloed data across the enterprise using Snowflake, Databricks, and Apache Iceberg architectures.',
-        highlights: ['Streaming data pipelines', 'Automated ETL/ELT with dbt', 'Data cataloging & lineage']
+        name: 'Access Control & Authentication',
+        description: 'Sign-in, roles and permissions designed around who should see and do what.',
+        highlights: ['Role-based access control', 'Single sign-on & MFA integration', 'Audit logging'],
       },
       {
-        name: 'Predictive Machine Learning',
-        description: 'Custom ML models for customer churn prevention, demand forecasting, predictive maintenance, and fraud detection.',
-        highlights: ['MLOps automated training', 'Feature store governance', 'Model drift monitoring']
+        name: 'Code & Security Reviews',
+        description: 'Reviews of new or existing code to find security issues and weak spots, with clear fixes.',
+        highlights: ['Code reviews', 'Dependency & vulnerability scanning', 'Prioritized fix list'],
       },
       {
-        name: 'Data Governance & Compliance',
-        description: 'Enforce enterprise data quality, role-based access control, and privacy compliance across all analytics layers.',
-        highlights: ['GDPR & CCPA compliance', 'Data masking & tokenization', 'Automated data contracts']
-      }
+        name: 'Hardening & Compliance Support',
+        description: 'Tighten application and server configurations, and build the controls that data protection and audit requirements call for.',
+        highlights: ['Configuration hardening', 'Data protection requirements', 'Audit trails & reports'],
+      },
     ],
     process: [
-      { step: '01', title: 'Data Landscape Assessment', desc: 'Audit data sources, quality, governance, and business opportunities.' },
-      { step: '02', title: 'Platform Architecture & MVP', desc: 'Build scalable ingestion pipelines and validate high-impact AI prototypes.' },
-      { step: '03', title: 'Production ML & LLM Deployment', desc: 'Deploy fault-tolerant AI models with rigorous evaluation benchmarks and guardrails.' },
-      { step: '04', title: 'Enterprise Enablement & MLOps', desc: 'Establish self-service BI dashboards, MLOps automation, and team training.' }
+      { step: '01', title: 'Review', desc: 'Look at your application, data and current security setup to find the gaps.' },
+      { step: '02', title: 'Prioritize', desc: 'Agree on what to fix first, based on risk and effort.' },
+      { step: '03', title: 'Fix & harden', desc: 'Apply fixes, tighten access and add scanning to the build pipeline with RytumX.' },
+      { step: '04', title: 'Keep it current', desc: 'Regular dependency updates, scans and reviews as the application changes.' },
     ],
-    techStack: ['Python', 'Databricks', 'Snowflake', 'PyTorch', 'LangChain', 'OpenAI', 'dbt', 'Apache Kafka', 'PostgreSQL'],
+    techStack: ['.NET Core / C#', 'Node.js', 'TypeScript', 'SQL Server', 'Docker', 'CI/CD', 'Azure', 'AWS'],
     caseStudy: {
-      client: 'Tier-1 Healthcare Provider Network',
-      outcome: 'Built an AI-assisted diagnostic data pipeline reducing patient record indexing time by 80%.',
-      metrics: '80% Faster Processing · 98.4% Accuracy'
+      client: 'EUC Finance Compliance',
+      outcome: 'End-user computing controls for finance teams, covering inventory, discovery, data classification, risk assessment, monitoring and information security.',
+      result: 'Controls, risk assessment and monitoring for finance teams',
     },
     faqs: [
-      { q: 'How do you ensure our corporate data is not leaked to public AI models?', a: 'We deploy private, dedicated LLM instances in your isolated cloud VPC or on-premise cluster with zero data retention or public training exposure.' },
-      { q: 'How long does an initial AI pilot project take?', a: 'Our structured AI accelerator typically delivers a functioning Proof-of-Value (PoV) within 4 to 6 weeks.' },
-      { q: 'Can you work with our existing data warehouse?', a: 'Yes, we seamlessly integrate with Snowflake, BigQuery, Redshift, Databricks, and legacy relational databases.' }
-    ]
+      { q: 'Do you offer 24/7 security monitoring?', a: 'No. We do not run a security operations center. We focus on building and maintaining secure applications, and if you need round-the-clock monitoring we can help you choose a specialist provider.' },
+      { q: 'Can you review the security of an existing application?', a: 'Yes. We review the code, dependencies and configuration, give you a prioritized list of issues, and can fix them for you.' },
+      { q: 'Can you help us meet compliance requirements?', a: 'We build the technical controls that requirements such as data protection usually call for: access control, audit logs, data retention and encryption. Formal audits and certifications are carried out by independent auditors.' },
+    ],
   },
   'digital-transformation': {
-    title: 'Digital Transformation & Enterprise Modernization',
-    subtitle: 'Re-engineer core business workflows, modernize legacy monoliths, and create high-converting omnichannel customer experiences.',
+    title: 'Digital Transformation',
+    subtitle: 'Move work out of spreadsheets, desktop tools and paper into web and mobile apps that connect with the systems you already use.',
     icon: '🔄',
-    overview: 'Digital transformation is more than tech upgrades — it is holistic organizational evolution. We blend strategic consulting, modern software architecture, and agile change management to future-proof your enterprise.',
+    overview: 'For most of our clients, digital transformation means something practical: replacing spreadsheets, paper forms and aging desktop software with web and mobile apps, and connecting systems that used to need manual re-entry. We start with the workflow that causes the most friction, ship it, and build from there.',
     benefits: [
-      { title: 'Accelerated Time-to-Market', desc: 'Decompose monolithic bottlenecks into agile, decoupled services.' },
-      { title: 'Unified Customer Journeys', desc: 'Seamless experiences across web, mobile, in-store, and partner ecosystems.' },
-      { title: 'Automated Operations', desc: 'Eliminate manual handoffs with intelligent robotic process automation (RPA).' },
-      { title: 'Higher Employee Productivity', desc: 'Modern digital workplace tools and intuitive internal software.' }
+      { title: 'Less manual work', desc: 'Data is entered once and shared across systems, instead of copied between spreadsheets.' },
+      { title: 'Work from anywhere', desc: 'Web and mobile access for staff in the office, on site or on the road.' },
+      { title: 'A clearer view of operations', desc: 'Live status and reports, instead of chasing updates by phone and email.' },
+      { title: 'Step-by-step change', desc: 'Workflows move over one at a time, so day-to-day operations keep running.' },
     ],
     capabilities: [
       {
-        name: 'Legacy Monolith Modernization',
-        description: 'Systematically replace brittle mainframe and legacy systems using strangler fig patterns and API orchestration.',
-        highlights: ['Microservices decomposition', 'API gateways & contracts', 'Zero-downtime transition']
+        name: 'Spreadsheets & Paper to Web Apps',
+        description: 'Turn manual processes into structured apps with forms, approvals and searchable records.',
+        highlights: ['Workflow mapping', 'Forms & approvals', 'Data migration from spreadsheets'],
       },
       {
-        name: 'Intelligent Process Automation (IPA)',
-        description: 'Combine RPA, OCR, and AI to automate complex back-office workflows and document management.',
-        highlights: ['Claims & invoice processing', 'Automated compliance reporting', 'Exception workflow routing']
+        name: 'Desktop Software Replacement',
+        description: 'Rebuild aging desktop or legacy tools as modern web applications, moving your data across carefully.',
+        highlights: ['Feature-by-feature replacement', 'Data migration', 'Old and new side by side during switchover'],
       },
       {
-        name: 'Customer Experience (CX) Redesign',
-        description: 'Human-centered digital interfaces and omnichannel platforms designed for maximum conversion and delight.',
-        highlights: ['User research & journey mapping', 'Design systems & component libraries', 'Performance optimization']
+        name: 'System Integrations',
+        description: 'Connect your apps with ERPs, accounting tools, payment gateways and online stores.',
+        highlights: ['API integrations', 'ERP & e-commerce sync', 'Payment integrations, including UPI'],
       },
       {
-        name: 'Digital Strategy & Change Enablement',
-        description: 'Strategic roadmapping, organizational alignment, and training programs to ensure lasting cultural adoption.',
-        highlights: ['Agile team coaching', 'KPI & OKR alignment', 'Governance frameworks']
-      }
+        name: 'Mobile & Self-Service',
+        description: 'Mobile apps and kiosks that let customers and staff help themselves.',
+        highlights: ['React Native mobile apps', 'Self-service kiosks', 'Printed & digital receipts'],
+      },
     ],
     process: [
-      { step: '01', title: 'Value Stream Mapping', desc: 'Identify bottlenecks, friction points, and ROI multiplier opportunities.' },
-      { step: '02', title: 'Target Operating Model', desc: 'Blueprint technical architecture, customer journeys, and roadmap milestones.' },
-      { step: '03', title: 'Iterative Agile Execution', desc: 'Deliver business value in 2-week sprints with continuous user validation.' },
-      { step: '04', title: 'Scale & Optimization', desc: 'Roll out across divisions with telemetry-driven refinement and change training.' }
+      { step: '01', title: 'Map the workflow', desc: 'Sit with the people doing the work to understand the current process and its pain points.' },
+      { step: '02', title: 'Plan the first release', desc: 'Pick the workflow with the biggest payoff and define a focused first version.' },
+      { step: '03', title: 'Build in sprints', desc: 'Ship working features in short cycles and adjust based on feedback.' },
+      { step: '04', title: 'Roll out & expand', desc: 'Train users, move data across and extend to the next workflow.' },
     ],
-    techStack: ['Next.js', 'React', 'Node.js', 'GraphQL', 'Kafka', 'Camunda', 'Salesforce', 'Figma', 'TypeScript'],
+    techStack: ['.NET Core / C#', 'Angular', 'React', 'Next.js', 'Node.js', 'TypeScript', 'React Native', 'SQL Server', 'MongoDB', 'Azure', 'AWS'],
     caseStudy: {
-      client: 'Multinational Logistics & Supply Chain Giant',
-      outcome: 'Modernized 15-year-old dispatch system into an automated real-time tracking platform.',
-      metrics: '3.4x Faster Dispatch · $12M Annual Savings'
+      client: 'Food Stock',
+      outcome: 'A stock and invoicing platform that connects to large ERP systems. It manages suppliers, products and pricing, and offers APIs for e-commerce stores.',
+      result: 'Suppliers, pricing, ERP and online store in sync',
     },
     faqs: [
-      { q: 'How do you minimize business disruption during transformation?', a: 'We use incremental modernization patterns (e.g. Strangler Fig) where new services are introduced step-by-step alongside legacy systems.' },
-      { q: 'How is digital transformation success measured?', a: 'We define quantifiable OKRs upfront, including time-to-market, cost per transaction, customer satisfaction (CSAT), and employee productivity.' }
-    ]
-  },
-  'cybersecurity': {
-    title: 'Enterprise Cybersecurity & Zero Trust Services',
-    subtitle: 'Protect your brand, critical infrastructure, and customer trust with end-to-end security posture management and 24/7 SOC defense.',
-    icon: '🔒',
-    overview: 'As cyber threats escalate in sophistication, perimeter defense is no longer sufficient. We architect Zero Trust security ecosystems, provide continuous vulnerability management, and operate 24/7 threat hunting operations.',
-    benefits: [
-      { title: 'Zero Trust Protection', desc: 'Every user, device, and API request is authenticated and verified continuously.' },
-      { title: '24/7 Threat Hunting', desc: 'Dedicated SOC analysts leveraging AI SIEM to neutralize threats in real time.' },
-      { title: 'Audit & Compliance Assurance', desc: 'Guaranteed adherence to SOC 2 Type II, ISO 27001, HIPAA, and GDPR standards.' },
-      { title: 'Rapid Incident Containment', desc: 'Sub-15 minute mean time to detect (MTTD) and remediate active security anomalies.' }
+      { q: 'How do you avoid disrupting day-to-day work?', a: 'We move one workflow at a time, run the old and new systems side by side where needed, and only switch over once your team is comfortable.' },
+      { q: 'How do we know it worked?', a: 'We agree on goals up front, such as fewer manual steps, faster turnaround or fewer errors, and review them with you after launch.' },
+      { q: 'Do you work with schools and colleges?', a: 'Yes, through our education partner Alpha Computers (alphaindia.in), which provides Edusoft software for schools, colleges and coaching classes.' },
     ],
-    capabilities: [
-      {
-        name: 'Zero Trust Architecture Implementation',
-        description: 'Replace VPNs and legacy perimeters with identity-aware proxies, micro-segmentation, and least-privilege access.',
-        highlights: ['Okta / Azure AD IAM integration', 'Software-defined perimeter', 'Device health verification']
-      },
-      {
-        name: '24/7 Managed Detection & Response (MDR)',
-        description: 'Continuous monitoring, AI-driven anomaly detection, and rapid containment across endpoints and cloud environments.',
-        highlights: ['Next-gen SIEM & SOAR', 'Threat intelligence feeds', 'Dedicated incident response hotline']
-      },
-      {
-        name: 'Offensive Security & Red Teaming',
-        description: 'Rigorous penetration testing, red teaming, and source code audits to discover vulnerabilities before adversaries do.',
-        highlights: ['Web & API penetration testing', 'Cloud configuration audits', 'Social engineering simulations']
-      },
-      {
-        name: 'Regulatory Compliance & GRC',
-        description: 'Comprehensive governance, risk assessment, and audit preparation for enterprise certification standards.',
-        highlights: ['SOC 2 Type II readiness', 'ISO 27001 roadmap', 'Third-party vendor risk scoring']
-      }
-    ],
-    process: [
-      { step: '01', title: 'Comprehensive Threat Audit', desc: 'Penetration testing, attack surface mapping, and compliance gap analysis.' },
-      { step: '02', title: 'Security Architecture Hardening', desc: 'Deploy Zero Trust policies, IAM safeguards, and endpoint defense agents.' },
-      { step: '03', title: 'SOC Integration & Playbooks', desc: 'Configure automated SOAR playbooks and 24/7 incident response telemetry.' },
-      { step: '04', title: 'Continuous Red Teaming', desc: 'Ongoing breach simulations, patch governance, and security awareness coaching.' }
-    ],
-    techStack: ['CrowdStrike', 'Splunk', 'Wiz', 'HashiCorp Vault', 'Okta', 'Microsoft Sentinel', 'Tenable', 'Wireshark'],
-    caseStudy: {
-      client: 'Cross-Border Payments Provider',
-      outcome: 'Architected Zero Trust framework and achieved SOC2 Type II certification with zero critical vulnerabilities.',
-      metrics: '100% Audit Pass · 0 Security Breaches'
-    },
-    faqs: [
-      { q: 'How quickly can your 24/7 SOC be onboarded?', a: 'Our standard SOC onboarding takes between 2 to 3 weeks, including telemetry ingestion, custom alerting rules, and escalation playbooks.' },
-      { q: 'Do you provide emergency incident response if we are under active attack?', a: 'Yes, our emergency incident response retainer provides guaranteed 1-hour response times to isolate threats and begin forensic recovery.' }
-    ]
   },
   'managed-services': {
-    title: 'Enterprise Managed IT Services & 24/7 NOC',
-    subtitle: 'Eliminate operational downtime, guarantee SLA compliance, and free your engineering teams to focus on core revenue innovation.',
+    title: 'Managed Services & QA',
+    subtitle: 'Dedicated QA engineers, manual and automated testing, and ongoing maintenance, bug fixes and support for your software after launch.',
     icon: '⚙️',
-    overview: 'We act as an extension of your IT leadership, providing proactive 24/7 infrastructure monitoring, Tier 1-3 helpdesk support, automated patch management, and disaster recovery execution.',
+    overview: 'Software needs care after it goes live. We provide dedicated QA engineers to test new releases, maintain and improve applications we have built or taken over, fix bugs, and handle support requests from your team. Server monitoring and infrastructure upkeep are handled together with our DevOps partner RytumX.',
     benefits: [
-      { title: '99.99% SLA Guarantee', desc: 'Contractual uptime commitments backed by automated failover and rapid response.' },
-      { title: 'Predictable IT OpEx', desc: 'Fixed monthly pricing models that eliminate unexpected maintenance budget spikes.' },
-      { title: 'Tier 1 to Tier 3 Support', desc: 'Certified engineers handling everything from end-user support to kernel-level troubleshooting.' },
-      { title: 'Proactive Problem Management', desc: 'AI root cause analysis resolves system degradation before users experience outages.' }
+      { title: 'Fewer bugs in production', desc: 'Releases are tested by QA engineers before they reach your users.' },
+      { title: 'A team that knows your system', desc: 'The same people look after your software over time, so knowledge is not lost.' },
+      { title: 'Clear support terms', desc: 'Support hours and response times agreed up front to fit your business.' },
+      { title: 'Steady improvement', desc: 'Small improvements and updates shipped regularly, not just emergency fixes.' },
     ],
     capabilities: [
       {
-        name: '24/7 Network & Systems NOC',
-        description: 'Continuous monitoring of servers, networks, databases, and microservices with automated alert triaging.',
-        highlights: ['Sub-5 minute critical response', 'Full-stack telemetry observability', 'Automated runbook execution']
+        name: 'Dedicated QA Engineers',
+        description: 'QA engineers who join your project to plan, run and report on testing.',
+        highlights: ['Test planning', 'Release sign-off', 'Bug reporting & tracking'],
       },
       {
-        name: 'Enterprise IT Service Management (ITSM)',
-        description: 'ITIL-aligned incident, problem, and change management workflows with customized Jira/ServiceNow portals.',
-        highlights: ['White-glove helpdesk support', 'Asset lifecycle management', 'Comprehensive SLA reporting']
+        name: 'Manual & Automated Testing',
+        description: 'Manual testing for new features and usability, plus automated tests that catch regressions.',
+        highlights: ['Functional & regression testing', 'Automated UI & API tests', 'Mobile & cross-browser testing'],
       },
       {
-        name: 'Disaster Recovery as a Service (DRaaS)',
-        description: 'Automated off-site backups, continuous data replication, and scheduled disaster recovery drill simulations.',
-        highlights: ['RPO < 5 minutes, RTO < 15 minutes', 'Immutable ransomware-proof backups', 'Multi-region failover tests']
+        name: 'Maintenance & Bug Fixes',
+        description: 'Fixes, dependency updates and small enhancements that keep your software healthy.',
+        highlights: ['Bug fixes', 'Framework & dependency updates', 'Small enhancements'],
       },
       {
-        name: 'Patch & Vulnerability Management',
-        description: 'Scheduled patching for OS, hypervisors, and middleware with zero production service degradation.',
-        highlights: ['Automated pre-patch staging tests', 'CVE tracking & emergency patching', 'Compliance audit log records']
-      }
+        name: 'Support & Monitoring',
+        description: 'Help for your team when something goes wrong, with monitoring set up together with RytumX.',
+        highlights: ['Support requests', 'Uptime & error monitoring', 'Backups & patching with RytumX'],
+      },
     ],
     process: [
-      { step: '01', title: 'Operations & Asset Discovery', desc: 'Map all infrastructure assets, service dependencies, and current SLA performance.' },
-      { step: '02', title: 'Runbook & Toolchain Setup', desc: 'Standardize monitoring thresholds, escalation trees, and ITSM ticketing pipelines.' },
-      { step: '03', title: 'Shadowing & Warm Cutover', desc: 'Two-week co-management period ensuring zero knowledge gaps before full handover.' },
-      { step: '04', title: 'Continuous Service Improvement', desc: 'Monthly governance reviews, capacity forecasting, and proactive automation rollouts.' }
+      { step: '01', title: 'Handover', desc: 'Learn the application, its users and its known issues, and set up access.' },
+      { step: '02', title: 'Test plan & support setup', desc: 'Agree on test coverage, how requests are raised and the expected response times.' },
+      { step: '03', title: 'Test, fix, release', desc: 'Regular testing, fixes and planned releases.' },
+      { step: '04', title: 'Review & improve', desc: 'Regular check-ins on open issues, upcoming changes and improvements.' },
     ],
-    techStack: ['ServiceNow', 'Datadog', 'Jira Service Desk', 'Ansible', 'Veeam', 'PagerDuty', 'Dynatrace', 'Zabbix'],
+    techStack: ['.NET Core / C#', 'Angular', 'React', 'Node.js', 'React Native', 'SQL Server', 'MongoDB', 'Docker', 'CI/CD', 'Azure', 'AWS'],
     caseStudy: {
-      client: 'E-Commerce Platform with $500M+ GMV',
-      outcome: 'Maintained 100% uptime through Black Friday peak traffic while reducing mean time to resolve (MTTR) by 64%.',
-      metrics: '100% Peak Uptime · 64% Lower MTTR'
+      client: 'CareConnect',
+      outcome: 'A care management platform for an in-home aged and disability care provider. It runs personalized care plans, dementia care, nursing, transport and self-managed packages.',
+      result: 'Care plans, nursing and transport in one platform',
     },
     faqs: [
-      { q: 'What response times are covered in your SLAs?', a: 'We offer sub-15 minute response times for Critical (P1) incidents 24/7/365, with contractual financial penalties for SLA violations.' },
-      { q: 'Can we retain control of our cloud accounts and credentials?', a: 'Absolutely. We operate via delegated role-based access control (RBAC) and never require root ownership of your accounts.' }
-    ]
+      { q: 'Do you offer 24/7 support?', a: 'We do not run a 24/7 operations center. We agree support hours and response times with you up front, and urgent production issues are always handled first.' },
+      { q: 'Can you maintain software that another team built?', a: 'Yes. We start by reviewing the code and setup, document what we find, and then take over fixes and updates.' },
+      { q: 'Can we keep control of our servers and accounts?', a: 'Yes. Accounts stay in your name, and we work through access that you grant and can revoke at any time.' },
+    ],
   },
-  'software-development': {
-    title: 'Custom Enterprise Software Development',
-    subtitle: 'Engineered for extreme performance, security, and scalability. From core SaaS platforms to mission-critical business applications.',
-    icon: '💻',
-    overview: 'We build enterprise software that stands the test of time. Using modern modular architectures, rigorous automated testing, and agile collaboration, our engineering squads deliver software that drives tangible business growth.',
-    benefits: [
-      { title: 'Clean, Scalable Architecture', desc: 'Domain-driven design and decoupled microservices that handle exponential user growth.' },
-      { title: 'High Velocity Delivery', desc: 'Dedicated cross-functional squads deploying tested features in continuous 2-week sprints.' },
-      { title: 'Built-in Quality Assurance', desc: '>90% automated test coverage with unit, integration, and end-to-end regression suites.' },
-      { title: 'Full IP & Code Ownership', desc: 'You retain 100% intellectual property, repository access, and documentation from day one.' }
-    ],
-    capabilities: [
-      {
-        name: 'Custom Web & Mobile Applications',
-        description: 'Responsive, lightning-fast web applications and native iOS/Android mobile solutions built with modern toolchains.',
-        highlights: ['React / Next.js / Vue.js', 'React Native / Flutter', 'Progressive Web Apps (PWA)']
-      },
-      {
-        name: 'API Design & Microservices Ecosystems',
-        description: 'High-throughput, resilient backend services engineered with REST, GraphQL, and event-driven gRPC protocols.',
-        highlights: ['High-throughput message brokers', 'Distributed transaction management', 'Automated OpenAPI specifications']
-      },
-      {
-        name: 'Enterprise ERP, CRM & Portals',
-        description: 'Bespoke internal business software tailored precisely to your unique operational processes and data schemas.',
-        highlights: ['Custom workflow engines', 'Role-based access matrix', 'Legacy database integrations']
-      },
-      {
-        name: 'DevSecOps & Automated QA',
-        description: 'Embed security scanning, automated linting, container builds, and deployment verification into every pull request.',
-        highlights: ['GitHub Actions / GitLab CI', 'Playwright / Cypress E2E', 'Static analysis (SonarQube)']
-      }
-    ],
-    process: [
-      { step: '01', title: 'Architecture & Technical Discovery', desc: 'Define domain models, API contracts, database schemas, and performance targets.' },
-      { step: '02', title: 'Interactive UX/UI Prototyping', desc: 'Design intuitive wireframes and interactive design systems in Figma.' },
-      { step: '03', title: 'Agile Sprint Development', desc: 'Ship working software increments every two weeks with live client demos.' },
-      { step: '04', title: 'Automated QA & Production Launch', desc: 'Perform stress testing, security audits, and execute zero-downtime deployment.' }
-    ],
-    techStack: ['TypeScript', 'Next.js', 'Node.js', 'Go', 'Python', 'PostgreSQL', 'Redis', 'GraphQL', 'Docker', 'AWS'],
-    caseStudy: {
-      client: 'B2B SaaS Analytics Platform',
-      outcome: 'Built high-throughput data processing app handling 50M+ daily events with sub-200ms latency.',
-      metrics: '50M+ Events/Day · <200ms Latency'
-    },
-    faqs: [
-      { q: 'Who owns the intellectual property and source code?', a: 'You retain 100% ownership of all source code, design assets, and intellectual property developed throughout the project.' },
-      { q: 'How do you structure development teams?', a: 'We provide dedicated pods composed of a Product Lead, Senior Software Engineers, QA Automation Specialists, and DevOps Engineers.' }
-    ]
-  }
 };
 
 export async function generateStaticParams() {
@@ -403,7 +409,7 @@ const visuals: Record<string, Visual> = {
     art: <AiHeroArt />,
   },
   'cloud-infrastructure': {
-    short: 'Cloud Infrastructure',
+    short: 'Cloud & DevOps',
     color: '#38BDF8',
     icon: <path d="M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9Z" />,
     art: <CloudHeroArt />,
@@ -427,13 +433,13 @@ const visuals: Record<string, Visual> = {
     art: <SecurityHeroArt />,
   },
   'managed-services': {
-    short: 'Managed Services',
+    short: 'Managed Services & QA',
     color: '#F472B6',
     icon: <path d="M22 12h-4l-3 9L9 3l-3 9H2" />,
     art: <OpsHeroArt />,
   },
   'software-development': {
-    short: 'Software Development',
+    short: 'Custom Software Development',
     color: '#22D3EE',
     icon: <><polyline points="16 18 22 12 16 6" /><polyline points="8 6 2 12 8 18" /></>,
     art: <CodeHeroArt />,
@@ -457,12 +463,6 @@ function splitTitle(title: string): [string, string] {
   if (amp > -1) return [title.slice(0, amp + 3), title.slice(amp + 3)];
   const words = title.split(' ');
   return [words.slice(0, -2).join(' ') + ' ', words.slice(-2).join(' ')];
-}
-
-// "52% Cost Reduction" -> ["52%", "Cost Reduction"]
-function splitMetric(metric: string): [string, string] {
-  const [value, ...rest] = metric.trim().split(' ');
-  return [value, rest.join(' ')];
 }
 
 const accentText = (hex: string): CSSProperties => ({ color: `color-mix(in srgb, ${hex} 70%, var(--ink))` });
@@ -490,7 +490,6 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
 
   const v = visuals[slug] ?? fallbackVisual;
   const [titleHead, titleTail] = splitTitle(service.title);
-  const metrics = service.caseStudy ? service.caseStudy.metrics.split('·').map(splitMetric) : [];
   const others = Object.keys(serviceDatabase).filter((s) => s !== slug);
 
   return (
@@ -522,7 +521,7 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
       />
       <PageHero
         crumb={`Services / ${v.short}`}
-        kicker="Enterprise IT Service"
+        kicker="Service"
         title={<>{titleHead}<span className="text-gradient">{titleTail}</span></>}
         description={service.subtitle}
       >
@@ -558,14 +557,14 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
           </div>
 
           <div className="flex flex-col justify-center">
-            <div suppressHydrationWarning data-reveal className="kicker mb-5 self-start">Strategic Value</div>
+            <div suppressHydrationWarning data-reveal className="kicker mb-5 self-start">Overview</div>
             <h2
               id="overview-heading"
               suppressHydrationWarning data-reveal
               style={{ '--d': '80ms' } as CSSProperties}
               className="text-4xl sm:text-5xl font-extrabold text-white leading-[1.05] mb-5"
             >
-              Engineered for <span className="text-gradient">high-stakes</span> enterprise demands
+              Built by a <span className="text-gradient">small, senior</span> team
             </h2>
             <p suppressHydrationWarning data-reveal style={{ '--d': '160ms' } as CSSProperties} className="text-base sm:text-lg text-slate-400 leading-relaxed mb-8">
               {service.overview}
@@ -579,18 +578,25 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
             >
               <div className="flex items-center gap-2 mb-3">
                 <span className="w-2 h-2 rounded-full pulse-soft" style={{ background: v.color }} aria-hidden="true" />
-                <span className="text-[11px] uppercase tracking-[0.14em] font-bold" style={accentText(v.color)}>Featured Impact</span>
+                <span className="text-[11px] uppercase tracking-[0.14em] font-bold" style={accentText(v.color)}>From our work</span>
               </div>
               <div className="font-semibold text-white mb-1.5">{service.caseStudy.client}</div>
               <p className="text-sm text-slate-400 leading-relaxed mb-6">{service.caseStudy.outcome}</p>
-              <dl className="grid grid-cols-2 gap-3 m-0">
-                {metrics.map(([value, label]) => (
-                  <div key={label} className="rounded-2xl bg-white/[0.03] border border-white/10 px-4 py-3.5 flex flex-col-reverse">
-                    <dt className="text-xs text-slate-400 mt-1">{label}</dt>
-                    <dd suppressHydrationWarning data-count className="m-0 font-display text-2xl sm:text-3xl font-extrabold text-gradient leading-none">{value}</dd>
-                  </div>
-                ))}
-              </dl>
+              <div className="flex flex-wrap items-center justify-between gap-3">
+                <div className="rounded-2xl bg-white/[0.03] border border-white/10 px-4 py-3 flex items-center gap-2.5 text-sm font-semibold text-white">
+                  <span
+                    className="w-5 h-5 rounded-full flex items-center justify-center shrink-0"
+                    style={{ background: `${v.color}22`, border: `1px solid ${v.color}55`, ...accentText(v.color) }}
+                    aria-hidden="true"
+                  >
+                    <Check />
+                  </span>
+                  {service.caseStudy.result}
+                </div>
+                <Link href="/projects" className="inline-flex items-center gap-1.5 text-sm font-semibold text-cyan-400 hover:text-cyan-300">
+                  See all projects <Arrow className="w-3.5 h-3.5" />
+                </Link>
+              </div>
             </div>
             )}
           </div>
@@ -618,7 +624,7 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
               </ol>
             </div>
             <div className="surface rounded-2xl p-4 flex flex-col gap-3">
-              <div className="text-sm font-semibold text-white leading-snug">Discuss your {v.short.toLowerCase()} roadmap</div>
+              <div className="text-sm font-semibold text-white leading-snug">Discuss your {v.short} project</div>
               <Link href="/contact" className="inline-flex items-center gap-1.5 text-sm font-semibold text-cyan-400 hover:text-cyan-300">
                 Book a call <Arrow className="w-3.5 h-3.5" />
               </Link>
@@ -646,7 +652,7 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
               align="left"
               kicker="Key Benefits"
               id="benefits-heading"
-              title={<>Outcomes you can <span className="text-gradient">measure</span></>}
+              title={<>What you <span className="text-gradient">get</span></>}
               className="mb-12"
             />
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -677,10 +683,10 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
           <section id="capabilities" className="py-16 sm:py-20 scroll-mt-28 border-t border-white/10" aria-labelledby="capabilities-heading">
             <SectionHeading
               align="left"
-              kicker="Comprehensive Capabilities"
+              kicker="Capabilities"
               id="capabilities-heading"
               title={<>What we <span className="text-gradient">deliver</span></>}
-              description="Deep domain expertise across the modern digital engineering lifecycle."
+              description="What this service covers in practice."
               className="mb-12"
             />
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -721,9 +727,9 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
           <section id="stack" className="py-16 sm:py-20 scroll-mt-28 border-t border-white/10" aria-labelledby="stack-heading">
             <SectionHeading
               align="left"
-              kicker="Enterprise Ecosystem"
+              kicker="Tech stack"
               id="stack-heading"
-              title={<>Technologies we <span className="text-gradient">partner with</span></>}
+              title={<>Technologies we <span className="text-gradient">use</span></>}
               className="mb-10"
             />
             <ul className="grid grid-cols-2 sm:grid-cols-3 gap-3 list-none p-0 m-0">
@@ -747,10 +753,10 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
           <section id="process" className="py-16 sm:py-20 scroll-mt-28 border-t border-white/10" aria-labelledby="process-heading">
             <SectionHeading
               align="left"
-              kicker="Proven Delivery Framework"
+              kicker="Our process"
               id="process-heading"
-              title={<>How we <span className="text-gradient">execute</span></>}
-              description="Transparent, milestone-driven engagement designed for predictability."
+              title={<>How we <span className="text-gradient">work</span></>}
+              description="Clear milestones and direct contact with the people doing the work."
               className="mb-12"
             />
             <ol className="relative list-none p-0 m-0 flex flex-col gap-5">
@@ -824,7 +830,7 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
               </Link>
             </div>
           </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
             {others.map((s, i) => {
               const ov = visuals[s] ?? fallbackVisual;
               return (
@@ -865,7 +871,7 @@ const spin = (dur: number, reverse = false): CSSProperties => ({
 });
 
 function CloudHeroArt() {
-  const providers: [string, number][] = [['AWS', -90], ['Azure', 25], ['GCP', 155]];
+  const providers: [string, number][] = [['Azure', -90], ['AWS', 25], ['Docker', 155]];
   return (
     <svg className="absolute inset-0 w-full h-full" viewBox="0 0 400 320" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
       <ellipse cx="200" cy="160" rx="160" ry="110" fill="none" stroke="#38BDF8" strokeOpacity="0.18" />
@@ -888,7 +894,7 @@ function CloudHeroArt() {
           </g>
         );
       })}
-      {/* Kubernetes pods */}
+      {/* Containers */}
       {[[150, 230], [176, 244], [202, 230], [228, 244], [254, 230]].map(([x, y], i) => (
         <polygon
           key={i}
@@ -1032,7 +1038,7 @@ function OpsHeroArt() {
         <div className="flex items-center justify-between text-xs">
           <span className="font-semibold text-white">Service health</span>
           <span className="inline-flex items-center gap-1.5 text-emerald-400">
-            <span className="w-2 h-2 rounded-full bg-emerald-400 pulse-soft" /> 24/7
+            <span className="w-2 h-2 rounded-full bg-emerald-400 pulse-soft" /> Monitored
           </span>
         </div>
         <svg viewBox="0 0 270 80" className="w-full h-20">
@@ -1049,7 +1055,7 @@ function OpsHeroArt() {
           <circle cx="270" cy="16" r="4" fill="#F472B6" className="pulse-soft" />
         </svg>
         <div className="flex flex-col gap-2.5">
-          {['Network', 'Infrastructure', 'Backups'].map((label, i) => (
+          {['Tests', 'Releases', 'Uptime'].map((label, i) => (
             <div key={label} className="flex items-center gap-3 text-xs">
               <span className="w-2 h-2 rounded-full bg-emerald-400 pulse-soft" style={{ animationDelay: `${i * 0.4}s` }} />
               <span className="text-slate-300 w-24 shrink-0">{label}</span>
@@ -1083,7 +1089,7 @@ function CodeHeroArt() {
           <span className="w-2.5 h-2.5 rounded-full bg-rose-400" />
           <span className="w-2.5 h-2.5 rounded-full bg-amber-400" />
           <span className="w-2.5 h-2.5 rounded-full bg-emerald-400" />
-          <span className="ml-3 text-[10px]" style={{ color: '#64748B' }}>services/platform.ts</span>
+          <span className="ml-3 text-[10px]" style={{ color: '#64748B' }}>src/app/bookings.tsx</span>
         </div>
         <div className="p-4 flex flex-col gap-2.5">
           {lines.map((l, i) => (

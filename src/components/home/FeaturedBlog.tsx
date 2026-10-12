@@ -4,10 +4,10 @@ import SectionHeading from '@/components/ui/SectionHeading';
 
 const posts = [
   {
-    category: 'AI & MCP',
+    category: 'AI & Analytics',
     title: 'What Is an MCP Server? A Practical Guide to Building Model Context Protocol Servers',
-    excerpt: 'MCP lets AI assistants such as Claude and ChatGPT use your APIs, databases and tools safely. Here is how it works and how we build production-ready servers.',
-    readTime: '9 min read',
+    excerpt: 'MCP lets AI assistants such as Claude and ChatGPT use your APIs, databases and tools safely. Here is how it works and how we build them.',
+    readTime: '4 min read',
     date: 'Oct 9, 2026',
     href: '/blog/what-is-an-mcp-server',
     colors: ['#6366F1', '#22D3EE'],
@@ -16,7 +16,7 @@ const posts = [
     category: 'AI & Analytics',
     title: 'The Enterprise AI Readiness Framework: 5 Steps to Production-Ready ML',
     excerpt: 'Moving from AI pilots to production requires more than good models. We break down the organizational, data, and infrastructure requirements.',
-    readTime: '8 min read',
+    readTime: '3 min read',
     date: 'Oct 2, 2026',
     href: '/blog/enterprise-ai-readiness-framework',
     colors: ['#6366F1', '#A78BFA'],
@@ -24,8 +24,8 @@ const posts = [
   {
     category: 'Cloud Infrastructure',
     title: 'Multi-Cloud vs Hybrid Cloud: Making the Right Architecture Decision',
-    excerpt: 'The cloud strategy you choose today will shape your infrastructure for the next decade. Here is how to evaluate both.',
-    readTime: '6 min read',
+    excerpt: 'How the two approaches differ, and how to decide which one fits your workloads.',
+    readTime: '3 min read',
     date: 'Sep 28, 2026',
     href: '/blog/multi-cloud-vs-hybrid-cloud',
     colors: ['#0EA5E9', '#22D3EE'],
@@ -37,7 +37,7 @@ export default function FeaturedBlog() {
     <section className="py-28 relative" aria-labelledby="blog-heading">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-14">
-          <SectionHeading align="left" kicker="Insights" id="blog-heading" title={<>From our <span className="text-gradient">engineering desk</span></>} />
+          <SectionHeading align="left" kicker="Insights" id="blog-heading" title={<>From our <span className="text-gradient">blog</span></>} />
           <Link suppressHydrationWarning data-reveal href="/blog" className="btn btn--secondary shrink-0 md:mb-6">
             All articles
             <svg className="btn-arrow w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12" /><polyline points="12 5 19 12 12 19" /></svg>

@@ -7,21 +7,21 @@ const industries: { title: string; desc: string; projects: string[]; color: stri
   {
     title: 'Healthcare',
     desc: 'Care management, clinic booking, patient records and invoicing for providers and clinics.',
-    projects: ['Ram Care', 'Plus Physio'],
+    projects: ['CareConnect', 'PhysioFlow'],
     color: '#F472B6',
     icon: <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z" />,
   },
   {
     title: 'Logistics & Shipping',
     desc: 'Transport orders, live vehicle tracking, dispatch, ledgers and billing in one system.',
-    projects: ['Shipping Management'],
+    projects: ['Shipping Management System'],
     color: '#38BDF8',
     icon: <><rect x="1" y="3" width="15" height="13" /><polygon points="16 8 20 8 23 11 23 16 16 16 16 8" /><circle cx="5.5" cy="18.5" r="2.5" /><circle cx="18.5" cy="18.5" r="2.5" /></>,
   },
   {
     title: 'Finance & Compliance',
     desc: 'Risk, audit and data-classification tooling for finance teams with strict controls.',
-    projects: ['EUC Compliance'],
+    projects: ['EUC Finance Compliance'],
     color: '#A78BFA',
     icon: <><rect width="20" height="14" x="2" y="5" rx="2" /><line x1="2" x2="22" y1="10" y2="10" /></>,
   },
@@ -42,7 +42,7 @@ const industries: { title: string; desc: string; projects: string[]; color: stri
   {
     title: 'Sales & Self-Service',
     desc: 'CRMs that track every lead to revenue, and kiosks with UPI payments and receipts.',
-    projects: ['Sales CRM', 'Vadtal Kiosk'],
+    projects: ['Sales CRM', 'Seva Kiosk'],
     color: '#22D3EE',
     icon: <><rect x="5" y="2" width="14" height="20" rx="2" /><line x1="12" y1="18" x2="12.01" y2="18" /></>,
   },

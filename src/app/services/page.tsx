@@ -6,7 +6,7 @@ import SectionHeading from '@/components/ui/SectionHeading';
 
 export const metadata: Metadata = {
   title: 'Software Development, AI & MCP Server Services',
-  description: 'Inovaraa Solutions services: custom software development, AI agent and MCP server development, web and mobile apps, cloud and DevOps, cybersecurity, managed services and QA.',
+  description: 'Inovaraa Solutions services: custom software development, AI agents and MCP servers, AI and data analytics, cloud and DevOps with RytumX, cybersecurity, digital transformation, and managed services and QA.',
   alternates: { canonical: '/services' },
 };
 
@@ -25,88 +25,88 @@ type Service = {
 
 const services: Service[] = [
   {
-    title: 'AI Agent & MCP Server Development',
+    title: 'Custom Software Development',
+    short: 'Custom Software',
+    slug: 'software-development',
+    description: 'Web, mobile and back-office software built around how your business works. We use .NET Core, Angular, React, Next.js, Node.js and React Native, and you own all the code we write.',
+    href: '/services/software-development',
+    features: ['Web applications & portals', 'React Native mobile apps', '.NET Core & Node.js APIs', 'CRMs, booking & billing systems', 'Multi-tenant SaaS platforms', 'QA testing on every release'],
+    industries: ['Healthcare', 'Logistics & Shipping', 'Real Estate', 'Food Supply & Retail'],
+    color: '#22D3EE',
+    icon: <><polyline points="16 18 22 12 16 6" /><polyline points="8 6 2 12 8 18" /></>,
+    art: <CodeArt />,
+  },
+  {
+    title: 'AI Agents & MCP Servers',
     short: 'AI Agents & MCP',
     slug: 'ai-agents-mcp-servers',
-    description: 'Connect Claude, ChatGPT and other AI assistants to your software. We build custom MCP (Model Context Protocol) servers, AI agents and secure LLM integrations, then handle server setup and hosting.',
+    description: 'Connect Claude, ChatGPT and other AI assistants to your software. We build custom MCP (Model Context Protocol) servers, AI agents and secure LLM integrations, and deploy them with our DevOps partner RytumX.',
     href: '/services/ai-agents-mcp-servers',
     features: ['Custom MCP server development', 'AI agents & workflow automation', 'Claude & OpenAI API integration', 'Document search (RAG)', 'OAuth-secured remote MCP servers', 'Linux server setup & deployment'],
-    industries: ['SaaS', 'Healthcare', 'Logistics'],
+    industries: ['Healthcare', 'Logistics & Shipping', 'Finance & Compliance'],
     color: '#818CF8',
     icon: <><path d="M12 22v-5" /><path d="M9 8V2" /><path d="M15 8V2" /><path d="M18 8v5a4 4 0 0 1-4 4h-4a4 4 0 0 1-4-4V8Z" /></>,
     art: <AiArt />,
   },
   {
-    title: 'Cloud Infrastructure & Kubernetes',
-    short: 'Cloud & Kubernetes',
-    slug: 'cloud-infrastructure',
-    description: 'Design, migrate, and optimize your cloud environment across AWS, Azure, and GCP. We build scalable, cost-efficient, and resilient cloud architectures tailored to your enterprise needs.',
-    href: '/services/cloud-infrastructure',
-    features: ['Multi-cloud & hybrid cloud strategy', 'Zero-downtime database migration', 'Kubernetes & container orchestration', 'FinOps & automated cost governance', 'Site reliability engineering (SRE)', 'Cloud-native development'],
-    industries: ['Finance', 'Healthcare', 'Retail'],
-    color: '#38BDF8',
-    icon: <path d="M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9Z" />,
-    art: <CloudArt />,
-  },
-  {
-    title: 'Enterprise AI & Autonomous Agents',
-    short: 'AI & Agents',
+    title: 'AI & Data Analytics',
+    short: 'AI & Data Analytics',
     slug: 'ai-data-analytics',
-    description: 'Transform your data into a strategic asset. Our AI and analytics experts build everything from streaming data pipelines to production ML models and real-time intelligence platforms.',
+    description: 'Reporting dashboards, reliable data flows between the systems you already use, and practical AI features such as search, summaries and assistants added to your existing apps.',
     href: '/services/ai-data-analytics',
-    features: ['Private RAG & vector databases', 'Machine learning model development', 'LLM fine-tuning & prompt guardrails', 'Data Lakehouses (Snowflake/Databricks)', 'Business intelligence dashboards', 'AI strategy & governance'],
-    industries: ['Healthcare', 'Manufacturing', 'Finance'],
+    features: ['Real-time reporting dashboards', 'Scheduled reports & exports', 'Data sync between existing systems', 'AI search & summaries', 'In-app AI assistants', 'Role-based data access'],
+    industries: ['Food Supply & Retail', 'Sales & Self-Service', 'Logistics & Shipping'],
     color: '#A78BFA',
     icon: <path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83" />,
     art: <AiArt />,
   },
   {
-    title: 'Digital Transformation & Modernization',
-    short: 'Transformation',
-    slug: 'digital-transformation',
-    description: 'End-to-end modernization of your business — from customer experience to back-office operations. We combine technology expertise with change management to deliver lasting transformation.',
-    href: '/services/digital-transformation',
-    features: ['Legacy monolith decomposition', 'Business process automation (RPA)', 'Customer experience redesign', 'Event-driven Kafka architecture', 'Change management programs', 'Digital maturity assessment'],
-    industries: ['Retail', 'Manufacturing', 'Government'],
-    color: '#FBBF24',
-    icon: <path d="m3 16 4 4 4-4M7 20V4M21 8l-4-4-4 4M17 4v16" />,
-    art: <FlowArt />,
+    title: 'Cloud & DevOps',
+    short: 'Cloud & DevOps',
+    slug: 'cloud-infrastructure',
+    description: 'Azure and AWS setup, deployments, CI/CD pipelines and monitoring for your applications, delivered together with our DevOps partner RytumX.',
+    href: '/services/cloud-infrastructure',
+    features: ['Azure & AWS environment setup', 'Moving apps to the cloud', 'Docker containers', 'CI/CD pipelines', 'Monitoring, logging & alerts', 'Cloud cost reviews'],
+    industries: ['Logistics & Shipping', 'Food Supply & Retail', 'Healthcare'],
+    color: '#38BDF8',
+    icon: <path d="M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9Z" />,
+    art: <CloudArt />,
   },
   {
-    title: 'Zero Trust Cybersecurity & SOC Defense',
+    title: 'Cybersecurity',
     short: 'Cybersecurity',
     slug: 'cybersecurity',
-    description: 'Enterprise-grade security that protects your assets, data, and reputation. From zero trust architecture to 24/7 SOC operations, we keep threats at bay while keeping your business moving.',
+    description: 'Security built into the software we deliver: secure-by-design development, access control, code and security reviews, vulnerability scanning and hardening, plus help meeting data protection requirements.',
     href: '/services/cybersecurity',
-    features: ['Zero trust identity & access (IAM)', '24/7 Security Operations Center (SOC)', 'Penetration testing & red teaming', 'GDPR, HIPAA, SOC2 compliance', 'Cloud posture management (Wiz)', 'Incident response & forensics'],
-    industries: ['Finance', 'Healthcare', 'Defense'],
+    features: ['Secure-by-design development', 'Role-based access & sign-in', 'Code & security reviews', 'Dependency & vulnerability scanning', 'Application hardening', 'Data protection requirements'],
+    industries: ['Finance & Compliance', 'Healthcare'],
     color: '#34D399',
     icon: <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />,
     art: <ShieldArt />,
   },
   {
-    title: '24/7 Managed NOC & SRE Operations',
-    short: 'Managed Ops',
+    title: 'Digital Transformation',
+    short: 'Digital Transformation',
+    slug: 'digital-transformation',
+    description: 'Move work out of spreadsheets, desktop tools and paper into web and mobile apps, and connect the systems that used to need manual re-entry.',
+    href: '/services/digital-transformation',
+    features: ['Spreadsheets & paper to web apps', 'Desktop software replacement', 'ERP & online store integrations', 'Payment integrations, including UPI', 'Self-service kiosks', 'Mobile apps for field staff'],
+    industries: ['Logistics & Shipping', 'Food Supply & Retail', 'Real Estate', 'Education'],
+    color: '#FBBF24',
+    icon: <path d="m3 16 4 4 4-4M7 20V4M21 8l-4-4-4 4M17 4v16" />,
+    art: <FlowArt />,
+  },
+  {
+    title: 'Managed Services & QA',
+    short: 'Managed Services & QA',
     slug: 'managed-services',
-    description: 'Let us run your IT operations so your team can focus on innovation. Our managed services include 24/7 monitoring, proactive maintenance, and guaranteed SLA performance.',
+    description: 'Dedicated QA engineers, manual and automated testing, and ongoing maintenance, bug fixes and support after launch, with monitoring set up together with RytumX.',
     href: '/services/managed-services',
-    features: ['24/7 NOC & SOC operations', 'Proactive infrastructure telemetry', 'IT helpdesk & ITSM (ITIL)', 'Patch management & CVE mitigation', 'Disaster recovery as a service (DRaaS)', 'Vendor & license governance'],
-    industries: ['All Enterprise Sectors'],
+    features: ['Dedicated QA engineers', 'Manual & automated testing', 'Maintenance & bug fixes', 'Dependency & framework updates', 'Support after launch', 'Monitoring with RytumX'],
+    industries: ['Healthcare', 'Logistics & Shipping', 'Sales & Self-Service'],
     color: '#F472B6',
     icon: <><circle cx="12" cy="12" r="3" /><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z" /></>,
     art: <OpsArt />,
-  },
-  {
-    title: 'Custom Enterprise Software Engineering',
-    short: 'Software',
-    slug: 'software-development',
-    description: 'Custom enterprise applications built with modern architectures, delivered with agile methodology. From greenfield development to platform re-architecture, we build software that scales.',
-    href: '/services/software-development',
-    features: ['Modular microservices architecture', 'High-throughput GraphQL & REST APIs', 'Next.js & React Native applications', 'Enterprise SaaS platforms', 'Automated testing & QA pods', 'DevSecOps CI/CD pipelines'],
-    industries: ['FinTech', 'E-commerce', 'Healthcare'],
-    color: '#22D3EE',
-    icon: <><polyline points="16 18 22 12 16 6" /><polyline points="8 6 2 12 8 18" /></>,
-    art: <CodeArt />,
   },
 ];
 
@@ -128,23 +128,23 @@ export default function ServicesPage() {
     <>
       <PageHero
         crumb="Services"
-        kicker="Enterprise Capabilities"
-        title={<>End-to-End IT Services Designed for <span className="text-gradient">Autonomous Scale</span></>}
-        description="Whether you need to modernize infrastructure, deploy private AI agents, or secure mission-critical workloads — Inovaraa Solutions delivers the expertise to make it happen."
+        kicker="What we do"
+        title={<>Software, AI and cloud services from <span className="text-gradient">one hands-on team</span></>}
+        description="Inovaraa Solutions is a team of 12 in-house engineers, designers and testers in Ahmedabad, India. We build custom software, connect AI assistants to your systems and look after what we ship, with cloud and DevOps work delivered alongside our partner RytumX."
       >
         <Link href="#catalog" className="btn btn--primary btn--lg">
           Explore services
           <Arrow />
         </Link>
         <Link href="/contact" className="btn btn--secondary btn--lg">
-          Talk to an architect
+          Talk to our team
         </Link>
       </PageHero>
 
       {/* Quick index */}
       <section className="relative pb-20" aria-label="Service index">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <ul className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3 list-none p-0 m-0">
+          <ul className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-7 gap-3 list-none p-0 m-0">
             {services.map((s, i) => (
               <li key={s.slug} suppressHydrationWarning data-reveal style={{ '--d': `${i * 70}ms`, '--tile': s.color } as CSSProperties}>
                 <Link
@@ -172,8 +172,8 @@ export default function ServicesPage() {
           <SectionHeading
             kicker="Service catalog"
             id="catalog-heading"
-            title={<>Six practices, <span className="text-gradient">one delivery team</span></>}
-            description="Every engagement pairs strategy with hands-on engineering. Pick a practice to see its full scope, delivery framework and FAQs."
+            title={<>Seven services, <span className="text-gradient">one team</span></>}
+            description="The people who plan your project are the people who build it. Pick a service to see its scope, our process and FAQs."
             className="mb-16"
           />
 
@@ -222,7 +222,7 @@ export default function ServicesPage() {
 
                     <div className="mt-auto">
                       <Link href={svc.href} className="btn btn--primary">
-                        Explore {svc.short}
+                        Explore {svc.title}
                         <Arrow />
                       </Link>
                     </div>
@@ -380,7 +380,7 @@ function OpsArt() {
   return (
     <div className="absolute inset-0 p-5 flex flex-col justify-between" aria-hidden="true">
       <div className="flex items-center justify-between text-xs">
-        <span className="font-semibold text-white">NOC · live telemetry</span>
+        <span className="font-semibold text-white">Test runs &amp; monitoring</span>
         <span className="inline-flex items-center gap-1.5 text-emerald-400">
           <span className="w-2 h-2 rounded-full bg-emerald-400 pulse-soft" /> Monitoring
         </span>
@@ -400,8 +400,8 @@ function OpsArt() {
         ))}
       </div>
       <div className="flex items-center justify-between text-[11px] text-slate-500">
-        <span>Proactive maintenance</span>
-        <span>24/7</span>
+        <span>Maintenance &amp; QA</span>
+        <span>After launch</span>
       </div>
     </div>
   );
@@ -422,7 +422,7 @@ function CodeArt() {
         <span className="w-2.5 h-2.5 rounded-full bg-rose-400" />
         <span className="w-2.5 h-2.5 rounded-full bg-amber-400" />
         <span className="w-2.5 h-2.5 rounded-full bg-emerald-400" />
-        <span className="ml-3 text-[10px]" style={{ color: '#64748B' }}>api/orders.graphql</span>
+        <span className="ml-3 text-[10px]" style={{ color: '#64748B' }}>api/BookingsController.cs</span>
       </div>
       <div className="p-4 flex flex-col gap-2.5">
         {lines.map((l, i) => (

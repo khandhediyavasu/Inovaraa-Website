@@ -2,7 +2,7 @@ import type { CSSProperties } from 'react';
 
 // Technologies the team ships with (from delivered projects)
 const rowA = ['.NET Core', 'Angular', 'React', 'Next.js', 'Node.js', 'TypeScript', 'React Native', 'C#'];
-const rowB = ['Microsoft Azure', 'AWS', 'SQL Server', 'MongoDB', 'Docker', 'Kubernetes', 'CI/CD Pipelines', 'SonarQube'];
+const rowB = ['Microsoft Azure', 'AWS', 'SQL Server', 'MongoDB', 'Docker', 'CI/CD Pipelines', 'Claude API', 'OpenAI API'];
 
 const hues = ['#22D3EE', '#818CF8', '#34D399', '#F472B6', '#FBBF24', '#38BDF8'];
 

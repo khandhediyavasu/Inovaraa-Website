@@ -6,41 +6,41 @@ import SectionHeading from '@/components/ui/SectionHeading';
 
 export const metadata: Metadata = {
   title: 'About Us: Leadership, Team & Partners',
-  description: 'Meet Inovaraa Solutions: CEO Tejas Daraniya, Director Nikhil Mahindrakar, CTO Vasu Khandhediya and the engineering team building AI agents, MCP servers and custom software.',
+  description: 'Meet Inovaraa Solutions: CEO Tejas Thakkar, Director Nikhil Mahindrakar, CTO Vasu Thakkar and the engineering team building AI agents, MCP servers and custom software.',
   alternates: { canonical: '/about' },
 };
 
 const values: { title: string; desc: string; color: string; icon: ReactNode }[] = [
   {
-    title: 'Zero Compromise Engineering',
-    desc: 'We architect for extreme scale, security, and low-latency from day one.',
+    title: 'Built to Last',
+    desc: 'Clean, tested code and sensible architecture from day one, so your product is easy to grow and maintain.',
     color: '#22D3EE',
     icon: <><polygon points="12 2 2 7 12 12 22 7 12 2" /><polyline points="2 17 12 22 22 17" /><polyline points="2 12 12 17 22 12" /></>,
   },
   {
-    title: 'Compound Enterprise ROI',
-    desc: 'Every architecture initiative is mapped to verifiable balance sheet performance.',
+    title: 'Focused on Business Value',
+    desc: 'We build what moves your business forward first, and show working software every two weeks.',
     color: '#34D399',
     icon: <><line x1="12" y1="1" x2="12" y2="23" /><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" /></>,
   },
   {
-    title: '100% Client IP Ownership',
-    desc: 'You own all repositories, models, pipelines, and infrastructure as code.',
+    title: 'You Own Everything',
+    desc: 'All code, repositories and deployment scripts belong to you, pushed to your own accounts.',
     color: '#818CF8',
     icon: <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />,
   },
   {
-    title: 'Autonomous Innovation',
-    desc: 'Embedding AI agents and automation directly into core engineering workflows.',
+    title: 'Practical AI',
+    desc: 'We add AI agents and automation where they save real time, not for the sake of it.',
     color: '#F472B6',
     icon: <path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83" />,
   },
 ];
 
 const leadership = [
-  { name: 'Tejas Daraniya', slug: 'tejas-daraniya', title: 'Chief Executive Officer', initials: 'TD', color: '#22D3EE' },
+  { name: 'Tejas Thakkar', slug: 'tejas-thakkar', title: 'Chief Executive Officer', initials: 'TT', color: '#22D3EE' },
   { name: 'Nikhil Mahindrakar', slug: 'nikhil-mahindrakar', title: 'Director', initials: 'NM', color: '#818CF8' },
-  { name: 'Vasu Khandhediya', slug: 'vasu-khandhediya', title: 'Chief Technology Officer', initials: 'VK', color: '#34D399' },
+  { name: 'Vasu Thakkar', slug: 'vasu-thakkar', title: 'Chief Technology Officer', initials: 'VT', color: '#34D399' },
 ];
 
 const team: { name: string; role?: string; initials: string }[] = [
@@ -49,16 +49,16 @@ const team: { name: string; role?: string; initials: string }[] = [
   { name: 'Vijeet Shah', role: 'QA', initials: 'VS' },
   { name: 'Meet Patel', role: 'QA', initials: 'MP' },
   { name: 'Vimal Vankani', role: 'QA', initials: 'VV' },
-  { name: 'Prince Mendapara', role: 'Mobile Development', initials: 'PM' },
+  { name: 'Prince Mendapara', role: 'Mobile Developer', initials: 'PM' },
   { name: 'Harshil Patel', role: 'Web Developer', initials: 'HP' },
   { name: 'Jay Patel', role: 'Web Developer', initials: 'JP' },
-  { name: 'Barkha Kantariya', role: 'HR Manager', initials: 'BK' },
+  { name: 'Barkha Thakkar', role: 'HR Manager', initials: 'BT' },
 ];
 
 const roleColors: Record<string, string> = {
   'Web Developer': '#22D3EE',
   QA: '#34D399',
-  'Mobile Development': '#F472B6',
+  'Mobile Developer': '#F472B6',
   'HR Manager': '#FBBF24',
 };
 
@@ -71,8 +71,8 @@ const partners = [
     color: '#34D399',
     domain: 'rytumx.com',
     url: 'https://www.rytumx.com/',
-    desc: 'Inovaraa Solutions and RytumX are associated companies. All DevOps work for our clients is delivered by RytumX, a specialist in cloud automation and DevSecOps that builds security into every stage of the software delivery lifecycle.',
-    services: ['DevSecOps Implementation', 'Kubernetes Hardening', 'Cloud Security Auditing', 'FinOps'],
+    desc: 'Inovaraa Solutions and RytumX are associated companies. All DevOps work for our clients is delivered by RytumX, a specialist in cloud automation and DevSecOps that builds security into every stage of software delivery.',
+    services: ['Azure & AWS Setup', 'CI/CD Pipelines', 'DevSecOps', 'Monitoring'],
   },
   {
     id: 'alpha',
@@ -106,16 +106,16 @@ export default function AboutPage() {
     <>
       <PageHero
         crumb="About"
-        kicker="Enterprise Profile"
-        title={<>Engineering the backbone of <span className="text-gradient">modern global commerce</span></>}
-        description="Inovaraa Solutions partners with forward-thinking enterprises to design, build, and run resilient cloud architectures, AI agents, and Zero Trust security fabrics."
+        kicker="About Us"
+        title={<>A small team that <span className="text-gradient">ships real software</span></>}
+        description="Inovaraa Solutions is an Ahmedabad-based team of 12 building web platforms, mobile apps, AI agents and MCP servers for healthcare, logistics, finance, real estate, retail and education."
       >
         <a href="#leadership" className="btn btn--primary btn--lg">
           Meet the leadership
           <Arrow />
         </a>
         <a href="#partners" className="btn btn--secondary btn--lg">
-          Partners &amp; alliances
+          Our partners
         </a>
       </PageHero>
 
@@ -125,12 +125,12 @@ export default function AboutPage() {
           <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-8 mb-14">
             <SectionHeading
               align="left"
-              kicker="Core Engineering Principles"
+              kicker="How We Work"
               id="values-heading"
-              title={<>What drives <span className="text-gradient">our squads</span></>}
+              title={<>What drives <span className="text-gradient">our team</span></>}
             />
             <p suppressHydrationWarning data-reveal style={{ '--d': '200ms' } as CSSProperties} className="lg:max-w-sm lg:pb-6 text-slate-400 leading-relaxed">
-              Four principles guide every architecture decision, every sprint and every release we ship.
+              Four principles guide every decision, every sprint and every release we ship.
             </p>
           </div>
 
@@ -171,10 +171,10 @@ export default function AboutPage() {
         <div className="absolute inset-0 bg-dots-fade opacity-60 pointer-events-none" aria-hidden="true" />
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
           <SectionHeading
-            kicker="Executive Leadership"
+            kicker="Leadership"
             id="leadership-heading"
-            title={<>Architects of <span className="text-gradient">transformation</span></>}
-            description="The people setting direction, standards and culture across every Inovaraa engagement."
+            title={<>The people <span className="text-gradient">leading Inovaraa</span></>}
+            description="The people setting direction, standards and culture across every Inovaraa project."
             className="mb-16"
           />
 
@@ -219,7 +219,7 @@ export default function AboutPage() {
               align="left"
               kicker="Our Team"
               id="team-heading"
-              title={<>The people behind <span className="text-gradient">the platform</span></>}
+              title={<>The people behind <span className="text-gradient">the work</span></>}
             />
             <ul suppressHydrationWarning data-reveal style={{ '--d': '200ms' } as CSSProperties} className="flex flex-wrap gap-2 lg:max-w-sm lg:justify-end lg:pb-6 list-none p-0 m-0">
               {roleGroups.map(([role, count]) => (
@@ -271,9 +271,9 @@ export default function AboutPage() {
       <section className="py-24 sm:py-28 relative scroll-mt-24" id="partners" aria-labelledby="partners-heading">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <SectionHeading
-            kicker="Partners & Alliances"
+            kicker="Partners"
             id="partners-heading"
-            title={<>Our associate <span className="text-gradient">companies</span></>}
+            title={<>Companies we <span className="text-gradient">work with</span></>}
             className="mb-14"
           />
 
@@ -335,7 +335,7 @@ function PartnerLink({ id, initials, color }: { id: string; initials: string; co
   return (
     <div className="flex items-center" aria-hidden="true">
       <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-indigo-500 to-cyan-400 text-white flex items-center justify-center text-base font-black font-display shadow-lg shadow-indigo-500/30">
-        A
+        I
       </div>
       <svg viewBox="0 0 64 20" className="w-14 sm:w-16 h-5 -mx-px">
         <defs>

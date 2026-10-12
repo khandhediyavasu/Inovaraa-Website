@@ -6,7 +6,6 @@ import ServicesOverview from '@/components/home/ServicesOverview';
 import ProcessSection from '@/components/home/ProcessSection';
 import ProjectsDelivered from '@/components/projects/ProjectsDelivered';
 import Industries from '@/components/home/Industries';
-import Testimonials from '@/components/home/Testimonials';
 import FeaturedBlog from '@/components/home/FeaturedBlog';
 import FaqSection from '@/components/home/FaqSection';
 import JsonLd, { faqSchema } from '@/components/seo/JsonLd';
@@ -36,7 +35,6 @@ export default function HomePage() {
       <ProjectsDelivered limit={3} showViewAll showImpact={false} />
       <ProcessSection />
       <Industries />
-      <Testimonials />
       <FeaturedBlog />
       <FaqSection />
     </>

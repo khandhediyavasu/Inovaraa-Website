@@ -6,7 +6,7 @@ import { PixelMark } from '@/components/ui/Logo';
 
 const words = ['scale.', 'delight.', 'perform.', 'last.'];
 
-const team = ['TD', 'NM', 'VK', 'JM', 'PS'];
+const team = ['TT', 'NM', 'VT', 'JM', 'PS'];
 
 // Tech nodes placed on the orbit rings: [label, ring radius %, angle deg, color]
 const nodes: [string, number, number, string][] = [
@@ -53,7 +53,7 @@ export default function Hero() {
               className="mt-7 text-base sm:text-lg text-slate-400 leading-relaxed max-w-xl"
             >
               Inovaraa Solutions is a software development company building AI agents, MCP servers, web platforms and
-              mobile apps for healthcare, logistics, finance and fast-growing businesses.
+              mobile apps for healthcare, logistics, finance, real estate, retail and education.
             </p>
 
             <div suppressHydrationWarning data-reveal style={{ '--d': '240ms' } as CSSProperties} className="mt-9 flex flex-col sm:flex-row gap-3 w-full sm:w-auto">
@@ -81,7 +81,7 @@ export default function Hero() {
               </div>
               <div className="text-sm leading-tight">
                 <div className="font-semibold text-white">12 in-house experts</div>
-                <div className="text-slate-500">{projects.length}+ products shipped across 5+ industries</div>
+                <div className="text-slate-500">{projects.length}+ projects delivered across 7 industries</div>
               </div>
             </div>
           </div>

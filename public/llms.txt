@@ -1,23 +1,34 @@
 # Inovaraa Solutions
 
-> Inovaraa Solutions (inovaraa.com) is a software development company that builds AI agents, MCP (Model Context Protocol) servers, custom web platforms, mobile apps and cloud solutions for healthcare, logistics, finance, real estate and retail businesses.
+> Inovaraa Solutions (inovaraa.com) is a software development company based in Ahmedabad, Gujarat, India, with a team of 12. It builds AI agents, MCP (Model Context Protocol) servers, custom web platforms and mobile apps for healthcare, logistics, finance, real estate, retail and education businesses. It has delivered 9+ projects and has 5+ years of engineering experience. Contact: info@inovaraa.com, +91 94997 38788.
 
 ## Leadership
-- Tejas Daraniya: Chief Executive Officer (https://inovaraa.com/team/tejas-daraniya)
+- Tejas Thakkar: Chief Executive Officer (https://inovaraa.com/team/tejas-thakkar)
 - Nikhil Mahindrakar: Director (https://inovaraa.com/team/nikhil-mahindrakar)
-- Vasu Khandhediya: Chief Technology Officer (https://inovaraa.com/team/vasu-khandhediya)
+- Vasu Thakkar: Chief Technology Officer (https://inovaraa.com/team/vasu-thakkar)
 
 ## Services
-- [AI Agent & MCP Server Development](https://inovaraa.com/services/ai-agents-mcp-servers): custom MCP servers that connect Claude, ChatGPT and other AI assistants to a company's APIs, databases and tools; AI agents; LLM integration; server setup and hosting.
 - [Custom Software Development](https://inovaraa.com/services/software-development): web platforms, portals, APIs and SaaS built with .NET, Node.js, Angular and React.
-- [Cloud Infrastructure](https://inovaraa.com/services/cloud-infrastructure): Azure and AWS setup, CI/CD and DevOps, delivered with DevOps partner RytumX.
+- [AI Agents & MCP Servers](https://inovaraa.com/services/ai-agents-mcp-servers): custom MCP servers that connect Claude, ChatGPT and other AI assistants to a company's APIs, databases and tools; AI agents; LLM integration; server setup and hosting.
+- [AI & Data Analytics](https://inovaraa.com/services/ai-data-analytics): reporting dashboards, data pipelines and LLM features added to existing apps.
+- [Cloud & DevOps](https://inovaraa.com/services/cloud-infrastructure): Azure and AWS setup, CI/CD and monitoring, delivered with DevOps partner RytumX.
+- [Cybersecurity](https://inovaraa.com/services/cybersecurity): secure-by-design development, access control and security reviews.
+- [Digital Transformation](https://inovaraa.com/services/digital-transformation): moving spreadsheet, paper and desktop workflows to web and mobile apps.
 - [Managed Services & QA](https://inovaraa.com/services/managed-services): dedicated QA engineers, maintenance and support.
 
+## Partners
+- RytumX (https://www.rytumx.com/): associated company that delivers all DevOps work for Inovaraa clients.
+- Alpha Computers (https://alphaindia.in/): education partner for school, college and coaching-class software.
+
+## Projects delivered
+CareConnect (aged and disability care), PhysioFlow (physiotherapy clinic management), Shipping Management System (logistics), Sales CRM, Food Stock (food supply), Tavili Native (multi-tenant SaaS), BuildCon (real estate booking), Seva Kiosk (self-service temple kiosk with UPI), EUC Finance Compliance (finance controls).
+
 ## Key pages
-- [Our Work](https://inovaraa.com/projects): healthcare, logistics, finance, real estate and retail projects the team has delivered.
+- [Our Work](https://inovaraa.com/projects): projects the team has delivered.
+- [Industries](https://inovaraa.com/industries): healthcare, logistics, finance, real estate, retail, sales and self-service, and education.
 - [What Is an MCP Server?](https://inovaraa.com/blog/what-is-an-mcp-server): practical guide to building Model Context Protocol servers.
 - [About](https://inovaraa.com/about)
 - [Contact](https://inovaraa.com/contact)
 
 ## Technologies
-.NET Core, C#, Angular, React, Next.js, Node.js, TypeScript, Python, SQL Server, MongoDB, Azure, AWS, Docker, Linux, Model Context Protocol SDKs, Claude API, OpenAI API.
+.NET Core, C#, Angular, React, Next.js, Node.js, TypeScript, React Native, Python, SQL Server, MongoDB, Azure, AWS, Docker, Linux, Model Context Protocol SDKs, Claude API, OpenAI API.

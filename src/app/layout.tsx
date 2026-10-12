@@ -30,14 +30,14 @@ export const metadata: Metadata = {
   // Each page sets its own canonical URL; no site-wide canonical here, or every page would point at the home page.
   openGraph: {
     type: 'website',
-    locale: 'en_US',
+    locale: 'en_IN',
     siteName: SITE.name,
     title: `${SITE.name} | AI, MCP Server & Software Development Company`,
     description: SITE.description,
   },
   twitter: {
     card: 'summary_large_image',
-    title: `${SITE.name} | AI, MCP Server & Software Development`,
+    title: `${SITE.name} | AI, MCP Server & Software Development Company`,
     description: SITE.tagline,
     creator: SITE.twitterHandle,
   },
@@ -91,7 +91,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             '@graph': [
               {
                 ...organizationSchema(),
-                contactPoint: { '@type': 'ContactPoint', email: SITE.email, contactType: 'sales', availableLanguage: 'English' },
+                contactPoint: { '@type': 'ContactPoint', email: SITE.email, telephone: SITE.phone, contactType: 'sales', availableLanguage: 'English' },
               },
               ...leaders.map(personSchema),
               {

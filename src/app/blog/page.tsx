@@ -8,17 +8,17 @@ import NewsletterForm from '@/components/ui/NewsletterForm';
 
 export const metadata: Metadata = {
   title: 'Blog: AI, MCP & Software Development Insights',
-  description: 'Stay ahead with expert insights on AI, cloud infrastructure, cybersecurity, and digital transformation from the Inovaraa Solutions team.',
+  description: 'Practical articles on AI, MCP servers, cloud infrastructure, cybersecurity and digital transformation from the Inovaraa Solutions team.',
   alternates: { canonical: '/blog' },
 };
 
-const categories = ['All Articles', 'AI & Analytics', 'Cloud Infrastructure', 'Cybersecurity', 'Digital Modernization'];
+const categories = ['All Articles', 'AI & Analytics', 'Cloud Infrastructure', 'Cybersecurity', 'Digital Transformation'];
 
 const categoryColors: Record<string, [string, string]> = {
   'AI & Analytics': ['#6366F1', '#A78BFA'],
   'Cloud Infrastructure': ['#0EA5E9', '#22D3EE'],
   Cybersecurity: ['#059669', '#34D399'],
-  'Digital Modernization': ['#F59E0B', '#F472B6'],
+  'Digital Transformation': ['#F59E0B', '#F472B6'],
 };
 
 const posts = [
@@ -26,7 +26,7 @@ const posts = [
     category: 'AI & Analytics',
     title: 'What Is an MCP Server? A Practical Guide to Building Model Context Protocol Servers',
     excerpt: 'MCP lets AI assistants such as Claude and ChatGPT use your APIs, databases and tools in a safe, standard way. Here is what an MCP server is, how it works and how we build production-ready ones.',
-    readTime: '9 min read',
+    readTime: '4 min read',
     date: 'Oct 9, 2026',
     slug: 'what-is-an-mcp-server',
     accent: 'text-cyan-400',
@@ -35,18 +35,18 @@ const posts = [
   {
     category: 'AI & Analytics',
     title: 'The Enterprise AI Readiness Framework: 5 Steps to Production-Ready ML',
-    excerpt: 'Moving from AI pilots to production requires more than good models. We break down the organizational, data, and infrastructure requirements for enterprise AI success.',
-    readTime: '8 min read',
+    excerpt: 'Moving from AI pilots to production requires more than good models. We break down the data, infrastructure, operations and ownership questions to answer before you go live.',
+    readTime: '3 min read',
     date: 'Oct 2, 2026',
     slug: 'enterprise-ai-readiness-framework',
     accent: 'text-cyan-400',
-    badge: 'Research'
+    badge: 'Framework'
   },
   {
     category: 'Cloud Infrastructure',
     title: 'Multi-Cloud vs Hybrid Cloud: Making the Right Architecture Decision',
-    excerpt: 'The cloud strategy you choose today will shape your infrastructure for the next decade. Here is how to evaluate multi-cloud vs hybrid cloud for your enterprise.',
-    readTime: '6 min read',
+    excerpt: 'The cloud strategy you choose today will shape your infrastructure for years. Here is how to evaluate multi-cloud and hybrid cloud for your organization.',
+    readTime: '3 min read',
     date: 'Sep 28, 2026',
     slug: 'multi-cloud-vs-hybrid-cloud',
     accent: 'text-emerald-400',
@@ -55,18 +55,18 @@ const posts = [
   {
     category: 'Cybersecurity',
     title: 'Zero Trust Security Architecture: Implementation Guide for Enterprises',
-    excerpt: 'Zero trust is no longer optional. This step-by-step guide covers how to design and implement a zero trust security architecture without disrupting operations.',
-    readTime: '10 min read',
+    excerpt: 'Zero trust is no longer optional. This step-by-step guide covers how to plan and introduce a zero trust security architecture without disrupting day-to-day work.',
+    readTime: '2 min read',
     date: 'Sep 22, 2026',
     slug: 'zero-trust-security-implementation',
     accent: 'text-indigo-400',
     badge: 'Security'
   },
   {
-    category: 'Digital Modernization',
-    title: 'Why Most Digital Transformation Programs Fail (And How to Avoid It)',
-    excerpt: 'Studies show 70% of digital transformation initiatives fail to meet their goals. Here is what differentiates the successful 30% — and how to put your program on the right path.',
-    readTime: '7 min read',
+    category: 'Digital Transformation',
+    title: 'Why Most Digital Transformation Programs Fail (And How to Avoid Them)',
+    excerpt: 'Many digital transformation programs fall short of their goals. Here is what tends to separate the ones that succeed, and how to put your program on the right path.',
+    readTime: '2 min read',
     date: 'Sep 15, 2026',
     slug: 'why-digital-transformation-fails',
     accent: 'text-amber-400',
@@ -75,8 +75,8 @@ const posts = [
   {
     category: 'Cloud Infrastructure',
     title: 'FinOps in Practice: How to Cut Cloud Costs Without Cutting Capabilities',
-    excerpt: 'Cloud costs spiraling out of control? Our FinOps specialists share the frameworks and tools they use to help enterprises reduce cloud spend by 30-60%.',
-    readTime: '9 min read',
+    excerpt: 'Cloud bills creeping up every month? Here are practical habits that help teams understand and control cloud spend without slowing down their products.',
+    readTime: '2 min read',
     date: 'Sep 8, 2026',
     slug: 'finops-cut-cloud-costs',
     accent: 'text-cyan-400',
@@ -85,12 +85,12 @@ const posts = [
   {
     category: 'AI & Analytics',
     title: 'Building a Modern Data Platform: From Architecture to Governance',
-    excerpt: 'A data platform is only as good as its architecture. We outline the key decisions — from storage layers to governance frameworks — that determine long-term success.',
-    readTime: '11 min read',
+    excerpt: 'A data platform is only as good as its architecture. We outline the key decisions, from storage layers to governance, that determine long-term success.',
+    readTime: '2 min read',
     date: 'Sep 1, 2026',
     slug: 'modern-data-platform-architecture',
     accent: 'text-pink-400',
-    badge: 'Data Mesh'
+    badge: 'Data'
   },
 ];
 
@@ -120,15 +120,15 @@ export default function BlogPage({ searchParams }: { searchParams: SearchParams 
     <>
       <PageHero
         crumb="Knowledge Hub"
-        kicker="Insights & Blueprints"
+        kicker="Insights & Guides"
         title={<>Technology insights from <span className="text-gradient">our engineers</span></>}
-        description="Practical architecture blueprints, technical deep dives, and executive strategies on AI, multi-cloud, security, and digital modernization."
+        description="Practical guides and technical deep dives on AI, MCP servers, cloud, security and software modernization, written by the people who build it."
       >
         <a href="#articles" className="btn btn--primary btn--lg">
           Browse articles
           <Arrow />
         </a>
-        <a href="#newsletter" className="btn btn--secondary btn--lg">Get the digest</a>
+        <a href="#newsletter" className="btn btn--secondary btn--lg">Subscribe</a>
       </PageHero>
 
       <section id="articles" className="pb-24 sm:pb-28 relative scroll-mt-28">
@@ -149,8 +149,8 @@ export default function BlogPage({ searchParams }: { searchParams: SearchParams 
             <div className="relative max-w-xl mx-auto text-center">
               <SectionHeading
                 kicker="Newsletter"
-                title={<>Never miss a <span className="text-gradient">technical architecture release</span></>}
-                description="Monthly technical digest of our highest-impact whitepapers and architectures."
+                title={<>Never miss a <span className="text-gradient">new article</span></>}
+                description="Get our new articles on AI, MCP servers and software development by email. No spam, and you can unsubscribe anytime."
                 className="[&_h2]:text-3xl [&_h2]:sm:text-4xl [&_h2]:lg:text-5xl"
               />
               <NewsletterForm variant="blog" />
@@ -269,7 +269,7 @@ function FeaturedCard({ post, index }: { post: Post; index: number }) {
         </h2>
         <p className="text-base text-slate-400 leading-relaxed mb-7">{post.excerpt}</p>
         <span className="inline-flex items-center gap-2 text-sm font-semibold text-cyan-400">
-          Read blueprint
+          Read article
           <Arrow className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />
         </span>
       </div>
@@ -301,7 +301,7 @@ function PostCard({ post, index, delay }: { post: Post; index: number; delay: nu
             {post.readTime}
           </span>
           <span className="font-semibold text-cyan-400 flex items-center gap-1">
-            Read blueprint
+            Read article
             <Arrow className="w-3.5 h-3.5 transition-transform duration-300 group-hover:translate-x-1" />
           </span>
         </div>

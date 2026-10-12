@@ -2,11 +2,11 @@
 export const homeFaqs = [
   {
     q: 'What does Inovaraa Solutions do?',
-    a: 'Inovaraa Solutions is a software development company. We design, build and support custom web platforms, mobile apps, AI agents and MCP servers, with in-house QA and cloud deployment, for healthcare, logistics, finance, real estate and retail businesses.',
+    a: 'Inovaraa Solutions is a software development company. We design, build and support custom web platforms, mobile apps, AI agents and MCP servers, with in-house QA, for healthcare, logistics, finance, real estate, retail and education businesses. Cloud and DevOps work is delivered with our partner RytumX, and education projects with our partner Alpha Computers.',
   },
   {
     q: 'Do you build MCP (Model Context Protocol) servers?',
-    a: 'Yes. We build custom MCP servers that connect AI assistants such as Claude and ChatGPT to your APIs, databases and internal tools, with authentication, least-privilege permissions and logging. We also set up and host the servers for you.',
+    a: 'Yes. We build custom MCP servers that connect AI assistants such as Claude and ChatGPT to your APIs, databases and internal tools, with authentication, least-privilege permissions and logging. We can also set up and host the servers for you, together with our DevOps partner RytumX.',
   },
   {
     q: 'Which technologies do you work with?',
@@ -14,11 +14,11 @@ export const homeFaqs = [
   },
   {
     q: 'Who leads Inovaraa Solutions?',
-    a: 'Inovaraa Solutions is led by Tejas Daraniya (Chief Executive Officer), Nikhil Mahindrakar (Director) and Vasu Khandhediya (Chief Technology Officer).',
+    a: 'Inovaraa Solutions is led by Tejas Thakkar (Chief Executive Officer), Nikhil Mahindrakar (Director) and Vasu Thakkar (Chief Technology Officer).',
   },
   {
     q: 'Who retains intellectual property rights and codebase ownership?',
-    a: 'You retain 100% intellectual property rights and code ownership from day one. All code, infrastructure scripts and CI/CD pipelines are pushed directly into your repositories.',
+    a: 'You do. You own the intellectual property and all the code we write for you. Code, infrastructure scripts and CI/CD pipelines are pushed to your own repositories.',
   },
   {
     q: 'How do we start a project with you?',
