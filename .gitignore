@@ -39,3 +39,9 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# leads workbook (client contact details)
+/data/
+
+# example settings are safe to commit
+!.env.example

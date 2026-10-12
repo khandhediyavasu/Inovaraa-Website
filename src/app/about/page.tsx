@@ -69,7 +69,30 @@ const milestones = [
   { year: '2026', title: 'Autonomous Enterprise Era', desc: 'Operating 24/7 global mesh across 450+ Fortune 1000 organizations.', color: '#F472B6' },
 ];
 
-const rytumxServices = ['DevSecOps Implementation', 'Kubernetes Hardening', 'Cloud Security Auditing', 'FinOps'];
+const partners = [
+  {
+    id: 'rytumx',
+    name: 'RytumX',
+    initials: 'RX',
+    role: 'DevOps Partner',
+    color: '#34D399',
+    domain: 'rytumx.com',
+    url: 'https://www.rytumx.com/',
+    desc: 'Inovaraa Solutions and RytumX are associated companies. All DevOps work for our clients is delivered by RytumX, a specialist in cloud automation and DevSecOps that builds security into every stage of the software delivery lifecycle.',
+    services: ['DevSecOps Implementation', 'Kubernetes Hardening', 'Cloud Security Auditing', 'FinOps'],
+  },
+  {
+    id: 'alpha',
+    name: 'Alpha Computers',
+    initials: 'AC',
+    role: 'Education Partner',
+    color: '#F59E0B',
+    domain: 'alphaindia.in',
+    url: 'https://alphaindia.in/',
+    desc: 'Inovaraa Solutions has a tie-up with Alpha Computers for school and education projects. Alpha builds the Edusoft range of management software for schools, colleges and coaching classes, and together we deliver software for the education sector.',
+    services: ['School ERP', 'College & Classes ERP', 'Attendance & Timetable', 'Library & Bulk SMS'],
+  },
+];
 
 const accent = (hex: string) => ({ color: `color-mix(in srgb, ${hex} 70%, var(--ink))` });
 
@@ -257,37 +280,56 @@ export default function AboutPage() {
           <SectionHeading
             kicker="Partners & Alliances"
             id="partners-heading"
-            title={<>Our associate <span className="text-gradient">company</span></>}
+            title={<>Our associate <span className="text-gradient">companies</span></>}
             className="mb-14"
           />
 
-          <div
-            suppressHydrationWarning data-reveal="scale"
-            className="surface border-glow spotlight rounded-[2rem] p-7 sm:p-10 lg:p-12 max-w-5xl mx-auto grid grid-cols-1 lg:grid-cols-[0.9fr_1.1fr] gap-10 items-center"
-          >
-            <PartnerLink />
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-6xl mx-auto">
+            {partners.map((p, i) => (
+              <article
+                key={p.name}
+                suppressHydrationWarning data-reveal="scale"
+                style={{ '--d': `${i * 140}ms` } as CSSProperties}
+                className="surface border-glow spotlight lift group relative overflow-hidden rounded-[2rem] p-7 sm:p-9 flex flex-col"
+              >
+                <span
+                  className="absolute -top-24 -right-24 w-64 h-64 rounded-full blur-3xl opacity-20 transition-opacity duration-500 group-hover:opacity-35 pointer-events-none"
+                  style={{ background: p.color }}
+                  aria-hidden="true"
+                />
 
-            <div>
-              <div className="flex flex-wrap items-center gap-3 mb-4">
-                <h3 className="text-3xl font-extrabold text-white">RytumX</h3>
-                <span className="inline-flex items-center gap-1.5 text-[11px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-400">
-                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 pulse-soft" />
-                  DevOps Partner
-                </span>
-              </div>
-              <p className="text-sm sm:text-base text-slate-400 leading-relaxed mb-6">
-                Inovaraa Solutions and RytumX are associated companies. All DevOps work for our clients is delivered by RytumX, a specialist in cloud automation and DevSecOps that builds security into every stage of the software delivery lifecycle.
-              </p>
-              <div className="flex flex-wrap gap-2 mb-8">
-                {rytumxServices.map((s) => (
-                  <span key={s} className="text-xs font-medium px-3 py-1.5 rounded-full bg-white/5 border border-white/10 text-slate-300">{s}</span>
-                ))}
-              </div>
-              <a href="https://www.rytumx.com/" target="_blank" rel="noopener noreferrer" className="btn btn--secondary">
-                Visit rytumx.com
-                <svg className="btn-arrow w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" aria-hidden="true"><path d="M7 17 17 7M7 7h10v10" /></svg>
-              </a>
-            </div>
+                <div className="relative flex items-center justify-between gap-4 mb-8">
+                  <PartnerLink id={p.id} initials={p.initials} color={p.color} />
+                  <span
+                    className="inline-flex items-center gap-1.5 text-[11px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-full whitespace-nowrap"
+                    style={{ ...accent(p.color), background: `${p.color}1A`, border: `1px solid ${p.color}4D` }}
+                  >
+                    <span className="w-1.5 h-1.5 rounded-full pulse-soft" style={{ background: p.color }} />
+                    {p.role}
+                  </span>
+                </div>
+
+                <h3 className="relative text-2xl sm:text-3xl font-extrabold text-white">{p.name}</h3>
+                <div className="relative text-xs font-mono text-slate-500 mt-1 mb-4">{p.domain}</div>
+                <p className="relative text-sm sm:text-base text-slate-400 leading-relaxed mb-6">{p.desc}</p>
+
+                <ul className="relative flex flex-wrap gap-2 mb-8 list-none p-0 m-0">
+                  {p.services.map((s) => (
+                    <li key={s} className="text-xs font-medium px-3 py-1.5 rounded-full bg-white/5 border border-white/10 text-slate-300">{s}</li>
+                  ))}
+                </ul>
+
+                <a
+                  href={p.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="relative mt-auto pt-5 border-t border-white/10 flex items-center justify-between text-sm font-semibold text-white hover:text-cyan-400 transition-colors"
+                >
+                  Visit {p.domain}
+                  <svg className="btn-arrow w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" aria-hidden="true"><path d="M7 17 17 7M7 7h10v10" /></svg>
+                </a>
+              </article>
+            ))}
           </div>
         </div>
       </section>
@@ -339,44 +381,30 @@ export default function AboutPage() {
   );
 }
 
-/* Decorative Inovaraa <-> RytumX link graphic */
-function PartnerLink() {
+/* Decorative Inovaraa <-> partner link graphic */
+function PartnerLink({ id, initials, color }: { id: string; initials: string; color: string }) {
   return (
-    <div className="relative h-56 sm:h-64" aria-hidden="true">
-      <div className="absolute inset-0 bg-grid-fade opacity-70 rounded-3xl" />
-      <svg viewBox="0 0 320 220" className="absolute inset-0 w-full h-full">
+    <div className="flex items-center" aria-hidden="true">
+      <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-indigo-500 to-cyan-400 text-white flex items-center justify-center text-base font-black font-display shadow-lg shadow-indigo-500/30">
+        A
+      </div>
+      <svg viewBox="0 0 64 20" className="w-14 sm:w-16 h-5 -mx-px">
         <defs>
-          <linearGradient id="about-link" x1="0" y1="0" x2="1" y2="0">
+          <linearGradient id={`about-link-${id}`} gradientUnits="userSpaceOnUse" x1="0" y1="10" x2="64" y2="10">
             <stop offset="0" stopColor="#818CF8" />
-            <stop offset="1" stopColor="#34D399" />
+            <stop offset="1" stopColor={color} />
           </linearGradient>
         </defs>
-        <path d="M84 110 C 140 50, 180 170, 236 110" fill="none" stroke="url(#about-link)" strokeWidth="2" strokeDasharray="4 6" style={{ animation: 'dash-flow 1.4s linear infinite' }} />
-        <path d="M84 110 C 140 170, 180 50, 236 110" fill="none" stroke="url(#about-link)" strokeOpacity="0.4" strokeWidth="1.5" strokeDasharray="2 8" style={{ animation: 'dash-flow 2s linear infinite reverse' }} />
-        <circle r="4" fill="#22D3EE">
-          <animateMotion dur="3s" repeatCount="indefinite" path="M84 110 C 140 50, 180 170, 236 110" />
+        <path d="M0 10 H64" stroke={`url(#about-link-${id})`} strokeWidth="2" strokeDasharray="4 5" style={{ animation: 'dash-flow 1.4s linear infinite' }} />
+        <circle r="3" cy="10" fill={color}>
+          <animate attributeName="cx" values="0;64;0" dur="3s" repeatCount="indefinite" />
         </circle>
-        <circle r="3" fill="#F472B6">
-          <animateMotion dur="3.6s" repeatCount="indefinite" path="M236 110 C 180 50, 140 170, 84 110" />
-        </circle>
-        {[0, 1].map((k) => (
-          <circle key={k} cx={k ? 236 : 84} cy="110" r="44" fill="none" stroke={k ? '#34D399' : '#818CF8'} strokeOpacity="0.35">
-            <animate attributeName="r" values="44;56;44" dur="3.2s" begin={`${k * 1.2}s`} repeatCount="indefinite" />
-            <animate attributeName="stroke-opacity" values="0.35;0;0.35" dur="3.2s" begin={`${k * 1.2}s`} repeatCount="indefinite" />
-          </circle>
-        ))}
       </svg>
-      <div className="absolute left-[26.25%] top-1/2 -translate-x-1/2 -translate-y-1/2 flex flex-col items-center gap-2">
-        <div className="w-[4.5rem] h-[4.5rem] rounded-2xl bg-gradient-to-br from-indigo-500 to-cyan-400 text-white flex items-center justify-center text-xl font-black font-display shadow-lg shadow-indigo-500/30">
-          A
-        </div>
-        <span className="text-[11px] font-semibold text-slate-400 whitespace-nowrap">Inovaraa</span>
-      </div>
-      <div className="absolute left-[73.75%] top-1/2 -translate-x-1/2 -translate-y-1/2 flex flex-col items-center gap-2 float-slow">
-        <div className="w-[4.5rem] h-[4.5rem] rounded-2xl bg-gradient-to-br from-indigo-500 to-emerald-400 text-white flex items-center justify-center text-xl font-black font-display shadow-lg shadow-emerald-500/30" style={{ backgroundImage: 'linear-gradient(135deg, #34D399, #22D3EE)' }}>
-          RX
-        </div>
-        <span className="text-[11px] font-semibold text-slate-400 whitespace-nowrap">RytumX</span>
+      <div
+        className="w-12 h-12 rounded-2xl text-white flex items-center justify-center text-base font-black font-display shadow-lg"
+        style={{ backgroundImage: `linear-gradient(135deg, ${color}, #22D3EE)` }}
+      >
+        {initials}
       </div>
     </div>
   );

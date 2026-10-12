@@ -83,8 +83,8 @@ export const projects: Project[] = [
     screen: 'dashboard',
   },
   {
-    slug: 'shaligram-buildcon',
-    name: 'Shaligram BuildCon',
+    slug: 'buildcon',
+    name: 'BuildCon',
     category: 'Real Estate',
     description:
       'A booking system for apartments and shops. It covers inquiries, projects, bookings, receipts and unit buy-sell, with daily inquiry reports.',

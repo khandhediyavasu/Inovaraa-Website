@@ -82,6 +82,16 @@ const industries: Industry[] = [
     color: '#38BDF8',
     icon: <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />,
   },
+  {
+    title: 'Education & EdTech',
+    short: 'Education',
+    slug: 'education',
+    desc: 'School, college and coaching-class management software, delivered in partnership with Alpha Computers and their Edusoft range.',
+    challenges: ['Admissions, fees and student records in one place', 'Automated attendance, timetables and bell schedules', 'Parent communication through SMS and mobile apps', 'Library, exams and report cards without paperwork'],
+    services: ['Software Development', 'Digital Transformation', 'Cloud Infrastructure', 'Managed Services'],
+    color: '#FB923C',
+    icon: <><path d="M22 10 12 5 2 10l10 5 10-5Z" /><path d="M6 12v5c3 3 9 3 12 0v-5" /><line x1="22" y1="10" x2="22" y2="16" /></>,
+  },
 ];
 
 // Sectors where the team has shipped real products (mirrors the home page)
@@ -89,9 +99,10 @@ const shipped: { sector: string; projects: string[]; color: string }[] = [
   { sector: 'Healthcare', projects: ['Ram Care', 'Plus Physio'], color: '#F472B6' },
   { sector: 'Logistics & Shipping', projects: ['Shipping Management'], color: '#38BDF8' },
   { sector: 'Finance & Compliance', projects: ['EUC Compliance'], color: '#A78BFA' },
-  { sector: 'Real Estate', projects: ['Shaligram BuildCon'], color: '#FBBF24' },
+  { sector: 'Real Estate', projects: ['BuildCon'], color: '#FBBF24' },
   { sector: 'Food Supply & Retail', projects: ['Food Stock', 'Tavili Native'], color: '#34D399' },
   { sector: 'Sales & Self-Service', projects: ['Sales CRM', 'Vadtal Kiosk'], color: '#22D3EE' },
+  { sector: 'Education', projects: ['Alpha Computers'], color: '#FB923C' },
 ];
 
 const serviceColumns = Array.from(new Set(industries.flatMap((i) => i.services)));
@@ -132,7 +143,7 @@ export default function IndustriesPage() {
       {/* Sector index */}
       <section className="relative pb-20" aria-label="Sector index">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <ul className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3 list-none p-0 m-0">
+          <ul className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-7 gap-3 list-none p-0 m-0">
             {industries.map((ind, i) => (
               <li key={ind.slug} suppressHydrationWarning data-reveal style={{ '--d': `${i * 70}ms`, '--tile': ind.color } as CSSProperties}>
                 <Link href={`#${ind.slug}`} className="surface-glass spotlight lift group rounded-2xl p-4 flex flex-col items-start gap-4 h-full">
@@ -326,12 +337,12 @@ export default function IndustriesPage() {
                 </Link>
               </div>
             </div>
-            <ul className="relative grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 list-none p-0 m-0">
+            <ul className="relative grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 list-none p-0 m-0">
               {shipped.map((s, i) => (
                 <li
                   key={s.sector}
                   suppressHydrationWarning data-reveal
-                  style={{ '--d': `${(i % 3) * 80}ms` } as CSSProperties}
+                  style={{ '--d': `${(i % 4) * 80}ms` } as CSSProperties}
                   className="surface spotlight lift rounded-2xl p-5 flex flex-col gap-3"
                 >
                   <span className="inline-flex items-center gap-2.5 text-base font-semibold text-white">

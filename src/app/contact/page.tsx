@@ -4,7 +4,6 @@ import { useState, useRef } from 'react';
 import type { CSSProperties, FormEvent, ReactNode } from 'react';
 import PageHero from '@/components/ui/PageHero';
 import SectionHeading from '@/components/ui/SectionHeading';
-import { openEmail } from '@/lib/mailto';
 
 const offices = [
   { city: 'New York', country: 'USA', address: '350 Fifth Avenue, Suite 4200, New York, NY 10118', flag: '🇺🇸', color: '#22D3EE' },
@@ -57,6 +56,7 @@ export default function ContactPage() {
   });
   const [status, setStatus] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle');
   const [errors, setErrors] = useState<Partial<FormData>>({});
+  const [submitError, setSubmitError] = useState('');
   const formRef = useRef<HTMLFormElement>(null);
 
   const validate = () => {
@@ -72,28 +72,29 @@ export default function ContactPage() {
     return e;
   };
 
-  const handleSubmit = (e: FormEvent) => {
+  // Sends to /api/contact, which emails info@inovaraa.com and adds a row to the leads Excel file
+  const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
     const errs = validate();
     if (Object.keys(errs).length > 0) { setErrors(errs); return; }
     setErrors({});
-    // No email backend yet: hand the inquiry to the visitor's email app, fully written
-    // and addressed to info@inovaraa.com, so it actually reaches us. Instant, no fake delay.
-    const f = formData;
-    openEmail({
-      subject: `Project inquiry: ${f.service} (${f.company})`,
-      body: [
-        `Name: ${f.firstName} ${f.lastName}`,
-        `Email: ${f.email}`,
-        `Company: ${f.company}`,
-        f.phone ? `Phone: ${f.phone}` : null,
-        `Service: ${f.service}`,
-        '',
-        f.message,
-      ].filter((line) => line !== null).join('\n'),
-    });
-    setStatus('success');
-    formRef.current?.reset();
+    setSubmitError('');
+    setStatus('submitting');
+    try {
+      const website = (formRef.current?.elements.namedItem('website') as HTMLInputElement | null)?.value ?? '';
+      const res = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ ...formData, website }),
+      });
+      const data = (await res.json().catch(() => ({}))) as { ok?: boolean; error?: string };
+      if (!res.ok || !data.ok) throw new Error(data.error || 'Something went wrong.');
+      setStatus('success');
+      formRef.current?.reset();
+    } catch (err) {
+      setSubmitError(err instanceof Error ? err.message : 'Something went wrong.');
+      setStatus('error');
+    }
   };
 
   const handleChange = (field: keyof FormData) => (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
@@ -137,14 +138,20 @@ export default function ContactPage() {
                     </svg>
                     <style>{'@keyframes contact-draw { to { stroke-dashoffset: 0; } }'}</style>
                   </div>
-                  <h3 className="text-2xl font-bold text-white mb-2">Almost done: press Send</h3>
+                  <h3 className="text-2xl font-bold text-white mb-2">Message received</h3>
                   <p className="text-sm text-slate-300 leading-relaxed max-w-md mx-auto">
-                    Your email app has opened with your message already written to info@inovaraa.com. Press Send and we&apos;ll reply within 24 hours.
-                    If nothing opened, email us directly at <a href="mailto:info@inovaraa.com" className="text-cyan-400 underline underline-offset-4">info@inovaraa.com</a>.
+                    Thank you for reaching out. Our team has your details and will reply within 24 hours.
                   </p>
                 </div>
               ) : (
                 <form ref={formRef} onSubmit={handleSubmit} noValidate className="relative flex flex-col gap-5">
+                  {/* Spam trap: hidden from people, bots tend to fill it */}
+                  <input type="text" name="website" tabIndex={-1} autoComplete="off" aria-hidden="true" className="absolute -left-[9999px] w-px h-px opacity-0" />
+                  {status === 'error' && submitError && (
+                    <p role="alert" className="rounded-2xl border border-rose-400/40 bg-rose-500/10 px-4 py-3 text-sm text-rose-300">
+                      {submitError} You can also email us at <a href="mailto:info@inovaraa.com" className="underline underline-offset-4">info@inovaraa.com</a>.
+                    </p>
+                  )}
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                     <div>
                       <label htmlFor="firstName" className={labelCls}>First Name <Req /></label>
