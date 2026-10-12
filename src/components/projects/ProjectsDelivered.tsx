@@ -38,7 +38,7 @@ export default function ProjectsDelivered({
               </svg>
               <h3 className="text-xl sm:text-2xl font-semibold text-white tracking-tight">Impact by the numbers</h3>
             </div>
-            <dl className="grid grid-cols-2 lg:grid-cols-4 gap-y-8">
+            <dl className="grid grid-cols-3 gap-y-8">
               {impactStats.map((s) => (
                 <div key={s.label} className="impact-stat flex flex-col-reverse items-center text-center px-3">
                   <dt className="text-sm sm:text-base text-slate-300 mt-2 leading-snug">{s.label}</dt>

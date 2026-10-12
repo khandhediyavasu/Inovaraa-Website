@@ -160,17 +160,9 @@ body {
   box-shadow: 0 20px 50px -24px rgba(15, 23, 42, 0.18);
 }
 
-/* Vertical dividers between stats (desktop: all but first; 2-col: right column only) */
-@media (min-width: 1024px) {
-  .impact-stat + .impact-stat {
-    border-left: 1px solid var(--border-color);
-  }
-}
-
-@media (max-width: 1023px) {
-  .impact-stat:nth-child(even) {
-    border-left: 1px solid var(--border-color);
-  }
+/* Vertical dividers between stats (single row of three at every width) */
+.impact-stat + .impact-stat {
+  border-left: 1px solid var(--border-color);
 }
 
 /* Our Work cards: separate rounded cards, inset gradient panel, accent glow on hover */

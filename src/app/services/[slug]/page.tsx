@@ -26,7 +26,7 @@ const serviceDatabase: Record<string, ServiceData> = {
     title: 'Custom Software Development',
     subtitle: 'Web, mobile and back-office software built around how your business actually works, from the first release to ongoing improvements.',
     icon: '💻',
-    overview: 'We build custom web and mobile applications, internal tools and SaaS products with .NET Core, Angular, React, Next.js, Node.js and React Native. Our in-house team of 12 has delivered 9+ projects across healthcare, logistics, real estate, food supply and finance. You work directly with the engineers writing the code, and you own everything we build.',
+    overview: 'We build custom web and mobile applications, internal tools and SaaS products with .NET Core, Angular, React, Next.js, Node.js and React Native. Our in-house team has delivered 9+ projects across healthcare, logistics, real estate, food supply and finance. You work directly with the engineers writing the code, and you own everything we build.',
     benefits: [
       { title: 'Software that fits your process', desc: 'We model the system on your real workflows, roles and data instead of forcing you into an off-the-shelf tool.' },
       { title: 'Direct access to the team', desc: 'No layers of account managers. You talk to the developers and testers working on your product.' },
@@ -69,7 +69,7 @@ const serviceDatabase: Record<string, ServiceData> = {
     },
     faqs: [
       { q: 'Who owns the source code?', a: 'You do. All source code, designs and documentation we produce for your project belong to you, and you have repository access throughout.' },
-      { q: 'What does a project team look like?', a: 'A typical team includes a project lead, developers and a QA engineer from our in-house team of 12. Cloud and DevOps work is handled together with our partner RytumX. Team size depends on the scope of the project.' },
+      { q: 'What does a project team look like?', a: 'A typical team includes a project lead, developers and a QA engineer from our in-house team. Cloud and DevOps work is handled together with our partner RytumX. Team size depends on the scope of the project.' },
       { q: 'Can you take over an existing application?', a: 'Yes. We start with a code review to understand where things stand, fix the most urgent issues, and then move on to new features.' },
     ],
   },

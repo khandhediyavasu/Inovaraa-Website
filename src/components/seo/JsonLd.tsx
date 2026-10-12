@@ -42,7 +42,6 @@ export function organizationSchema() {
     email: SITE.email,
     telephone: SITE.phone,
     address: { '@type': 'PostalAddress', addressLocality: SITE.address.city, addressRegion: SITE.address.region, addressCountry: SITE.address.countryCode },
-    numberOfEmployees: { '@type': 'QuantitativeValue', value: 12 },
     employee: leaders.map((l) => ({ '@id': `${SITE.url}/team/${l.slug}#person` })),
     knowsAbout: [
       'Software development',

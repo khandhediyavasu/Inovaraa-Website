@@ -1,6 +1,6 @@
 # Inovaraa Solutions
 
-> Inovaraa Solutions (inovaraa.com) is a software development company based in Ahmedabad, Gujarat, India, with a team of 12. It builds AI agents, MCP (Model Context Protocol) servers, custom web platforms and mobile apps for healthcare, logistics, finance, real estate, retail and education businesses. It has delivered 9+ projects and has 5+ years of engineering experience. Contact: info@inovaraa.com, +91 94997 38788.
+> Inovaraa Solutions (inovaraa.com) is a software development company based in Ahmedabad, Gujarat, India. It builds AI agents, MCP (Model Context Protocol) servers, custom web platforms and mobile apps for healthcare, logistics, finance, real estate, retail and education businesses. It has delivered 9+ projects and has 7+ years of engineering experience. Contact: info@inovaraa.com, +91 94997 38788.
 
 ## Leadership
 - Tejas Thakkar: Chief Executive Officer (https://inovaraa.com/team/tejas-thakkar)

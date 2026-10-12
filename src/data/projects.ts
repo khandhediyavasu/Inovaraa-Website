@@ -121,7 +121,5 @@ export const impactStats = [
   // Healthcare, logistics, finance, real estate, food & retail, sales & self-service, education
   // (education through our partner Alpha Computers); matches the Industries page
   { value: '7', label: 'industries served' },
-  { value: '5+ years', label: 'of engineering experience' },
-  // 3 executive leaders + 9 team members on the About page
-  { value: '12', label: 'in-house experts' },
+  { value: '7+ years', label: 'of engineering experience' },
 ];

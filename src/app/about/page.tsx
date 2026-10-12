@@ -108,7 +108,7 @@ export default function AboutPage() {
         crumb="About"
         kicker="About Us"
         title={<>A small team that <span className="text-gradient">ships real software</span></>}
-        description="Inovaraa Solutions is an Ahmedabad-based team of 12 building web platforms, mobile apps, AI agents and MCP servers for healthcare, logistics, finance, real estate, retail and education."
+        description="Inovaraa Solutions is an Ahmedabad-based team building web platforms, mobile apps, AI agents and MCP servers for healthcare, logistics, finance, real estate, retail and education."
       >
         <a href="#leadership" className="btn btn--primary btn--lg">
           Meet the leadership

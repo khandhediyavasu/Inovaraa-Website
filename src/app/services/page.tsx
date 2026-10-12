@@ -130,7 +130,7 @@ export default function ServicesPage() {
         crumb="Services"
         kicker="What we do"
         title={<>Software, AI and cloud services from <span className="text-gradient">one hands-on team</span></>}
-        description="Inovaraa Solutions is a team of 12 in-house engineers, designers and testers in Ahmedabad, India. We build custom software, connect AI assistants to your systems and look after what we ship, with cloud and DevOps work delivered alongside our partner RytumX."
+        description="Inovaraa Solutions is a team of in-house engineers, designers and testers in Ahmedabad, India. We build custom software, connect AI assistants to your systems and look after what we ship, with cloud and DevOps work delivered alongside our partner RytumX."
       >
         <Link href="#catalog" className="btn btn--primary btn--lg">
           Explore services

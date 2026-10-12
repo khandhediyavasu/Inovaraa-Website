@@ -14,7 +14,7 @@ const APPLY_HREF = 'mailto:info@inovaraa.com?subject=Job%20application';
 const perks: { title: string; desc: string; color: string; span: string; icon: ReactNode }[] = [
   {
     title: 'A Small, Senior Team',
-    desc: 'We are 12 people. Everyone ships, everyone reviews code, and your work is visible from day one.',
+    desc: 'We are a small team. Everyone ships, everyone reviews code, and your work is visible from day one.',
     color: '#22D3EE',
     span: 'lg:col-span-2',
     icon: <><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" /><circle cx="9" cy="7" r="4" /><path d="M22 21v-2a4 4 0 0 0-3-3.87" /><path d="M16 3.13a4 4 0 0 1 0 7.75" /></>,
@@ -67,7 +67,7 @@ export default function CareersPage() {
         crumb="Careers"
         kicker="Careers"
         title={<>Build real software with <span className="text-gradient">a small, senior team</span></>}
-        description="Inovaraa Solutions is a 12-person software company based in Ahmedabad, India. We don't have open roles right now, but we're always open to talented people."
+        description="Inovaraa Solutions is a small software company based in Ahmedabad, India. We don't have open roles right now, but we're always open to talented people."
       >
         <a href={APPLY_HREF} className="btn btn--primary btn--lg">
           Email your CV

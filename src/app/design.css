@@ -5,7 +5,7 @@
    Usage cheatsheet
    - data-reveal / data-reveal="left|right|scale|fade" + style="--d:120ms"
        fade-in on scroll (driven by <Effects/>). Safe on hover cards.
-   - data-count on an element whose text is e.g. "9+" or "5+ years"
+   - data-count on an element whose text is e.g. "9+" or "7+ years"
        counts up from 0 when revealed.
    - .spotlight            cursor-following glow inside a card
    - .border-glow          rotating gradient border

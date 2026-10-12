@@ -80,7 +80,7 @@ export default function Hero() {
                 ))}
               </div>
               <div className="text-sm leading-tight">
-                <div className="font-semibold text-white">12 in-house experts</div>
+                <div className="font-semibold text-white">In-house experts</div>
                 <div className="text-slate-500">{projects.length}+ projects delivered across 7 industries</div>
               </div>
             </div>

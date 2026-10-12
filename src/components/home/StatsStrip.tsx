@@ -7,7 +7,7 @@ export default function StatsStrip() {
   return (
     <section className="relative py-10" aria-label="Impact by the numbers">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4">
           {impactStats.map((s, i) => (
             <div
               key={s.label}
