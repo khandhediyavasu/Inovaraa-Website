@@ -13,11 +13,11 @@ import { homeFaqs } from '@/data/faqs';
 import { SITE } from '@/data/site';
 
 export const metadata: Metadata = {
-  title: { absolute: `${SITE.name} | AI, MCP Server & Software Development Company` },
+  title: { absolute: `${SITE.name} | AI & Software Development Company in Ahmedabad` },
   description: SITE.description,
   alternates: { canonical: '/' },
   openGraph: {
-    title: `${SITE.name} | AI, MCP Server & Software Development Company`,
+    title: `${SITE.name} | AI & Software Development Company in Ahmedabad`,
     description: SITE.description,
     url: '/',
   },

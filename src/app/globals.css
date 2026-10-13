@@ -37,6 +37,10 @@
   --btn-secondary-text: #FFFFFF;
   --shadow-card: 0 10px 30px -10px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.08);
   --footer-bg: #03060E;
+  --scrollbar-track: #050811;
+  --scrollbar-thumb: rgba(99, 102, 241, 0.55);
+  --scrollbar-thumb-hover: rgba(99, 102, 241, 0.85);
+  --scrollbar-thumb-border: #050811;
   color-scheme: dark;
 }
 
@@ -60,7 +64,52 @@
   --btn-secondary-text: #0F172A;
   --shadow-card: 0 10px 30px -10px rgba(0, 0, 0, 0.07), 0 4px 6px -2px rgba(0, 0, 0, 0.03);
   --footer-bg: #0F172A;
+  --scrollbar-track: #F1F5F9;
+  --scrollbar-thumb: rgba(99, 102, 241, 0.45);
+  --scrollbar-thumb-hover: rgba(99, 102, 241, 0.75);
+  --scrollbar-thumb-border: #F1F5F9;
   color-scheme: light;
+}
+
+/* ==========================================================================
+   CUSTOM SCROLLBAR
+   ========================================================================== */
+
+/* Chromium, Safari, Edge */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--scrollbar-track);
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, var(--scrollbar-thumb), rgba(6, 182, 212, 0.6));
+  border: 1px solid var(--scrollbar-thumb-border);
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, var(--scrollbar-thumb-hover), rgba(6, 182, 212, 0.9));
+}
+
+::-webkit-scrollbar-thumb:horizontal {
+  background: linear-gradient(90deg, var(--scrollbar-thumb), rgba(6, 182, 212, 0.6));
+}
+
+::-webkit-scrollbar-corner {
+  background: var(--scrollbar-track);
+}
+
+/* Firefox — only where ::-webkit-scrollbar is unsupported, since newer Chromium
+   ignores the webkit pseudo-elements once scrollbar-color is set */
+@supports not selector(::-webkit-scrollbar) {
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: var(--scrollbar-thumb) var(--scrollbar-track);
+  }
 }
 
 /* Base Body Styles */

@@ -89,10 +89,6 @@ export default function Hero() {
           {/* Orbit graphic */}
           <div suppressHydrationWarning data-reveal="scale" style={{ '--d': '200ms' } as CSSProperties} className="relative mx-auto w-full max-w-[540px] aspect-square">
             <OrbitSystem />
-
-            <StatusCard className="top-[6%] left-[-4%] sm:left-[-8%] float-slow" color="#34D399" title="Build passed" sub="main · 2m ago" icon="check" />
-            <StatusCard className="bottom-[12%] right-[-4%] sm:right-[-6%] float-slower" color="#818CF8" title="Release v2.4 live" sub="Web + iOS + Android" icon="rocket" />
-            <StatusCard className="bottom-[2%] left-[4%] float-slow hidden sm:flex" color="#22D3EE" title="Code review approved" sub="QA sign-off ✓" icon="eye" />
           </div>
         </div>
       </div>
@@ -158,37 +154,6 @@ function OrbitSystem() {
           <PixelMark className="relative z-[2] w-[64%] h-[64%]" title={SITE.name} />
         </div>
       </div>
-    </div>
-  );
-}
-
-function StatusCard({
-  className,
-  color,
-  title,
-  sub,
-  icon,
-}: {
-  className: string;
-  color: string;
-  title: string;
-  sub: string;
-  icon: 'check' | 'rocket' | 'eye';
-}) {
-  const paths = {
-    check: <polyline points="20 6 9 17 4 12" />,
-    rocket: <path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09zM12 15l-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z" />,
-    eye: <><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" /><circle cx="12" cy="12" r="3" /></>,
-  };
-  return (
-    <div className={`absolute z-10 surface-glass flex items-center gap-3 pl-2 pr-4 py-2 rounded-2xl shadow-2xl ${className}`} aria-hidden="true">
-      <span className="w-9 h-9 rounded-xl flex items-center justify-center" style={{ background: `${color}22`, color }}>
-        <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">{paths[icon]}</svg>
-      </span>
-      <span className="leading-tight">
-        <span className="block text-[13px] font-semibold text-white">{title}</span>
-        <span className="block text-[11px] text-slate-400">{sub}</span>
-      </span>
     </div>
   );
 }

@@ -1,7 +1,7 @@
 import { ImageResponse } from 'next/og';
 
 // Share image used when inovaraa.com is posted on LinkedIn, WhatsApp, X, Slack, etc.
-export const alt = 'Inovaraa Solutions: AI, MCP Server & Software Development Company';
+export const alt = 'Inovaraa Solutions: AI & Software Development Company in Ahmedabad';
 export const size = { width: 1200, height: 630 };
 export const contentType = 'image/png';
 

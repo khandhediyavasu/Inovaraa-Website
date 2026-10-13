@@ -32,16 +32,25 @@ export function personSchema(l: Leader) {
 
 export function organizationSchema() {
   return {
-    '@type': 'Organization',
+    '@type': ['Organization', 'ProfessionalService'],
     '@id': ORG_ID,
     name: SITE.name,
-    alternateName: [SITE.shortName, 'inovaraa.com'],
+    alternateName: [...SITE.alternateNames, 'inovaraa.com'],
     url: SITE.url,
     logo: { '@type': 'ImageObject', url: `${SITE.url}/icon.svg` },
     description: SITE.description,
     email: SITE.email,
     telephone: SITE.phone,
     address: { '@type': 'PostalAddress', addressLocality: SITE.address.city, addressRegion: SITE.address.region, addressCountry: SITE.address.countryCode },
+    geo: { '@type': 'GeoCoordinates', latitude: SITE.geo.latitude, longitude: SITE.geo.longitude },
+    areaServed: [
+      { '@type': 'City', name: 'Ahmedabad' },
+      { '@type': 'State', name: 'Gujarat' },
+      { '@type': 'Country', name: 'India' },
+      'Worldwide',
+    ],
+    image: `${SITE.url}/opengraph-image`,
+    priceRange: '$',
     employee: leaders.map((l) => ({ '@id': `${SITE.url}/team/${l.slug}#person` })),
     knowsAbout: [
       'Software development',

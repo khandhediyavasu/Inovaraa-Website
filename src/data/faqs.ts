@@ -13,6 +13,10 @@ export const homeFaqs = [
     a: 'Our core stack is .NET Core and C#, Angular, React and Next.js, Node.js, SQL Server and MongoDB, with Azure, AWS, Docker and Linux for hosting. For AI work we use the Model Context Protocol SDKs and the Claude and OpenAI APIs.',
   },
   {
+    q: 'Where is Inovaraa Solutions located?',
+    a: 'Inovaraa Solutions is a software development company based in Ahmedabad, Gujarat, India, working with clients across India and worldwide. People sometimes spell our name Innovara, Inovara or Inovaara; the official spelling is Inovaraa, at inovaraa.com.',
+  },
+  {
     q: 'Who leads Inovaraa Solutions?',
     a: 'Inovaraa Solutions is led by Tejas Thakkar (Chief Executive Officer), Nikhil Mahindrakar (Director) and Vasu Thakkar (Chief Technology Officer).',
   },

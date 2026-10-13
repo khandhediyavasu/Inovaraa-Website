@@ -12,7 +12,7 @@ export const viewport: Viewport = {
 export const metadata: Metadata = {
   metadataBase: new URL(SITE.url),
   title: {
-    default: `${SITE.name} | AI, MCP Server & Software Development Company`,
+    default: `${SITE.name} | AI & Software Development Company in Ahmedabad`,
     template: `%s | ${SITE.name}`,
   },
   description: SITE.description,
@@ -32,12 +32,12 @@ export const metadata: Metadata = {
     type: 'website',
     locale: 'en_IN',
     siteName: SITE.name,
-    title: `${SITE.name} | AI, MCP Server & Software Development Company`,
+    title: `${SITE.name} | AI & Software Development Company in Ahmedabad`,
     description: SITE.description,
   },
   twitter: {
     card: 'summary_large_image',
-    title: `${SITE.name} | AI, MCP Server & Software Development Company`,
+    title: `${SITE.name} | AI & Software Development Company in Ahmedabad`,
     description: SITE.tagline,
     creator: SITE.twitterHandle,
   },
