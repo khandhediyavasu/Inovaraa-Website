@@ -112,7 +112,7 @@ export default function Footer() {
             <div className="flex flex-col gap-1.5 text-sm">
               <a href={`mailto:${SITE.email}`} className="w-fit text-slate-300 hover:text-cyan-400 transition-colors">{SITE.email}</a>
               <a href={SITE.phoneHref} className="w-fit text-slate-300 hover:text-cyan-400 transition-colors">{SITE.phone}</a>
-              <span className="text-slate-400">{SITE.location}</span>
+              <Link href="/software-development-company-ahmedabad" className="w-fit text-slate-400 hover:text-cyan-400 transition-colors">{SITE.location}</Link>
             </div>
 
             <NewsletterForm />

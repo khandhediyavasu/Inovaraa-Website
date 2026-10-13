@@ -36,7 +36,7 @@
   --aurora-1: rgba(99, 102, 241, 0.32);
   --aurora-2: rgba(34, 211, 238, 0.22);
   --aurora-3: rgba(244, 114, 182, 0.16);
-  --font-display: 'Bricolage Grotesque', 'Plus Jakarta Sans', system-ui, sans-serif;
+  --font-display: var(--font-bricolage), var(--font-jakarta), system-ui, sans-serif;
 }
 
 [data-theme="light"] {

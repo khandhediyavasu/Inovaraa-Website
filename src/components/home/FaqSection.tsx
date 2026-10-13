@@ -2,9 +2,9 @@
 
 import { useState, type CSSProperties } from 'react';
 import Link from 'next/link';
-import { homeFaqs as faqs } from '@/data/faqs';
+import { homeFaqs } from '@/data/faqs';
 
-export default function FaqSection() {
+export default function FaqSection({ faqs = homeFaqs }: { faqs?: { q: string; a: string }[] }) {
   const [openIdx, setOpenIdx] = useState<number | null>(0);
 
   return (

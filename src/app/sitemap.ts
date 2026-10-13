@@ -35,6 +35,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: 'monthly' as const,
       priority: s === 'ai-agents-mcp-servers' || s === 'software-development' ? 0.9 : 0.7,
     })),
+    { url: `${baseUrl}/software-development-company-ahmedabad`, lastModified: now, changeFrequency: 'monthly', priority: 0.9 },
     { url: `${baseUrl}/about`, lastModified: now, changeFrequency: 'monthly', priority: 0.8 },
     ...leaders.map((l) => ({ url: `${baseUrl}/team/${l.slug}`, lastModified: now, changeFrequency: 'monthly' as const, priority: 0.7 })),
     { url: `${baseUrl}/projects`, lastModified: now, changeFrequency: 'monthly', priority: 0.8 },
