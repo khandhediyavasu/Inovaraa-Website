@@ -37,7 +37,8 @@ export function organizationSchema() {
     name: SITE.name,
     alternateName: [...SITE.alternateNames, 'inovaraa.com'],
     url: SITE.url,
-    logo: { '@type': 'ImageObject', url: `${SITE.url}/icon.svg` },
+    // Google needs a raster logo of at least 112x112 for the knowledge panel and search results
+    logo: { '@type': 'ImageObject', url: `${SITE.url}/icon-512.png`, width: 512, height: 512 },
     description: SITE.description,
     email: SITE.email,
     telephone: SITE.phone,
