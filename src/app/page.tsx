@@ -12,12 +12,16 @@ import JsonLd, { faqSchema } from '@/components/seo/JsonLd';
 import { homeFaqs } from '@/data/faqs';
 import { SITE } from '@/data/site';
 
+// The bare brand "Inovaraa" leads the title so the home page ranks for that one-word search,
+// not only for "Inovaraa Solutions".
+const HOME_TITLE = `${SITE.shortName} – AI & Software Development Company in Ahmedabad | ${SITE.name}`;
+
 export const metadata: Metadata = {
-  title: { absolute: `${SITE.name} | AI & Software Development Company in Ahmedabad` },
+  title: { absolute: HOME_TITLE },
   description: SITE.description,
   alternates: { canonical: '/' },
   openGraph: {
-    title: `${SITE.name} | AI & Software Development Company in Ahmedabad`,
+    title: HOME_TITLE,
     description: SITE.description,
     url: '/',
   },

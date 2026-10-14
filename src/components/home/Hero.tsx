@@ -28,7 +28,7 @@ export default function Hero() {
         <div className="grid grid-cols-1 lg:grid-cols-[1.1fr_0.9fr] gap-14 lg:gap-8 items-center">
           {/* Copy */}
           <div className="flex flex-col items-start">
-            <div suppressHydrationWarning data-reveal className="kicker mb-7">Web · Mobile · AI · Cloud</div>
+            <div suppressHydrationWarning data-reveal className="kicker mb-7">Inovaraa · Web · Mobile · AI · Cloud</div>
 
             <h1
               suppressHydrationWarning data-reveal
@@ -52,8 +52,8 @@ export default function Hero() {
               style={{ '--d': '160ms' } as CSSProperties}
               className="mt-7 text-base sm:text-lg text-slate-400 leading-relaxed max-w-xl"
             >
-              Inovaraa Solutions is a software development company building AI agents, MCP servers, web platforms and
-              mobile apps for healthcare, logistics, finance, insurance, real estate, retail and education.
+              <strong className="text-white font-semibold">Inovaraa</strong> (Inovaraa Solutions) is a software development
+              company in Ahmedabad, India, building AI agents, MCP servers, web platforms and mobile apps for healthcare, logistics, finance, insurance, real estate, retail and education.
             </p>
 
             <div suppressHydrationWarning data-reveal style={{ '--d': '240ms' } as CSSProperties} className="mt-9 flex flex-col sm:flex-row gap-3 w-full sm:w-auto">

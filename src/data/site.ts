@@ -30,13 +30,17 @@ export const SITE = {
     'Innovaraa Solutions',
     'Inovaara Solutions',
   ],
+  // Search engine ownership tokens: paste the content="..." value of each verification meta tag.
+  // Google: Search Console > Add property > URL prefix https://inovaraa.com > HTML tag
+  // Bing: Bing Webmaster Tools > Add site > HTML Meta Tag (Bing's index also feeds ChatGPT and Copilot search)
+  verification: { google: '', bing: '' },
   mapUrl: 'https://www.google.com/maps/search/?api=1&query=Ahmedabad%2C+Gujarat%2C+India',
   linkedin: 'https://www.linkedin.com/company/inovaraa',
   twitter: 'https://twitter.com/inovaraa',
   twitterHandle: '@inovaraa',
   tagline: 'Software development company building AI agents, MCP servers, web platforms and mobile apps.',
   description:
-    'Inovaraa Solutions is a software development company that builds AI agents, MCP (Model Context Protocol) servers, custom web platforms, mobile apps and cloud solutions for healthcare, logistics, finance, insurance, real estate, retail and education businesses.',
+    'Inovaraa (Inovaraa Solutions) is a software development company in Ahmedabad, India that builds AI agents, MCP (Model Context Protocol) servers, custom web platforms, mobile apps and cloud solutions for healthcare, logistics, finance, insurance, real estate, retail and education businesses.',
   // Search phrases the site is written to rank for
   keywords: [
     'Inovaraa',

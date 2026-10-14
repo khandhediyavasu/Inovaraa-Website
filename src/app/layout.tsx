@@ -18,7 +18,7 @@ export const viewport: Viewport = {
 export const metadata: Metadata = {
   metadataBase: new URL(SITE.url),
   title: {
-    default: `${SITE.name} | AI & Software Development Company in Ahmedabad`,
+    default: `${SITE.shortName} – AI & Software Development Company in Ahmedabad | ${SITE.name}`,
     template: `%s | ${SITE.name}`,
   },
   description: SITE.description,
@@ -38,17 +38,20 @@ export const metadata: Metadata = {
     type: 'website',
     locale: 'en_IN',
     siteName: SITE.name,
-    title: `${SITE.name} | AI & Software Development Company in Ahmedabad`,
+    title: `${SITE.shortName} – AI & Software Development Company in Ahmedabad | ${SITE.name}`,
     description: SITE.description,
   },
   twitter: {
     card: 'summary_large_image',
-    title: `${SITE.name} | AI & Software Development Company in Ahmedabad`,
+    title: `${SITE.shortName} – AI & Software Development Company in Ahmedabad | ${SITE.name}`,
     description: SITE.tagline,
     creator: SITE.twitterHandle,
   },
-  // Paste the Google Search Console verification token here once the domain is added there
-  // verification: { google: 'YOUR-TOKEN' },
+  // Tokens live in SITE.verification; empty ones are left out of the page
+  verification: {
+    ...(SITE.verification.google ? { google: SITE.verification.google } : {}),
+    ...(SITE.verification.bing ? { other: { 'msvalidate.01': SITE.verification.bing } } : {}),
+  },
 };
 
 import { ThemeProvider } from '@/components/ThemeProvider';
@@ -98,8 +101,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                 '@type': 'WebSite',
                 '@id': WEBSITE_ID,
                 url: SITE.url,
-                name: SITE.name,
-                alternateName: SITE.shortName,
+                // Google shows WebSite.name as the site name in results, so the one-word brand goes first
+                name: SITE.shortName,
+                alternateName: [SITE.name, 'inovaraa.com'],
                 publisher: { '@id': ORG_ID },
                 potentialAction: {
                   '@type': 'SearchAction',
