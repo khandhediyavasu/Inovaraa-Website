@@ -2,6 +2,7 @@
 
 import { useState, type FormEvent } from 'react';
 import { usePathname } from 'next/navigation';
+import { trackConversion } from '@/lib/analytics';
 
 // Newsletter signup: posts to /api/subscribe, which emails info@inovaraa.com and adds
 // a "Newsletter" row to the leads Excel file.
@@ -26,6 +27,7 @@ export default function NewsletterForm({ variant = 'footer' }: { variant?: 'foot
       const data = (await res.json().catch(() => ({}))) as { ok?: boolean; error?: string };
       if (!res.ok || !data.ok) throw new Error(data.error || 'Something went wrong.');
       setState('done');
+      trackConversion('newsletter', { page_path: pathname });
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Something went wrong.');
       setState('error');

@@ -56,6 +56,7 @@ export const metadata: Metadata = {
 
 import { ThemeProvider } from '@/components/ThemeProvider';
 import Effects from '@/components/ui/Effects';
+import Analytics from '@/components/Analytics';
 import FloatingThemeToggle from '@/components/ui/FloatingThemeToggle';
 import NavProgress from '@/components/ui/NavProgress';
 import { SITE } from '@/data/site';
@@ -130,6 +131,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <main id="main-content" className="relative z-10">{children}</main>
           <Footer />
           <FloatingThemeToggle />
+          <Analytics />
         </ThemeProvider>
       </body>
     </html>

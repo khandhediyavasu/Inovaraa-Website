@@ -4,6 +4,7 @@ import { useState, useRef } from 'react';
 import type { CSSProperties, FormEvent, ReactNode } from 'react';
 import PageHero from '@/components/ui/PageHero';
 import { SITE } from '@/data/site';
+import { trackConversion } from '@/lib/analytics';
 
 const services = [
   'Custom Software Development', 'AI Agents & MCP Servers', 'AI & Data Analytics', 'Cloud & DevOps', 'Cybersecurity',
@@ -83,6 +84,8 @@ export default function ContactPage() {
       const data = (await res.json().catch(() => ({}))) as { ok?: boolean; error?: string };
       if (!res.ok || !data.ok) throw new Error(data.error || 'Something went wrong.');
       setStatus('success');
+      // Only the chosen service is sent, never the visitor's name, email or message
+      trackConversion('contact', { service: formData.service });
       formRef.current?.reset();
     } catch (err) {
       setSubmitError(err instanceof Error ? err.message : 'Something went wrong.');

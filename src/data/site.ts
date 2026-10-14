@@ -34,6 +34,16 @@ export const SITE = {
   // Google: Search Console > Add property > URL prefix https://inovaraa.com > HTML tag
   // Bing: Bing Webmaster Tools > Add site > HTML Meta Tag (Bing's index also feeds ChatGPT and Copilot search)
   verification: { google: '', bing: '' },
+  // Analytics and ad conversion tracking. Leave an ID empty to switch that tool off; with both empty
+  // no tracking script loads and the privacy policy says so.
+  // ga4: Google Analytics > Admin > Data streams > Measurement ID ("G-XXXXXXX")
+  // googleAds: Google Ads > Goals > Conversions > tag setup > Conversion ID ("AW-XXXXXXXXX")
+  // adsLabels: the part after the slash in each conversion's send_to value ("AW-XXXXXXXXX/<label>")
+  tracking: {
+    ga4: '',
+    googleAds: 'AW-629450762',
+    adsLabels: { contact: 'hgbBCO_1yZwdEIrQkqwC', phone: '', email: '' },
+  },
   mapUrl: 'https://www.google.com/maps/search/?api=1&query=Ahmedabad%2C+Gujarat%2C+India',
   linkedin: 'https://www.linkedin.com/company/inovaraa',
   twitter: 'https://twitter.com/inovaraa',

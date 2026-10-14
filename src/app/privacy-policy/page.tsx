@@ -1,10 +1,14 @@
 import type { CSSProperties, ReactNode } from 'react';
 import type { Metadata } from 'next';
 import PageHero from '@/components/ui/PageHero';
+import { GA4_ENABLED, TRACKING_ENABLED, TRACKING_TOOLS } from '@/lib/analytics';
 
+// The analytics wording follows SITE.tracking, so the policy stays accurate whether tracking is on or off
 export const metadata: Metadata = {
   title: 'Privacy Policy',
-  description: 'How Inovaraa Solutions collects, uses and protects the information you send through our website. No analytics, no tracking cookies and no selling of data.',
+  description: TRACKING_ENABLED
+    ? 'How Inovaraa Solutions collects, uses and protects the information you send through our website, which analytics and advertising tools we use, and the choices you have.'
+    : 'How Inovaraa Solutions collects, uses and protects the information you send through our website. No analytics, no tracking cookies and no selling of data.',
   robots: { index: true, follow: true },
   alternates: { canonical: '/privacy-policy' },
 };
@@ -48,7 +52,11 @@ const sections: { id: string; title: ReactNode; label: string; body: ReactNode }
             'Emails you send us: whatever you include, such as project details or, if you apply for a job, your CV.',
           ]}
         />
-        <p className="mt-4">We do not use analytics tools, tracking cookies or advertising on this website, so we do not collect information about how you browse.</p>
+        {TRACKING_ENABLED ? (
+          <p className="mt-4">We also use {TRACKING_TOOLS} to understand how visitors use the website and whether our ads lead to enquiries. {GA4_ENABLED ? 'These tools record' : 'It records'} things like the pages you visit, your approximate location, your device and browser, and whether you submitted a form or clicked our phone number or email address. {GA4_ENABLED ? 'They never receive' : 'It never receives'} what you type into our forms.</p>
+        ) : (
+          <p className="mt-4">We do not use analytics tools, tracking cookies or advertising on this website, so we do not collect information about how you browse.</p>
+        )}
       </>
     ),
   },
@@ -66,7 +74,11 @@ const sections: { id: string; title: ReactNode; label: string; body: ReactNode }
             'Consider you for current or future roles if you emailed us your CV. We keep CVs only for that purpose.',
           ]}
         />
-        <p className="mt-4">We do not sell, rent or trade your personal data, and we do not use it for advertising.</p>
+        <p className="mt-4">
+          {TRACKING_ENABLED
+            ? 'We do not sell, rent or trade your personal data. What you type into our forms is never shared with advertisers; our only advertising use is counting how many enquiries came from our Google ads.'
+            : 'We do not sell, rent or trade your personal data, and we do not use it for advertising.'}
+        </p>
       </>
     ),
   },
@@ -83,7 +95,10 @@ const sections: { id: string; title: ReactNode; label: string; body: ReactNode }
             'The submission is saved as a row in a spreadsheet (Excel file) on our server, so we can keep track of inquiries and follow up.',
           ]}
         />
-        <p className="mt-4">Access is limited to our team. Apart from our email provider, we share your information only if you ask us to (for example, to involve one of our partners in your project) or if the law requires it.</p>
+        {TRACKING_ENABLED && (
+          <p className="mt-4">Browsing and ad-click data collected by {TRACKING_TOOLS} is processed by Google under the <a href="https://policies.google.com/privacy" className={linkCls} rel="noopener noreferrer" target="_blank">Google Privacy Policy</a>.</p>
+        )}
+        <p className="mt-4">Access is limited to our team. Apart from our email provider{TRACKING_ENABLED ? ' and Google' : ''}, we share your information only if you ask us to (for example, to involve one of our partners in your project) or if the law requires it.</p>
       </>
     ),
   },
@@ -91,7 +106,12 @@ const sections: { id: string; title: ReactNode; label: string; body: ReactNode }
     id: 'cookies',
     label: 'Cookies & Browser Storage',
     title: 'Cookies & Browser Storage',
-    body: (
+    body: TRACKING_ENABLED ? (
+      <>
+        <p>We use cookies set by {TRACKING_TOOLS} to measure visits and ad performance. You can block or delete them in your browser settings{GA4_ENABLED && <>, opt out of Google Analytics with Google&apos;s <a href="https://tools.google.com/dlpage/gaoptout" className={linkCls} rel="noopener noreferrer" target="_blank">opt-out add-on</a></>}, and control ad personalisation in <a href="https://adssettings.google.com" className={linkCls} rel="noopener noreferrer" target="_blank">Google Ad Settings</a>. Blocking them does not affect how the website works.</p>
+        <p className="mt-4">We also store a <code className="font-mono text-[0.9em] text-white">theme</code> setting in your browser&apos;s local storage, which remembers whether you prefer light or dark mode. It never leaves your device.</p>
+      </>
+    ) : (
       <p>We do not use tracking or advertising cookies. The only thing this website stores in your browser is a <code className="font-mono text-[0.9em] text-white">theme</code> setting in local storage, which remembers whether you prefer light or dark mode. It never leaves your device, and you can clear it at any time in your browser settings.</p>
     ),
   },
@@ -168,7 +188,7 @@ export default function PrivacyPolicyPage() {
         description={
           <span className="inline-flex items-center gap-2 text-sm">
             <span className="w-2 h-2 rounded-full bg-emerald-400 pulse-soft" aria-hidden="true" />
-            Last updated: October 12, 2026
+            Last updated: October 14, 2026
           </span>
         }
       />
