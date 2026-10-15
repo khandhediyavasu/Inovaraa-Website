@@ -27,7 +27,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const now = new Date('2026-10-12T00:00:00.000Z');
 
   return [
-    { url: baseUrl, lastModified: now, changeFrequency: 'weekly', priority: 1 },
+    { url: `${baseUrl}/`, lastModified: now, changeFrequency: 'weekly', priority: 1 },
     { url: `${baseUrl}/services`, lastModified: now, changeFrequency: 'monthly', priority: 0.9 },
     ...services.map((s) => ({
       url: `${baseUrl}/services/${s}`,
